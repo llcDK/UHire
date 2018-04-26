@@ -1,0 +1,145 @@
+
+#bot
+{
+   width:100%;
+   height:60%;
+   /*border-style:solid;*/
+   position:relative;
+   bottom:0%;
+   background-image: url('../../images/main/reviews.jpg');
+   /*background-size: 100% 100%;*/
+   background-size: 100%;
+   background-repeat:no-repeat;
+   background-position:25% 25%;
+
+}
+
+
+#botBanner
+{
+   text-align: center;
+}
+
+#botBannerHeader *
+{
+   display:inline;
+}
+
+.headerPipe
+{
+   color:green;
+   font-weight: bold;
+   margin: 5%;
+}
+
+.botBannerSub
+{
+   font-size:10;
+   font-style:italic;
+   color:grey;
+   line-height:20%;
+}
+
+
+
+#row1
+{
+   /*border-style:solid;*/
+   /*color: blue;*/
+   /*width:90%;*/
+   /*height:50%*/
+
+   margin-left: 5%;
+   margin-right: 5%;
+   margin-top: 1%; 
+   margin-bottom: 1%;
+
+}
+
+#textName
+{
+   border-style:solid;
+   border-color:rgb(169, 169, 169);
+   border-width:1px;'
+
+
+   display:inline;
+   width:20%;
+   background:transparent;
+}
+
+#textEmail
+{
+   border-style:solid;
+   border-color:rgb(169, 169, 169);
+   border-width:1px;
+
+
+   display:inline;
+   width:20%;
+   background:transparent;
+
+   position:relative;
+   float:right;
+}
+
+#row2
+{
+   /*border-style:solid;
+   /*color: grey;*/
+   height:30%;
+   width:90%;
+
+   margin-left: 5%;
+   margin-right: 5%;
+   margin-top: 1%; 
+   margin-bottom: 1%;
+}
+
+
+/*TEXT AREA ROW*/
+#textProblem
+{
+   height:100%;
+   width:100%;
+   background:transparent;
+}
+
+
+
+#contactSubmit
+{
+    background: rgb(88, 149, 92);
+    color: #fff;
+    width:12.5%;
+    height: 40px;
+    border-radius:10px;
+
+    position: relative;
+    left: 44%;
+}
+
+/*SUBMIT ROW*/
+#row3
+{
+   /*border-style:solid;*/
+   width:100%;
+   height:20%;
+}
+
+#botFooter
+{
+   /*border-style:solid;*/
+   position:relative;
+   width:100%;
+   height:10%;
+   bottom: 0;
+}
+
+#botFooterText
+{
+   text-align: center;
+   font-size:10;
+   font-style:italic;
+   color:grey;
+}
