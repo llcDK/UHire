@@ -13,42 +13,36 @@
    text-align: center;
    width:100%;
    border-style:solid;
-   /*font-size:35;*/
-
 }
 
 
+#carScroll
+{
+   display:inline-block;
+   border-style:solid;
+   height:70%;
+   width:100%;
+}
 
+#carScroll *
+{
+   position:relative;
+   float:left;
+}
 
+.carTile
+{
+   width:100%;
+   border-style:solid;
+   border-color:pink;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.tileContainer
+{
+   width:30%;
+   border-style:solid;
+   border-color:red;
+}
 
 
 #footer
@@ -56,18 +50,12 @@
    height:30%;
    width:100%;
    background-color: rgb(124, 171, 127);
-   /*border-style:solid;*/
-   /*border-color:red;*/
 }
 
 #footerData
 {
-   
    text-align:center;
    height:50%;
-
-   /*border-style:solid;*/
-   /*border-color:pink;*/
 }
 
 #footerText
@@ -82,7 +70,6 @@
 #footerImage
 {
    height:50%;
-   /*border-style:solid;*/
 }
 
 #socialMedia
@@ -90,4 +77,17 @@
    position: relative;
    left: 46%;
    width:7%;
+}
+
+.editCar
+{
+
+
+}
+
+.deleteCar
+{
+
+
+   
 }

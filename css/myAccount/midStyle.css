@@ -54,7 +54,7 @@
 {
    float:right;
    width:65%;
-   height:80%;
+   height:100%;
    
    border-radius:20%;
    border-style:solid;
@@ -66,6 +66,7 @@
 {
   border-style:solid;
   width:48%;
+  height:100%;
   float:left;
 }
 
@@ -76,10 +77,15 @@
 
 #midInputsRight
 {
-  width:48%;
-  height:10%;
   border-style:solid;
-  float:right;
+  width:48%;
+  height:100%;
+  float:left;
+}
+
+#midInputsRight *
+{
+   padding: 5 5 5 5;
 }
 
 #midInputsTop
