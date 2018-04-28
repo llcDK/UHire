@@ -1,0 +1,93 @@
+
+
+#bot
+{
+   height:100%;
+   border-style:solid;
+}
+
+
+
+#botBanner
+{
+   text-align: center;
+   width:100%;
+   border-style:solid;
+   /*font-size:35;*/
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#footer
+{
+   height:30%;
+   width:100%;
+   background-color: rgb(124, 171, 127);
+   /*border-style:solid;*/
+   /*border-color:red;*/
+}
+
+#footerData
+{
+   
+   text-align:center;
+   height:50%;
+
+   /*border-style:solid;*/
+   /*border-color:pink;*/
+}
+
+#footerText
+{
+   color:white;
+   font-size:10;
+   position:relative;
+   top:85%;
+
+}
+
+#footerImage
+{
+   height:50%;
+   /*border-style:solid;*/
+}
+
+#socialMedia
+{
+   position: relative;
+   left: 46%;
+   width:7%;
+}
