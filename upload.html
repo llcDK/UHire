@@ -1,0 +1,77 @@
+<html>
+
+<head>
+	<title>Upload Vehicle</title>
+	<link href="upload.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+	<div id="pageHeading">
+		<h2>UPLOAD</h2>
+	</div>
+	<div id="yellowLine">
+		<hr>
+	</div>
+	
+
+	<div id="image">
+		<div id="imgFrame">
+			<img src="images/upload/vehiclePlaceholder.jpg" alt="Upload Image">
+		</div>
+	
+		<div id="uploadDiv">
+			<button id="imgSelect"> Upload Image </button>
+		</div>
+	</div>
+
+
+	<form action="uplaodCar" method="post">
+
+	<div id="infoHeadings">
+
+		<h2>
+		<div>
+			<div class="infoHeading">
+			<span> Brand </span>
+		</div>
+			<div class="infoInput">
+			<select id="brand">
+					<option value="default"> Default </option>
+			</select>
+			</div>
+		</div>
+		<div>
+			<div class="infoHeading">
+			<span> Price </span>
+		</div>
+			<div class="infoInput">
+			<input type="text" id="price"/>
+		</div>
+			<div id="perDay">
+				<span>Per Day</span>
+			</div>
+		</div>
+		<div>
+			<div class="infoHeading">
+			<span> Location </span>
+		</div>
+			<div class="infoInput">
+			<select id="location">
+					<option value="sydney"> Sydney </option>
+				</select>
+			</div>
+		</div>
+		
+	</div>
+
+	<div id="submit">
+	<input type="submit" value="COMPLETE">	
+</div>
+
+	</form>
+
+
+</body>
+
+</html>
