@@ -14,6 +14,14 @@
 	
 	<?php
 		include 'backend.php';
+		// Connect to the DB
+		$dbconnect = new DBConnection();
+		
+		// Process 6 cars as default
+		$carQuery = "select * from Car where available = 1 limit 6;";
+		$carsToDisplay = Car::getCars($dbconnect, $carQuery);
+		
+		
 		
 	?>
 
@@ -75,19 +83,56 @@
    </div></div>
 
 
-   <div id="mid">
-      <div id="midBanner">
-         <div id="midBannerHeader">
-            <h3 class="headerPipe">|</h3>
-            <h4 id="midBannerText">UPLOAD</h4>
-            <h3 class="headerPipe">|</h3>
-         </div>
-
-         <p class="midBannerSub"> Here is the latest information on cars</p> <p class="midBannerSub"> You can pick what interests you</p>
-      </div>
-
-
-      <div id="productDisplay">
+	<div id="mid">
+		<div id="midBanner">
+			<div id="midBannerHeader">
+				<h3 class="headerPipe">|</h3>
+				<h4 id="midBannerText">UPLOAD</h4>
+				<h3 class="headerPipe">|</h3>
+			</div>
+		<p class="midBannerSub"> Here is the latest information on cars</p> <p class="midBannerSub"> You can pick what interests you</p>
+		</div>
+		
+		<div id="productDisplay">
+		
+			<?php
+				$rowCount = count($carsToDisplay);
+				for($i = 0; $i < $rowCount/3; $i++)
+				{
+					?>
+					<div class="midRow">
+					
+					<?php
+						for($j = 0; $j < 3; $j++)
+						{
+							?>
+							<div class="cell">
+								<div class="carImage tdImg">
+									<img src = <?php echo $carsToDisplay[3*$i + $j]->getImageURL(); ?> width="100%" />
+								</div>
+								<span class="ownerText"> LOCATION:<?php echo $carsToDisplay[3*$i + $j]->getLocation(); ?></span>
+								<br/>
+								<span class="ownerText"> PRICE: <?php echo $carsToDisplay[3*$i + $j]->getPrice(); ?></span>
+								<br/>
+								<span class="modelText"> BRAND: <?php echo $carsToDisplay[3*$i + $j]->getBrand(); ?></span>
+								<br/>
+								<p class="descText">DESCRIPTION: <?php echo $carsToDisplay[3*$i + $j]->getFullDescription(); ?></p>
+								<br/>
+								<button  > Read More </button>
+							</div>
+					
+					<?php		
+						}
+					?>
+					</div>	
+			<?php		
+				}
+				
+			?>
+			
+		
+			<!--
+		
             <div class="midRow">
                <div class="cell">
                      <div class="carImage tdImg">
@@ -98,7 +143,7 @@
                      <hr/>
                      <p class="descText">Awesome Grande Toure 2.2L Turbo Diesel 4WD Auto with log books, it is very new. Just 36000KM. The space is very big enough for whole family</p>
                      <button> Read More </button>
-               </div> 
+				</div> 
 
                <div class="cell">
                      <div class="carImage tdImg">
@@ -159,7 +204,11 @@
                      <button> Read More </button>
                </div> 
             </div>  
+			
+			-->
+			
       </div>
+	  
    </div>
 
 

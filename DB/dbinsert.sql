@@ -29,7 +29,7 @@ VALUES ('SPLY-350', 20.50, 1, 'Bligh St, Wollongong', '2001', '2010-05-10', 'Acc
 		4, 175000, 'gas', 'sedan');
 		
 INSERT INTO Car
-VALUES ('SPLY-375', 22.50, 0, 'Bligh St, Wollongong', '2001', '2005-05-10', 'Yaris', null, 'Toyota', 'manual',
+VALUES ('SPLY-375', 22.50, 1, 'Bligh St, Wollongong', '2001', '2005-05-10', 'Yaris', null, 'Toyota', 'manual',
 		4, 250000, 'gas', 'sedan');
 		
 INSERT INTO Car
@@ -39,8 +39,33 @@ VALUES ('AXN-100', 25.50, 1, 'Keira St, Wollongong', '2002', '2010-05-20', 'Civi
 INSERT INTO Car
 VALUES ('AXN-200', 20.50, 1, 'Blaze St, Thirroul', '2003', '2010-10-10', 'Astra', null, 'Holden', 'auto',
 		4, 200000, 'diesel', 'sedan');
-		
-		
+
+INSERT INTO Car
+VALUES ('SPLY-388', 30, 1, 'Bligh St, Wollongong', '2001', '2005-05-10', 'Yaris', null, 'Benz', 'auto',
+		4, 250000, 'gas', 'sedan');
+
+INSERT INTO Car
+VALUES ('SPLY-400', 31, 1, 'Bligh St, Wollongong', '2001', '2005-05-10', 'Yaris', null, 'BMW', 'auto',
+		4, 250000, 'gas', 'sedan');
+
+INSERT INTO CarImage
+VALUES ('SPLY-350', 'car1.jpg');		
+
+INSERT INTO CarImage
+VALUES ('SPLY-375', 'car2.jpg');
+
+INSERT INTO CarImage
+VALUES ('AXN-100', 'car3.jpg');
+
+INSERT INTO CarImage
+VALUES ('AXN-200', 'car4.jpg');
+
+INSERT INTO CarImage
+VALUES ('SPLY-388', 'car5.jpg');
+
+INSERT INTO CarImage
+VALUES ('SPLY-400', 'car6.jpg');
+
 
 INSERT INTO Booking
 VALUES ('1001', 'SPLY-350', '2018-04-28 11:00:00', '2018-04-30', 0);

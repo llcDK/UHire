@@ -28,6 +28,13 @@ create table Car(
   constraint car_fk foreign key(carOwnerAcc) references Account(accNo) on delete cascade
 );
 
+create table CarImage(
+  plateNum varchar(20) NOT NULL,
+  imageFileName varchar(100) NOT NULL,
+  constraint carimg_pk primary key(imageFileName),
+  constraint carimg_fk foreign key(plateNum) references Car(plateNum)
+);
+
 create table Booking(
   accNo varchar(20) NOT NULL,
   plateNum varchar(20) NOT NULL,

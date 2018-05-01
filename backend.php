@@ -94,7 +94,7 @@
 		}
 		
 		// Factory method
-		static function createAccount($dbconnect, $accNo = "", $password = "", $fname = "", $lname = "", $address = "")
+		public static function createAccount($dbconnect, $accNo = "", $password = "", $fname = "", $lname = "", $address = "")
 		{
 			
 			// Create an instance of an account
@@ -104,6 +104,13 @@
 			// Print feedback to user
 			
 			// Return the account
+		}
+		
+		public static function getAccount($dbconnect, $query)
+		{
+			// Return a list of accounts according to the query
+			
+			
 		}
 		
 		/*Accessor functions*/
@@ -166,11 +173,19 @@
 		private $odometer;
 		private $fuelType;
 		private $bodyType;
+		private $image;
 		
+		// Static variables
+		public static $imageDir = "images/carImage/";
 		
-		function __construct($plateNum, $price, $location, $carOwnerAcc, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType)
+		private static function getImageDir()
 		{
-			updateCar($plateNum, $price, 1, $location, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType);
+			return Car::$imageDir;
+		}
+		
+		function __construct($plateNum, $price, $avaiable, $location, $carOwnerAcc, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType, $image)
+		{
+			$this->updateCar($plateNum, $price, $avaiable, $location, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType, $image);
 			$this->carOwnerAcc = $carOwnerAcc;
 		}
 		
@@ -185,7 +200,7 @@
 			
 		}
 		
-		public function updateCar($plateNum, $price, $avaiable, $location, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType)
+		public function updateCar($plateNum, $price, $avaiable, $location, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType, $image)
 		{
 			$this->plateNum = $plateNum;
 			$this->price = $price;
@@ -200,6 +215,31 @@
 			$this->odometer = $odometer;
 			$this->fuelType = $fuelType;
 			$this->bodyType = $bodyType;
+			$this->image = $image;
+		}
+		
+		// Return a list of cars with certain certira
+		public static function getCars($dbconnect, $query)
+		{
+			$queryResult = $dbconnect->executeCommand($query);
+			$cars = array();
+			if(mysqli_num_rows($queryResult) > 0)
+			{
+				while($row = mysqli_fetch_row($queryResult))
+				{
+					// Find the image of the car
+					$imageQuery = "select imageFileName from CarImage where plateNum = '$row[0]';";
+					$imageNameRow = $dbconnect->executeCommand($imageQuery);
+					// Currently only one image is for each car
+					$imageRow = mysqli_fetch_row($imageNameRow);
+					$imageName = $imageRow[0];
+					
+					$newCar = new Car($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6], $row[7], $row[8], $row[9], $row[10], $row[11], $row[12], $row[13], $imageName);
+					$cars[] = $newCar;
+				}
+			}
+			
+			return $cars;
 		}
 		
 		public function setDetail($dbconnect, $plateNum, $price, $avaiable, $location, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType)
@@ -226,12 +266,45 @@
 				
 		}
 		
+		public function getBrand()
+		{
+			return $this->brand;
+		}
+		
+		public function getLocation()
+		{
+			return $this->location;
+		}
+		
+		public function getPrice()
+		{
+			return $this->price;
+		}
+		
+		public function getModel()
+		{
+			if($this->model == "") return "No model provided!";
+			else return $this->model;
+		}
+		
+		public function getFullDescription()
+		{
+			if($this->description == "") return "No Description provided!";
+			else return $this->description;
+		}
+		
+		public function getImageURL()
+		{
+			return Car::getImageDir() . $this->image;
+		}
 	}
 	
 	class BankAccount
 	{
 		
 	}
+	
+	
 	
 ?>
 
