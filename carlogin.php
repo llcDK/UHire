@@ -8,11 +8,54 @@
 
 </head>
 <body>
+<script>
+	function loginFailed()
+	{
+		alert("User name or password incorrect!");
+	}
+	function loadMainPage()
+	{
+		window.location = "main.php";
+	}
+</script>
 <?php
-//tell if the user typed content .empty? or value.
-  $getname = empty($_GET["username"]) ? "" : htmlspecialchars($_GET["username"]) ;
-  $getpassword  = empty($_GET["password"] ) ? "" : htmlspecialchars($_GET["password"]);
-  
+	include 'backend.php';
+	//tell if the user typed content .empty? or value.
+	if(isset($_GET["action"]) && $_GET["action"] == "login")
+	{
+		$inputName = empty($_POST["username"]) ? "" : htmlspecialchars($_POST["username"]) ;
+		$inputPassword  = empty($_POST["password"] ) ? "" : htmlspecialchars($_POST["password"]);
+		
+		// Creat a DBConnection object
+		
+		//echo "<script>alert('Log in processing ... ');</script>" ;
+		$dbconnect = new DBConnection();
+		
+		// Request User information
+		$dbqueryFindAccount = "select * from Account where accNo = '$inputName' and password = '$inputPassword';";
+		$dbqueryResult = $dbconnect->executeCommand($dbqueryFindAccount);
+		
+		
+		if(mysqli_num_rows($dbqueryResult) > 0)
+		{
+			// Log in Successfully
+			echo "<script>alert('Log in successful !');</script>";
+			// Process the account into a object
+			$accRow = mysqli_fetch_row($dbqueryResult);
+			$accObj = new Account($accRow[0], $accRow[1], $accRow[2], $accRow[3], $accRow[4], $accRow[5], $accRow[6]);
+			session_start();
+			
+			$_SESSION['account'] = serialize($accObj);
+			
+			// Open main.php
+			echo "<script>loadMainPage()</script>";
+		}
+		else
+		{
+			echo "<script>loginFailed()</script>";
+		}
+	}
+	
 ?>
  
 	<div id ="background" style="opacity:0.8";>
@@ -33,9 +76,9 @@
     
 	<div id="loginuser">
 		
-		<form method="post" action="student_db.php">  
+		<form method="post" action="carlogin.php?action=login">  
 		<input type="text" id="name" name="username" placeholder = "User" /> </br>
-        <input type="text" id="password" name="password"  placeholder = "Password" /> 
+        <input type="password" id="password" name="password"  placeholder = "Password" /> 
 	</div>
   
 			<div id="login_control">  

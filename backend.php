@@ -33,7 +33,7 @@
 		function __construct()
 		{
 			$this->connection = mysqli_connect(DBConnection::getServerName(), DBConnection::getUserName(), DBConnection::getPassword());
-			$this->connection = mysqli_select_db($this->connection, DBConnection::getDBName());
+			mysqli_select_db($this->connection, DBConnection::getDBName());
 			
 			if(!$this->connection)
 			{
@@ -49,7 +49,12 @@
 		
 		function executeCommand($command)
 		{
-			return mysqli_query($connection, $command);
+			return mysqli_query($this->connection, $command);
+		}
+		
+		function status()
+		{
+			return $this->connectionStatus;
 		}
 	}
 	
@@ -77,20 +82,21 @@
 		private $messages;
 		
 		
-		function __construct($accNo = "", $password = "", $fname = "", $lname = "", $address = "")
+		function __construct($accNo = "", $password = "", $type = 0, $fname = "", $lname = "", $address = "", $rating = -1)
 		{
 			$this->accNo = $accNo;
 			$this->password = $password;
-			$type = 0;
+			$this->type = $type;
 			$this->fname = $fname;
 			$this->lname = $lname;
 			$this->address = $address;
-			$rating = -1;
+			$this->rating = $rating;
 		}
 		
 		// Factory method
 		static function createAccount($dbconnect, $accNo = "", $password = "", $fname = "", $lname = "", $address = "")
 		{
+			
 			// Create an instance of an account
 			
 			// Update the database
@@ -243,7 +249,6 @@
 			$acc = new Account("John");
 			$objString = serialize($acc);
 			echo unserialize($objString)->getAccNo();
-			
 		*/
 		?>
 	</body>
