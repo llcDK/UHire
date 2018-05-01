@@ -39,6 +39,8 @@
    /*border-style:solid;*/
    /*border-color:pink;*/
    height:100%;
+   position:relative;
+   left:3%;
 }
 
 #products

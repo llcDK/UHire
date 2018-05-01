@@ -1,0 +1,84 @@
+
+
+#top
+{  
+    width: 100%;
+    height:230px;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-attachment: fixed;
+    
+    position: relative;
+    
+    background-image: url('../../images/myAccount/topCar.jpg');
+    background-size: 100% auto;
+    overflow:hidden;
+    
+}
+
+.darken
+{
+   background: rgba(0, 0, 0, 0.5);
+   height:100%;
+   width:100%;
+}
+
+
+/* Add a black background color to the top navigation */
+.topnav
+{
+    background-color: #333;
+    overflow: hidden;
+    position: relative;
+    top:20%;
+
+    /*padding-left :0;*/
+    /*padding-right:0;*/
+    /*margin:0 auto;*/
+   /*list-style:none;*/
+
+}
+
+/* Style the links inside the navigation bar */
+.topnav a 
+{   
+    position: relative;
+    left:38%;
+
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#banner
+{
+   height:50%;
+}
+
+#topText
+{
+   position: relative;
+   text-align: center;
+   top:70%;
+   font-size:35;
+   /*color:Chartreuse;*/
+   color:white;
+}
