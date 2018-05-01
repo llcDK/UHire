@@ -47,15 +47,15 @@
 			
 		}
 		
-		function __destruct()
-		{
-			
-		}
-		
 		function executeCommand($command)
 		{
-			
+			return mysqli_query($connection, $command);
 		}
+	}
+	
+	class PageManager
+	{
+		
 	}
 	
 	class Account
@@ -88,14 +88,16 @@
 			$rating = -1;
 		}
 		
-		// Factor method
-		static function createAccount($accNo = "", $password = "", $fname = "", $lname = "", $address = "")
+		// Factory method
+		static function createAccount($dbconnect, $accNo = "", $password = "", $fname = "", $lname = "", $address = "")
 		{
-			// Create a instance of an account
+			// Create an instance of an account
 			
 			// Update the database
 			
 			// Print feedback to user
+			
+			// Return the account
 		}
 		
 		/*Accessor functions*/
@@ -138,6 +140,8 @@
 			// Update the page
 			
 		}
+		
+		
 	}
 	
 	class Car
@@ -158,9 +162,70 @@
 		private $bodyType;
 		
 		
+		function __construct($plateNum, $price, $location, $carOwnerAcc, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType)
+		{
+			updateCar($plateNum, $price, 1, $location, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType);
+			$this->carOwnerAcc = $carOwnerAcc;
+		}
+		
+		// Factory method
+		public static function createCar()
+		{
+			// Create a car instance
+			
+			// Update the database
+			
+			// Update page
+			
+		}
+		
+		public function updateCar($plateNum, $price, $avaiable, $location, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType)
+		{
+			$this->plateNum = $plateNum;
+			$this->price = $price;
+			$this->avaiable = $avaiable;
+			$this->location = $location;
+			$this->year = $year;
+			$this->model = $model;
+			$this->description = $description;
+			$this->brand = $brand;
+			$this->transmission = $transmission;
+			$this->seatNumber = $seatNumber;
+			$this->odometer = $odometer;
+			$this->fuelType = $fuelType;
+			$this->bodyType = $bodyType;
+		}
+		
+		public function setDetail($dbconnect, $plateNum, $price, $avaiable, $location, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType)
+		{
+			// Change the information of this object 
+			updateCar($plateNum, $price, $avaiable, $location, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType);
+			// Update database
+			
+			// Update page
+			
+		}
+		
+		public function book($acc)
+		{
+			// Check if there are enough credit
+			
+				// If ther are enough credit, Set avaiable to 0
+				
+				// Send a receipt to the renter
+				
+				// Update page
+			
+				// If not having enough credit, update page
+				
+		}
 		
 	}
 	
+	class BankAccount
+	{
+		
+	}
 	
 ?>
 
@@ -170,7 +235,7 @@
 	</head>
 	<body>
 		<?php
-		
+		/*
 			//echo DBConnection::getServerName();
 			$dbconnect = new DBConnection();
 			//$connection = mysqli_connect("localhost:808", "root", "") or die (mysqli_error());;
@@ -178,6 +243,8 @@
 			$acc = new Account("John");
 			$objString = serialize($acc);
 			echo unserialize($objString)->getAccNo();
+			
+		*/
 		?>
 	</body>
 </html>
