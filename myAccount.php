@@ -8,7 +8,15 @@
 
 
 <body>
-
+<?php
+	include 'backend.php';
+	session_start();
+	$myAccount = unserialize($_SESSION['account']);
+	
+	// Create DB connection
+	$dbconnect = new DBConnection();
+	
+?>
 <div id="top">
    <div class="darken">
 
@@ -40,17 +48,17 @@
             <div id="midInputsLeft">
                <div>
                   <label>NAME: </label>
-                  <input type="text"/><br/>
+                  <input type="text" value = "<?php echo $myAccount->getFirstName() . ' ' . $myAccount->getLastName(); ?>" /><br/>
                </div>
 
                <div>
                   <label>D.O.B: </label>
-                  <input type="text"/><br/>
+                  <input type="text" value = "<?php echo "" ?>" /><br/>
                </div>
 
                <div>
                   <label>E-MAIL: </label>
-                  <input type="text"/><br/>
+                  <input type="text" value = "" /><br/>
                </div>
 
                <div>
@@ -60,7 +68,7 @@
 
                <div>
                   <label>ADDRESS </label>
-                  <input type="text"/><br/>
+                  <input type="text" value = "<?php echo $myAccount->getAddress(); ?>" /><br/>
                </div>
             </div>
             <div id="midInputsRight">
@@ -92,7 +100,42 @@
    <div id="carScroll">
       <div id="left"><a href="#" class="previous round leftRight">&#8249;</a></div>
 
-
+	<?php
+		if($myAccount->type() == "Car owner")
+		{
+			// If the account belongs to a car owner
+			$cars = $myAccount->getCars($dbconnect);
+			foreach($cars as $car)
+			{
+				?>
+				<div class="tileContainer">
+					<div> <img class="carTile" src="<?php echo $car->getImageURL(); ?>" /> </div>
+					<div class="buttonGroup">
+						<button class="editCar"></button>
+						<button class="deleteCar"></button>
+					</div>
+				</div>
+	
+	<?php	
+			}
+			
+			
+			
+		}
+		else if($myAccount->type() == "Car renter")
+		{
+			// Display a button that can let the renter upload a car and becomes a car owner
+			?>
+			<form action = "upload.php">
+				<button type = "submit">Become a car owner</button>
+			</form>
+			
+	<?php
+		}
+		
+	?>
+	
+	<!--
       <div class="tileContainer">
          <div> <img class="carTile" src="images/myAccount/car3.png"/> </div>
          <div class="buttonGroup">
@@ -116,7 +159,7 @@
             <button class="deleteCar"></button>
          </div>
       </div>
-
+	-->
       
       <div id="right"><a href="#" class="next round leftRight">&#8250;</a></div>
    </div>

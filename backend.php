@@ -113,6 +113,12 @@
 			
 		}
 		
+		function getCars($dbconnect)
+		{
+			$carsOfThisAccount = "select * from Car where carOwnerAcc = {$this->accNo} ;";
+			return Car::getCars($dbconnect, $carsOfThisAccount);
+		}
+		
 		/*Accessor functions*/
 		function getAccNo()
 		{
@@ -262,6 +268,9 @@
 		{
 			// First perpare the SQL statement
 			// First consider the price and avaiable and brand
+			
+			$price = empty($price) || !isset($price)? PHP_INT_MAX : $price;
+			
 			$query = "select * from Car where price <= $price and avaiableTo > '$ava' and brand like '%$brand%';";
 			
 			// Call getCars function to return a list of cars that match the cirteria
@@ -274,7 +283,7 @@
 				foreach($partialResult as $car)
 				{
 					similar_text($car->getLocation(), $loc, $sim_percent);
-					if($sim_percent > 50)
+					if($sim_percent > 35)
 					{
 						$result[] = $car;
 					}
