@@ -16,6 +16,16 @@
 		{
 			alert("No matched record!");
 		}
+		
+		function goHome()
+		{
+			window.location = "main.php";
+		}
+		
+		function goAccount()
+		{
+			window.location = "myAccount.php";
+		}
 	</script>
 	
 	
@@ -48,11 +58,11 @@
          </div>
 
          <div id="altLinks">
-            <button class="topButton">HOME</button>
-            <button class="topButton">MY ACCOUNT</button>
-            <button class="topButton">MESSAGE</button>
-            <button class="topButton">HELP</button>
-            <button class="topButton">CONTACT</button>
+            <button class="topButton" onclick = "goHome()" >HOME</button>
+            <button class="topButton" onclick = "goAccount()" >MY ACCOUNT</button>
+            <button class="topButton" onclick = "goMessage()" >MESSAGE</button>
+            <button class="topButton" onclick = "goHelp()" >HELP</button>
+            <button class="topButton" onclick = "goContact()" >CONTACT</button>
             <button class="topButton" id="topSearch"></button>
          </div>
       </div>

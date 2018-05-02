@@ -274,7 +274,7 @@
 				foreach($partialResult as $car)
 				{
 					similar_text($car->getLocation(), $loc, $sim_percent);
-					if($sim_percent > 0.5)
+					if($sim_percent > 50)
 					{
 						$result[] = $car;
 					}
