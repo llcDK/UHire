@@ -223,7 +223,7 @@
 		{
 			$queryResult = $dbconnect->executeCommand($query);
 			$cars = array();
-			if(mysqli_num_rows($queryResult) > 0)
+			if($queryResult != false && mysqli_num_rows($queryResult) > 0)
 			{
 				while($row = mysqli_fetch_row($queryResult))
 				{
@@ -240,6 +240,48 @@
 			}
 			
 			return $cars;
+		}
+		
+		public static function getBrands($dbconnect)
+		{
+			$brandQuery = "select distinct(brand) from Car order by brand;";
+			$queryResult = $dbconnect->executeCommand($brandQuery);
+			$brands = array();
+			if(mysqli_num_rows($queryResult) > 0)
+			{
+				while($row = mysqli_fetch_row($queryResult))
+				{
+					$brands[] = $row[0];
+				}
+			}
+			
+			return $brands;
+		}
+		
+		public static function searchCars($dbconnect, $loc, $price, $ava, $brand)
+		{
+			// First perpare the SQL statement
+			// First consider the price and avaiable and brand
+			$query = "select * from Car where price <= $price and avaiableTo > '$ava' and brand like '%$brand%';";
+			
+			// Call getCars function to return a list of cars that match the cirteria
+			$partialResult = Car::getCars($dbconnect, $query);
+			
+			// Filter the returned data by location 
+			$result = array();
+			if(trim($loc) != "")
+			{
+				foreach($partialResult as $car)
+				{
+					similar_text($car->getLocation(), $loc, $sim_percent);
+					if($sim_percent > 0.5)
+					{
+						$result[] = $car;
+					}
+				}
+			}
+			
+			return $result;
 		}
 		
 		public function setDetail($dbconnect, $plateNum, $price, $avaiable, $location, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType)

@@ -25,27 +25,27 @@ VALUES ('1', 'admin', 'Admin', 'Tianming', 'Zhao', 'Northfields Ave, Wollongong'
 
 
 INSERT INTO Car
-VALUES ('SPLY-350', 20.50, 1, 'Bligh St, Wollongong', '2001', '2010-05-10', 'Accord', null, 'Honda', 'auto',
+VALUES ('SPLY-350', 20.50, 1, 'Bligh St, Wollongong', '2001', '2018-12-31', '2010-05-10', 'Accord', null, 'Honda', 'auto',
 		4, 175000, 'gas', 'sedan');
 		
 INSERT INTO Car
-VALUES ('SPLY-375', 22.50, 1, 'Bligh St, Wollongong', '2001', '2005-05-10', 'Yaris', null, 'Toyota', 'manual',
+VALUES ('SPLY-375', 22.50, 1, 'Bligh St, Wollongong', '2001', '2019-12-31', '2005-05-10', 'Yaris', null, 'Toyota', 'manual',
 		4, 250000, 'gas', 'sedan');
 		
 INSERT INTO Car
-VALUES ('AXN-100', 25.50, 1, 'Keira St, Wollongong', '2002', '2010-05-20', 'Civic', null, 'Honda', 'auto',
+VALUES ('AXN-100', 25.50, 1, 'Keira St, Wollongong', '2002', '2019-12-31', '2010-05-20', 'Civic', null, 'Honda', 'auto',
 		4, 175000, 'gas', 'sedan');
 		
 INSERT INTO Car
-VALUES ('AXN-200', 20.50, 1, 'Blaze St, Thirroul', '2003', '2010-10-10', 'Astra', null, 'Holden', 'auto',
+VALUES ('AXN-200', 20.50, 1, 'Blaze St, Thirroul', '2003', '2020-12-31', '2010-10-10', 'Astra', null, 'Holden', 'auto',
 		4, 200000, 'diesel', 'sedan');
 
 INSERT INTO Car
-VALUES ('SPLY-388', 30, 1, 'Bligh St, Wollongong', '2001', '2005-05-10', 'Yaris', null, 'Benz', 'auto',
+VALUES ('SPLY-388', 30, 1, 'Bligh St, Wollongong', '2001', '2019-12-31', '2005-05-10', 'Yaris', null, 'Benz', 'auto',
 		4, 250000, 'gas', 'sedan');
 
 INSERT INTO Car
-VALUES ('SPLY-400', 31, 1, 'Bligh St, Wollongong', '2001', '2005-05-10', 'Yaris', null, 'BMW', 'auto',
+VALUES ('SPLY-400', 31, 1, 'Bligh St, Wollongong', '2001', '2018-12-31', '2005-05-10', 'Yaris', null, 'BMW', 'auto',
 		4, 250000, 'gas', 'sedan');
 
 INSERT INTO CarImage

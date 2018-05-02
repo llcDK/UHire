@@ -11,15 +11,30 @@
 
 <!-- <body style="margin:0% 5% 0% 5%;"> -->
 <body onload="loadRecent()">
+	<script>
+		function noMatchRecord()
+		{
+			alert("No matched record!");
+		}
+	</script>
+	
 	
 	<?php
 		include 'backend.php';
 		// Connect to the DB
 		$dbconnect = new DBConnection();
 		
-		// Process 6 cars as default
-		$carQuery = "select * from Car where available = 1 limit 6;";
-		$carsToDisplay = Car::getCars($dbconnect, $carQuery);
+		
+		if(!empty($_GET['action']) && $_GET['action'] == "search")
+		{
+			$carsToDisplay = Car::searchCars($dbconnect, $_GET['loc'], $_GET['price'], $_GET['ava'], $_GET['brd']);
+		}
+		else
+		{
+			// Process 6 cars as default
+			$carQuery = "select * from Car where available = 1 limit 6;";		
+			$carsToDisplay = Car::getCars($dbconnect, $carQuery);
+		}	
 		
 		
 		
@@ -57,21 +72,35 @@
          </div>
 
          <div id="mainSearch">
-            <form>
+            <form action = "main.php?" method = "get">
                <div id="topInputs">
-                  <input type="text" id="txtAddress"/>
-                  <input type="text" id="txtPrice"/>
-                  <input type="date" id="txtAvaliable"/>
-                  <select id="txtBrand">
+				  <input type = "hidden" name = "action" value = "search" />
+                  <input type="text" id="txtAddress" name = "loc" value = "<?php echo empty($_GET['loc'])? "" : $_GET['loc']; ?>" placeholder = "Location" />
+                  <input type="text" id="txtPrice" name = "price" value = "<?php echo empty($_GET['price'])? "" : $_GET['price']; ?>" placeholder = "Price" />
+                  <input type="date" id="txtAvaliable" name = "ava" value = "<?php echo empty($_GET['ava'])? "" : $_GET['ava']; ?>" placeholder = "availableDate" />
+                  <select id="txtBrand" name = "brd">
+					 <option value = "" selected = "selected">All</option>
+					 <?php
+						$allBrand = Car::getBrands($dbconnect);
+						foreach($allBrand as $bd)
+						{
+							?>
+							<option value = "<?php echo $bd; ?>" ><?php echo $bd; ?></option>
+					<?php
+						}
+					 ?>
+					 
+					 <!--
                      <option value="value1">Value1</option>
                      <option value="value2">Value1</option>
                      <option value="value3">Value1</option>
                      <option value="value4">Value1</option>
+					 -->
                   </select>
                </div>
 
                <div id="mainSubmit">
-                  <input type="submit" id="SearchNow" />
+                  <input type="submit" id="SearchNow" >Search</input>
                </div>
             </form>
          </div>
@@ -97,6 +126,10 @@
 		
 			<?php
 				$rowCount = count($carsToDisplay);
+				if($rowCount == 0)
+				{
+					echo "<script> noMatchRecord(); </script>";
+				}
 				for($i = 0; $i < $rowCount/3; $i++)
 				{
 					?>
@@ -105,23 +138,25 @@
 					<?php
 						for($j = 0; $j < 3; $j++)
 						{
-							?>
-							<div class="cell">
-								<div class="carImage tdImg">
-									<img src = <?php echo $carsToDisplay[3*$i + $j]->getImageURL(); ?> width="100%" />
+							if(3*$i + $j < $rowCount)
+							{
+								?>
+								<div class="cell">
+									<div class="carImage tdImg">
+										<img src = <?php echo $carsToDisplay[3*$i + $j]->getImageURL(); ?> width="100%" />
+									</div>
+									<span class="ownerText"> LOCATION:<?php echo $carsToDisplay[3*$i + $j]->getLocation(); ?></span>
+									<br/>
+									<span class="ownerText"> PRICE: <?php echo $carsToDisplay[3*$i + $j]->getPrice(); ?></span>
+									<br/>
+									<span class="modelText"> BRAND: <?php echo $carsToDisplay[3*$i + $j]->getBrand(); ?></span>
+									<br/>
+									<p class="descText">DESCRIPTION: <?php echo $carsToDisplay[3*$i + $j]->getFullDescription(); ?></p>
+									<br/>
+									<button  > Read More </button>
 								</div>
-								<span class="ownerText"> LOCATION:<?php echo $carsToDisplay[3*$i + $j]->getLocation(); ?></span>
-								<br/>
-								<span class="ownerText"> PRICE: <?php echo $carsToDisplay[3*$i + $j]->getPrice(); ?></span>
-								<br/>
-								<span class="modelText"> BRAND: <?php echo $carsToDisplay[3*$i + $j]->getBrand(); ?></span>
-								<br/>
-								<p class="descText">DESCRIPTION: <?php echo $carsToDisplay[3*$i + $j]->getFullDescription(); ?></p>
-								<br/>
-								<button  > Read More </button>
-							</div>
-					
-					<?php		
+					<?php
+							}
 						}
 					?>
 					</div>	
