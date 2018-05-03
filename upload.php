@@ -14,10 +14,11 @@
 			</div>
 
 			<div class="topnav">
-				<a class="active" href="#home">Home</a>
-				<a href="#news">News</a>
+				<a href="main.php">Home</a>
+				<a href="myAccount.php"> My Account</a>
+				<a href="messages.html" class="active">Messages</a>
+				<a href="#help"> Help </a>
 				<a href="#contact">Contact</a>
-				<a href="#about">About</a>
 			</div>
 		</div>
 	</div>
