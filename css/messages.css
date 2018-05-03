@@ -16,105 +16,106 @@
 	background-color: yellow;
 }
 
+#contentHolder {
+	background: url("../images/messages/background.jpg");
+	background-repeat: no-repeat;
+	border-radius: 30px;	
+	margin: 20 auto;
+	width:90%;
+	height: 588px;
+	overflow: auto;
+	padding: 20px;
 
 
-#image {
-	margin-top: 3%;
 }
 
-#imgFrame
-{
-	height:45%;
-	width:100%;
-	text-align:center;
+/*
+THIS COMPLICATES THE SCROLLABILITY OF THE PAGE
 
-}
-
-#imgFrame *
-{
+#opacity {
+	background: rgba(255, 255, 255, .5);
 	height: 100%;
-}
-
-#uploadDiv {
-	height: 10%;
-	text-align:center;
-}
-
-#imgSelect
-{
-	margin-top: 2%;
-	border-color: rgb(20,20,20);
-	border-radius: 50px;
-	background-color: rgb(20,20,20);
-	color: white;
-	padding: 1%;
-	padding-right: 2%;
-	padding-left: 2%;
-	font-weight: 700;
-	font-size:13;
-}
-
-
-#infoHeadings
-{
-	height:45%;
-	margin-top: 1%;
-  text-align: center;
-}
-
-.infoHeading {
-	color:grey;
-	width:7%;
-	display:inline-block;
-	padding:2%;
-  vertical-align: middle;
+	width: 100%;
+	padding: 20px;
+	position: fixed;
+	overflow: auto;
 
 }
+*/
 
-.infoInput
-{
-	padding-left:0%;
-	display:inline-block;
-	border:2px solid green;
-	border-radius:50px;
-	overflow:hidden;
 
+.messageBox {
+	height: 100px;
+	width: 700px;
+	border: 2px solid grey;
+	border-radius: 30px;
+	position: relative;
+	margin: 0 auto;
+	margin-bottom: 20;
+	background: lightgrey;
 }
 
-.infoInput *
-{
-	width: 400px;
-	color: white;
-	background-color: green;
-  border: 0px;
-	height:40px;
-  padding: 3%;
-}
-
-#submitDiv
-{
-	margin-top: 2%;
-  padding-left: 30%;
-}
-
-
-
-#submit {
-	border-color: gold;
-	background-color: gold;
-	color: white;
-	padding:1%;
-	padding-left:2%;
-	padding-right:2%;
-	font-weight: 600;
-}
-
-#perDay
-{
-	color: grey;
+.messageBox * {
 	display: inline-block;
 	vertical-align: middle;
+	margin: 2;
+	margin-left: 5;
+
+}
+
+.displayPic {
+	height: 90px;
+	width: 90px;
+}
+
+.displayPic *{
+	height: 100%;
+	width: 100%;
+	border-radius: 50px;
+}
+
+.userID {
 	font-size: 20;
+	color: darkgreen;
+	position: absolute;
+	top: 0;
+}
+
+.message {
+	
+}
+
+.timeDiv {
+	
+	position: absolute;
+	bottom: 10;
+	right: 15;
+
+	
+}
+
+.timeStamp {
+	color: grey;
+}
+
+#pagesDiv {
+	border: 1px solid black;
+	margin: 20 auto;
+	display: table;
+
+}
+
+#pagesDiv * {
+	display: inline-block;
+	margin: 1px;
+}
+
+.dot {
+	height: 20px;
+	width: 20px;
+	background-color: green;
+	border-radius: 50%;
+	box-shadow: 0px 1px 3px grey;
 }
 
 
@@ -208,6 +209,7 @@
    height:30%;
    width:100%;
    background-color: rgb(124, 171, 127);
+   margin-top: 30;
    /*border-style:solid;*/
    /*border-color:red;*/
 }
@@ -243,6 +245,5 @@
    left: 46%;
    width:7%;
 }
-
 
 
