@@ -18,21 +18,21 @@
 	
 ?>
 <div id="top">
-   <div class="darken">
+      <div class="darken">
 
-   <div id="Banner">
-         <div id="topText"> UDRIVE </div>
+         <div id="Banner">
+            <div id="topText"> UDRIVE </div>
+         </div>
+
+         <div class="topnav">
+            <a href="main.php">Home</a>
+            <a href="myAccount.php" class="active"> My Account</a>
+            <a href="messages.html">Messages</a>
+            <a href="#help"> Help </a>
+            <a href="#contact">Contact</a>
+         </div>
+      </div>
    </div>
-   
-   <div class="topnav">
-      <a class="active" href="#home">Home</a>
-      <a href="#news">News</a>
-      <a href="#contact">Contact</a>
-      <a href="#about">About</a>
-   </div>
-   </div>
-   </div>
-</div>
 
 <div id="mid">
    <div id="midBanner"> MY ACCOUNT </div>
