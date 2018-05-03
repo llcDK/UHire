@@ -39,8 +39,8 @@
 
    <div id="midMain">
       <div id="midLeft">
-         <div id="ownerImg"></div>
-         <div id="weirdCircle"></div>
+         <div class="circleContainer"> <div id="ownerImg"></div> </div>
+         <div class="circleContainer"> <div id="weirdCircle"></div> </div>
       </div>
 
       <div id="userInfo">
@@ -84,8 +84,8 @@
             </div>
          </div>
          <div id="midInputsBot">
-            <button>EDIT</button>
-            <button>TICK</button>
+            <button class="editButton"></button>
+            <button class="tickButton"></button>
 
          </div>
       </div>
@@ -135,7 +135,7 @@
 		
 	?>
 	
-	<!--
+	
       <div class="tileContainer">
          <div> <img class="carTile" src="images/myAccount/car3.png"/> </div>
          <div class="buttonGroup">
@@ -159,7 +159,7 @@
             <button class="deleteCar"></button>
          </div>
       </div>
-	-->
+	
       
       <div id="right"><a href="#" class="next round leftRight">&#8250;</a></div>
    </div>
