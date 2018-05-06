@@ -98,8 +98,8 @@
 	
 	<div id= main>
 	
-		<div  id="icon">
-			<img style="width:35px;hight:35px" src = "images/login/face.png"/>
+		<div id="icon">
+			<a href = "signUpviaFacebook.php"><img style="width:35px;hight:35px" src = "images/login/face.png"/></a>
 		</div>
 	
 		<div  id="icon2">

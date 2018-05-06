@@ -1,6 +1,13 @@
 <?php
+	include 'vendor/autoload.php';
+	require __DIR__ . '/vendor/autoload.php';
+
+
+	//Import Hybridauth's namespace
+	use Hybridauth\Hybridauth; 
+
     $config = array(
-      "base_url" => "http://127.0.0.1/vendor/hybridauth/",
+      "base_url" => "https://127.0.0.1/Projects/UHire(git)/index.php",
       "providers" => array (
         "Facebook" => array (
           "enabled" => true,
@@ -9,7 +16,7 @@
           "photo_size" => 200, // optional
     )));
  
-    require_once( "/vendor/hybridauth/Hybrid/Auth.php" );
+    // require_once( "vendor/hybridauth/hybridauth/hybridauth/Hybrid/Auth.php" );
  
     $hybridauth = new Hybrid_Auth( $config );
  
