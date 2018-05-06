@@ -17,5 +17,8 @@
  
     $user_profile = $adapter->getUserProfile();
     echo "Hi there! " . $user_profile->displayName;
+    echo "First Name: " . $user_profile->firstName;
+    echo "Last Name: " . $user_profile->lastName;
+    echo "Account Type" . "Car renter";
     echo "Email: " . $user_profile->emailVerified;
 ?>
