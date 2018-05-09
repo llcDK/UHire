@@ -68,6 +68,15 @@ INSERT INTO Account
 VALUES ('1', 'admin', 'Admin', 'Tianming', 'Zhao', 'Northfields Ave, Wollongong', 5.0);
 
 
+INSERT INTO PROFILE 
+VALUES 
+('1001', '1990-10-02', '1231345312@qq.com', 'Male', NULL),
+('1002', '1991-10-02', '2321434542@qq.com', 'Male', NULL),
+('1003', '1993-10-02', '2113213187@qq.com', 'Female', NULL),
+('2001', '1997-02-10', '3456789643@qq.com', 'Male', NULL),
+('2002', '1987-07-05', '5675445674@qq.com', 'Female', NULL),
+('2003', '1990-10-02', '3487655678@qq.com', 'Male', NULL);
+
 
 INSERT INTO Car 
 VALUES 

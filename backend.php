@@ -65,11 +65,6 @@
 		}
 	}
 	
-	class PageManager
-	{
-		
-	}
-	
 	class Account
 	{
 		private $accNo;
@@ -87,6 +82,7 @@
 		private $socialMedias;
 		private $reviews;
 		private $messages;
+		private $profile;
 		
 		
 		function __construct($accNo = "", $password = "", $type = 0, $fname = "", $lname = "", $address = "", $rating = -1)
@@ -118,6 +114,30 @@
 			// Return a list of accounts according to the query
 			
 			
+		}
+		
+		function initProfile($dbconnect)
+		{
+			$this->profile = Profile::createProfile($dbconnect, $this->accNo);
+			$this->initBankInfo($dbconnect);
+		}
+		
+		function initBankInfo($dbconnect)
+		{
+			$bankAccQuery = "select * from BankAccount where accNo = '$this->accNo';";
+			
+			$queryResult = $dbconnect->executeCommand($bankAccQuery);
+			if(mysqli_num_rows($queryResult) > 0)
+			{
+				$bankAccRow = mysqli_fetch_row($queryResult);
+				$this->bankAccounts = $bankAccRow[0];
+			}
+			else
+			{
+				$this->bankAccounts = "";
+			}
+			
+			$this->bankCards = BankCard::createBankCard($dbconnect, $this->accNo);
 		}
 		
 		function getCars($dbconnect)
@@ -157,6 +177,21 @@
 			return $this->rating;
 		}
 		
+		function getProfile()
+		{
+			return $this->profile;
+		}
+		
+		function getBankCard()
+		{
+			return $this->bankCards;
+		}
+		
+		function getBankAccount()
+		{
+			return $this->bankAccounts;
+		}
+		
 		function setDetail($accNo, $password, $fname, $lname, $address)
 		{
 			// Change the information of this object
@@ -169,6 +204,68 @@
 		
 		
 	}
+	
+	class Profile
+	{
+		private $dob;
+		private $email;
+		private $gender;
+		private $pictureName;
+		
+		public static $imageDir = "images/profileImage/";
+		
+		function __construct($dob, $email, $gender, $pictureName)
+		{
+			$this->dob = $dob;
+			$this->email = $email;
+			$this->gender = $gender;
+			$this->pictureName = $pictureName;
+		}
+		
+		static function getImageDir()
+		{
+			return Profile::$imageDir;
+		}
+		
+		static function createProfile($dbconnect, $accNo)
+		{
+			$profileQuery = "select * from Profile where accNo = '$accNo';";
+			$queryResult = $dbconnect->executeCommand($profileQuery);
+			if(mysqli_num_rows($queryResult) > 0)
+			{
+				$profileRow = mysqli_fetch_row($queryResult);
+				$profileObj = new Profile($profileRow[1], $profileRow[2], $profileRow[3], Profile::getImageDir() . $profileRow[4]);
+			}
+			else
+			{
+				$profileObj = new Profile("", "", "", Profile::getImageDir() . "default.jpg");
+			}
+			
+			return $profileObj;
+		}
+		
+		function getDOB()
+		{
+			return $this->dob;
+		}
+		
+		function getEmail()
+		{
+			return $this->email;
+		}
+		
+		function getGender()
+		{
+			return $this->gender;
+		}
+		
+		function getPictureURL()
+		{
+			return $this->pictureName;
+		}
+		
+	}
+	
 	
 	class Car
 	{
@@ -353,15 +450,71 @@
 		
 		public function getImageURL()
 		{
+			if(empty($this->image) || !isset($this->image))
+				return Car::getImageDir() . "car0.jpg";
+			
 			return Car::getImageDir() . $this->image;
 		}
 	}
 	
-	class BankAccount
+	class BankCard
 	{
+		private $cardNo;
+		private $type;
+		private $balance;
+		private $expireDate;
+		private $accNo;
+		private $bankAcc;
+		
+		function __construct($cardNo, $type, $balance, $expireDate, $accNo, $bankAcc = "")
+		{
+			$this->cardNo = $cardNo;
+			$this->type = $type;
+			$this->balance = $balance;
+			$this->expireDate = $expireDate;
+			$this->accNo = $accNo;
+			$this->bankAcc = $bankAcc;
+		}
+		
+		static function createBankCard($dbconnect, $accNo)
+		{
+			$bankCardQuery = "select * from BankCard where accNo = '$accNo';";
+			
+			$queryResult = $dbconnect->executeCommand($bankCardQuery);
+			if(mysqli_num_rows($queryResult) > 0)
+			{
+				$bankCardRow = mysqli_fetch_row($queryResult);
+				$bankCardObj = new BankCard($bankCardRow[0], $bankCardRow[1], $bankCardRow[2], $bankCardRow[3], $bankCardRow[4], $bankCardRow[5]);
+			}
+			else
+			{
+				$bankCardObj = new BankCard("", "", "", "", "", $accNo, "");
+			}		
+			
+			return $bankCardObj;
+		}
+		
+		function getCardNo()
+		{
+			return $this->cardNo;
+		}
+		
+		function type()
+		{
+			return $this->type;
+		}
+		
+		function getBalance()
+		{
+			return $this->balance;
+		}
+		
+		function getExpireDate()
+		{
+			return $this->expireDate;
+		}
 		
 	}
-	
 	
 	
 ?>

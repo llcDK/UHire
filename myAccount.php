@@ -11,8 +11,12 @@
 <?php
 	include 'backend.php';
 	session_start();
-	$myAccount = unserialize($_SESSION['account']);
 	
+	// Create DB connection
+	$dbconnect = new DBConnection();
+	
+	$myAccount = unserialize($_SESSION['account']);
+	$myAccount->initProfile($dbconnect);
 	$userType = $myAccount->type();
 	// If the userType is admin, redirect to admin page
 	if($userType == "Admin")
@@ -24,8 +28,6 @@
 		
 	}
 	
-	// Create DB connection
-	$dbconnect = new DBConnection();
 	
 	// Set the state variable
 	/*
@@ -64,7 +66,7 @@
 
 <div id="mid">
 	<div id="midBanner"> MY ACCOUNT : <?php echo strtoupper($userType); ?> </div>
-
+	
 	<div id="midMain">
 		<div id="midLeft">
 			<div class="circleContainer"> <div id="ownerImg"></div> </div>
@@ -74,7 +76,7 @@
 		<div id="userInfo">
 			<div id="midInputsTop">
 				<div id="midInputsLeft">
-					<span>PERSONAL INFORMATION</span>
+					<span><b>PERSONAL INFORMATION</b></span>
 					<div>
 						<label>NAME: </label>
 						<?php 
@@ -99,13 +101,13 @@
 							if($state == 1)
 							{
 							?>
-								<input type="text" value = "<?php echo "" ?>" /><br/>
+								<input type="text" value = "<?php echo $myAccount->getProfile()->getDOB(); ?>" /><br/>
 						
 						<?php
 							}
 							else
 							{
-								
+								echo $myAccount->getProfile()->getDOB();
 							}
 						?>
 					</div>
@@ -116,12 +118,12 @@
 							if($state == 1)
 							{
 							?>
-								<input type="text" value = "" /><br/>
+								<input type="text" value = "<?php echo $myAccount->getProfile()->getEmail(); ?>" /><br/>
 						<?php
 							}
 							else
 							{
-								
+								echo $myAccount->getProfile()->getEmail();
 							}
 						?>
 					</div>
@@ -132,12 +134,12 @@
 							if($state == 1)
 							{
 							?>
-								<input type="text"/><br/>
+								<input type="text" value = "<?php echo $myAccount->getProfile()->getGender(); ?>" /><br/>
 						<?php
 							}
 							else
 							{
-								
+								echo $myAccount->getProfile()->getGender();
 							}
 						?>
 					</div>
@@ -159,36 +161,88 @@
 					</div>
 				</div>
 				<div id="midInputsRight">
-					<span>CREDIT CARD INFORMATION</span>
+					<span><b>CREDIT CARD INFORMATION</b></span>
 					<div>
-						<label>VISA </label>
 						<?php
-							if($state == 1)
-							{	
-							?>
-								<input type="text"/><br/>
-						<?php
-							}
-							else
+							if(!empty($myAccount->getBankAccount()))
 							{
-								
+							?>
+								<label>BANK ACCOUNT: </label>
+						<?php
+								if($state == 1)
+								{
+								?>
+									<input type="text" value = "<?php echo $myAccount->getBankAccount(); ?>" /><br/>
+							<?php		
+								}
+								else
+								{
+									echo $myAccount->getBankAccount();
+								}
+									
 							}
-						?>
+							?>
 							
 							
 					</div>
 					<div>
-						<label>MASTER </label>
+						<label>BANK CARD: </label><br/>
+						<label>CARD NO. :</label>
 						<?php
 							if($state == 1)
 							{
 							?>
-								<input type="text"/><br/>
+								<input type="text" value = "<?php echo $myAccount->getBankCard()->getCardNo(); ?>" /><br/>
 						<?php
 							}
 							else
 							{
-								
+								echo $myAccount->getBankCard()->getCardNo();
+							}
+						?>
+					</div>
+					<div>
+						<label>TYPE :</label>
+						<?php
+							if($state == 1)
+							{
+							?>
+								<input type="text" value = "<?php echo $myAccount->getBankCard()->type(); ?>" /><br/>
+						<?php
+							}
+							else
+							{
+								echo $myAccount->getBankCard()->type();
+							}
+						?>
+					</div>
+					<div>
+						<label>BALANCE :</label>
+						<?php
+							if($state == 1)
+							{
+							?>
+								<input type="text" value = "<?php echo $myAccount->getBankCard()->getBalance(); ?>" /><br/>
+						<?php
+							}
+							else
+							{
+								echo "$" . $myAccount->getBankCard()->getBalance();
+							}
+						?>
+					</div>
+					<div>
+						<label>EXPIRE DATE :</label>
+						<?php
+							if($state == 1)
+							{
+							?>
+								<input type="text" value = "<?php echo $myAccount->getBankCard()->getExpireDate(); ?>" /><br/>
+						<?php
+							}
+							else
+							{
+								echo $myAccount->getBankCard()->getExpireDate();
 							}
 						?>
 					</div>
@@ -199,13 +253,13 @@
 					if($state == 0)
 					{
 					?>
-						<button class="editButton"></button>
+						<button class="editButton" onClick = "window.location = 'myAccount.php?state=1'"></button>
 				<?php
 					}
 					else
 					{
 					?>
-						<button class="tickButton"></button>
+						<button class="tickButton" onClick = "window.location = 'myAccount.php?state=0'"></button>
 				<?php
 					}
 				?>
