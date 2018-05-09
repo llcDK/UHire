@@ -4,6 +4,13 @@
 		private $connection;
 		private $connectionStatus; // 0: Good connection, 1: Bad connection
 		
+		/*
+		public static $serverName = "localhost";
+		public static $userName = "tianming_uhire";
+		public static $password = "testingenv2";
+		public static $dbName = "tianming_uhire";
+		*/
+		
 		public static $serverName = "localhost:3306";
 		public static $userName = "root";
 		public static $password = "";

@@ -1,249 +1,443 @@
-INSERT INTO Account
-VALUES ('1001', 'renterpass1', 'Car renter', 'Thanos', 'Whatever', '21 Gipps St, Keiraville', 4.5);
+INSERT INTO Account 
+VALUES 
+('1001', 'renterpass1', 'Car renter', 'Thanos', 'Whatever', '21 Gipps St, Keiraville', 4.5),		
+('1002', 'renterpass2', 'Car renter', 'Ethan', 'Smith', '14 Bligh St, Wollongong', 4.2),
+('1003', 'renterpass3', 'Car renter', 'Chris', 'Blaze', '20A Smith St, Sydney', 4.1),
+('1004', 'renterpass4', 'Car renter', 'Sam', 'Smith', '10 Mangerton St, West Wollongong', 3.0),
+('1005', 'renterpass5','Car renter','Cade','House','8554 Feugiat St.',1),
+('1006', 'renterpass6','Car renter','Shelby','Orr','2675 Interdum. Rd.',3),
+('1007', 'renterpass7','Car renter','Yuri','Sanchez','5996 Urna. Rd.',2),
+('1008', 'renterpass8','Car renter','Tatum','Dillon','Ap #271-8023 Sed Road',4),
+('1009', 'renterpass9','Car renter','Ishmael','Garcia','Ap #154-9447 Nec St.',5),
+('1010', 'renterpass10','Car renter','Evangeline','Mcknight','474-6294 Donec St.',2),
+('1011', 'renterpass11','Car renter','Olympia','Bass','869-4648 Est. Av.',2),
+('1012', 'renterpass12','Car renter','Jessica','Hess','P.O. Box 729, 339 Nisl Av.',2),
+('1013', 'renterpass13','Car renter','Indigo','Cameron','570-1543 Eu Rd.',3),
+('1014', 'renterpass14','Car renter','Alexa','Hopkins','671-2222 Aliquet Road',5),
+('1015', 'renterpass15','Car renter','Inga','Hendrix','Ap #606-9538 Enim. Avenue',4),
+('1016', 'renterpass16','Car renter','Helen','Tate','5078 Ipsum Av.',3),
+('1017', 'renterpass17','Car renter','Morgan','Cote','P.O. Box 371, 1165 Ullamcorper. Avenue',2),
+('1018', 'renterpass18','Car renter','Neil','Mcdowell','7943 Orci. Rd.',5),
+('1019', 'renterpass19','Car renter','Guy','Dillard','3444 Nunc. St.',1),
+('1020', 'renterpass20','Car renter','Joelle','Kim','P.O. Box 856, 6644 Feugiat. St.',3),
+('1021', 'renterpass21','Car renter','Rhonda','Bennett','P.O. Box 397, 6904 Dictum Rd.',2),
+('1022', 'renterpass22','Car renter','Herrod','Travis','P.O. Box 569, 7944 Nullam Ave',4),
+('1023', 'renterpass23','Car renter','Idona','Curry','Ap #427-2936 Euismod Av.',4),
+('1024', 'renterpass24','Car renter','Sade','Acosta','8456 Arcu. Avenue',4),
+('1025', 'renterpass25','Car renter','Kirestin','Ortega','2203 Sollicitudin Rd.',1),
+('1026', 'renterpass26','Car renter','Ria','Briggs','814-909 Odio Street',4),
+('1027', 'renterpass27','Car renter','Maris','Vance','Ap #391-1849 Nisi Road',4),
+('1028', 'renterpass28','Car renter','Travis','Nelson','327-7403 Mauris St.',4),
+('1029', 'renterpass29','Car renter','Wyatt','Foley','Ap #415-6756 Nec Ave',2),
+('1030', 'renterpass30','Car renter','Patricia','Flores','364-6126 Morbi Rd.',1);
 
-INSERT INTO Account
-VALUES ('1002', 'renterpass2', 'Car renter', 'Ethan', 'Smith', '14 Bligh St, Wollongong', 4.2);
+INSERT INTO Account 
+VALUES 
+('2001', 'ownerpass1', 'Car owner', 'Sherlock', 'Holmes', '221B Baker St, Wollongong', 4.5),
+('2002', 'ownerpass2', 'Car owner', 'Alex', 'Reedtz', '100 Keira St, Wollongong', 3.5),
+('2003', 'ownerpass3', 'Car owner', 'Nicolai', 'Rossander', '21 Blaze St, Thirroul', 4.5),
+('2004', 'ownerpass4','Car owner','Kameko','Hampton','120-6211 Montes, Street',4),
+('2005', 'ownerpass5','Car owner','Madaline','Travis','313 A, Avenue',2),
+('2006', 'ownerpass6','Car owner','Samson','Griffith','5222 Metus. Rd.',3),
+('2007', 'ownerpass7','Car owner','Zena','Sexton','P.O. Box 316, 4872 Aliquet Ave',4),
+('2008', 'ownerpass8','Car owner','Amethyst','Weeks','684-9945 Ullamcorper Rd.',3),
+('2009', 'ownerpass9','Car owner','Yetta','Gilliam','Ap #286-5698 Pede. Avenue',2),
+('2010', 'ownerpass10','Car owner','Rooney','Tucker','P.O. Box 607, 4511 Pede Road',3),
+('2011', 'ownerpass11','Car owner','Prescott','Vargas','Ap #377-310 Sit Avenue',4),
+('2012', 'ownerpass12','Car owner','Kuame','Mckee','4813 Fermentum Rd.',3),
+('2013', 'ownerpass13','Car owner','Lisandra','Ewing','Ap #237-3344 Arcu. St.',3),
+('2014', 'ownerpass14','Car owner','Tyrone','Britt','609-7472 Suspendisse Rd.',2),
+('2015', 'ownerpass15','Car owner','Edan','Hansen','5209 Cras Ave',4),
+('2016', 'ownerpass16','Car owner','Rose','Garrison','3890 Justo Street',5),
+('2017', 'ownerpass17','Car owner','Brooke','Madden','Ap #863-4891 At Street',3),
+('2018', 'ownerpass18','Car owner','Brittany','Garza','P.O. Box 424, 8046 Aliquam St.',3),
+('2019', 'ownerpass19','Car owner','Odessa','Waters','583-9622 Sem. St.',4),
+('2020', 'ownerpass20','Car owner','Beverly','Vasquez','Ap #141-3113 Donec Street',2),
+('2021', 'ownerpass21','Car owner','Tyrone','Hampton','8687 Aliquet Av.',1),
+('2022', 'ownerpass22','Car owner','Naomi','Fuller','Ap #203-7230 Vitae, Avenue',3),
+('2023', 'ownerpass23','Car owner','Noel','Finch','149-749 Velit. Rd.',2),
+('2024', 'ownerpass24','Car owner','Hadley','Nichols','4587 Nulla. St.',1),
+('2025', 'ownerpass25','Car owner','Victor','Phelps','P.O. Box 236, 7496 Magna. Rd.',3),
+('2026', 'ownerpass26','Car owner','Jana','Burris','P.O. Box 762, 6750 Sagittis St.',4),
+('2027', 'ownerpass27','Car owner','Cameron','Gilmore','232 Cursus Av.',2),
+('2028', 'ownerpass28','Car owner','Aline','King','P.O. Box 182, 5199 Libero. Rd.',1),
+('2029', 'ownerpass29','Car owner','Amos','Blair','9061 Semper. St.',2),
+('2030', 'ownerpass30','Car owner','Hu','Hull','P.O. Box 801, 6792 Proin Rd.',5);
 
-INSERT INTO Account
-VALUES ('1003', 'renterpass3', 'Car renter', 'Chris', 'Blaze', '20A Smith St, Sydney', 4.1);
-
-INSERT INTO Account
-VALUES ('1004', 'renterpass4', 'Car renter', 'Sam', 'Smith', '10 Mangerton St, West Wollongong', 3.0);
-
-INSERT INTO Account
-VALUES ('2001', 'ownerpass1', 'Car owner', 'Sherlock', 'Holmes', '221B Baker St, Wollongong', 4.5);
-
-INSERT INTO Account
-VALUES ('2002', 'ownerpass2', 'Car owner', 'Alex', 'Reedtz', '100 Keira St, Wollongong', 3.5);
-
-INSERT INTO Account
-VALUES ('2003', 'ownerpass3', 'Car owner', 'Nicolai', 'Rossander', '21 Blaze St, Thirroul', 4.5);
-
-INSERT INTO Account
+INSERT INTO Account 
 VALUES ('1', 'admin', 'Admin', 'Tianming', 'Zhao', 'Northfields Ave, Wollongong', 5.0);
 
 
 
-INSERT INTO Car
+INSERT INTO Car 
+VALUES 
+('SPLY-1000', 22.50, 0, 'Bligh St, Wollongong', '2001', '2020-01-01', '2005-05-10', 'Ecosport', null, 'Ford', 'manual', 4, 250000, 'gas', 'SUV'),
+('SPLY-1001', 22.50, 1, 'Bligh St, Wollongong', '2001', '2020-01-01', '2005-05-10', 'Yaris', null, 'Toyota', 'manual', 4, 250000, 'gas', 'sedan'),
+('SPLY-1002', 25.50, 1, 'Keira St, Wollongong', '2002', '2020-01-01', '2010-05-20', 'Civic', null, 'Honda', 'auto', 4, 175000, 'gas', 'sedan'),
+('SPLY-1003', 20.50, 1, 'Blaze St, Thirroul', '2003', '2020-01-01', '2010-10-10', 'Astra', null, 'Holden', 'auto', 4, 200000, 'diesel', 'sedan'),
+('SPLY-1004', 20.50, 1, 'Blaze St, Thirroul', '2004', '2020-01-01', '2010-10-10', 'Astra', null, 'Holden', 'auto', 4, 200000, 'diesel', 'sedan'),
+('SPLY-1005', 20.50, 1, 'Bligh St, Wollongong', '2005', '2020-01-01', '2010-05-10', 'Accord', null, 'Honda', 'auto', 4, 175000, 'gas', 'sedan'),
+('SPLY-1006', 20.50, 1, 'Whatever St, Wollongong', '2005', '2020-01-01', '2010-05-10', 'Camry', null, 'Toyota', 'auto', 4, 176000, 'gas', 'sedan'),
+('SPLY-1007', 20.50, 1, 'Brown St, Wollongong', '2006', '2020-01-01', '2010-05-10', 'Corolla', null, 'Toyota', 'auto', 4, 177000, 'gas', 'sedan'), 
+('SPLY-1008', 20.50, 1, 'Black St, Redfern', '2007', '2020-01-01', '2010-05-10', 'Golf', null, 'Volkswagen', 'manual', 4, 179000, 'gas', 'sedan'),
+('SPLY-1009', 20.50, 1, 'Blue St, Wollongong', '2001', '2020-01-01', '2010-05-10', 'CR-V', null, 'Honda', 'auto', 4, 275000, 'gas', 'sedan'),
+('SPLY-1010', 20.50, 1, 'Bligh St, Sydney', '2010', '2020-01-01', '2010-05-10', 'Tucson', null, 'Hyundai', 'manual', 7, 185000, 'gas', 'SUV'),
+('SPLY-1011', 20.50, 1, 'Kenny St, Wollongong', '2012', '2020-01-01', '2010-05-10', 'Elantra', null, 'Hyundai', 'auto', 4, 170000, 'gas', 'sedan'),
+('SPLY-1012', 20.50, 1, 'Gipps St, Warrawong', '2005', '2020-01-01', '2010-05-10', 'Hilux', null, 'Toyota', 'auto', 4, 125000, 'gas', 'sedan'),
+('SPLY-1013', 20.50, 1, 'Northfields St, Wollongong', '2005', '2020-01-01', '2010-05-10', 'Focus', null, 'Ford', 'auto', 4, 145000, 'gas', 'sedan'),
+('SPLY-1014', 20.50, 1, 'Princes St, Tasmania', '2006', '2020-01-01', '2010-05-10', 'Rogue', null, 'Nissan', 'auto', 4, 165000, 'diesel', 'sedan'),
+('SPLY-1015', 20.50, 1, 'Princess St, Sydney', '2002', '2020-01-01', '2010-05-10', 'Qashqai', null, 'Nissan', 'auto', 4, 175000, 'gas', 'SUV'),
+('SPLY-1016', 20.50, 1, 'Gotham St, Wollongong', '2008', '2020-01-01', '2010-05-10', 'CX-5', null, 'Mazda', 'auto', 4, 185000, 'gas', 'SUV'),
+('SPLY-1017', 20.50, 1, 'Metropolis St, Wollongong', '2008', '2020-01-01', '2010-05-10', 'Accord', null, 'Honda', 'auto', 4, 195000, 'gas', 'sedan'),
+('SPLY-1018', 20.50, 1, 'P.O. Box 424, 8046 Aliquam St', '2009', '2020-01-01', '2010-05-10', 'Sportage', null, 'Kia', 'manual', 4, 275000, 'gas', 'sedan'),
+('SPLY-1019', 30.50, 1, 'Cursus Avenue, Sutherland', '2010', '2020-01-01', '2010-05-10', 'S Class', null, 'Mercedes', 'auto', 7, 275000, 'gas', 'SUV'),
+('SPLY-1020', 20.50, 1, 'Magma Road, Thirroul', '2012', '2020-01-01', '2010-05-10', 'Accord', null, 'Honda', 'auto', 4, 375000, 'gas', 'sedan'),
+('SPLY-1021', 20.50, 1, 'Crown St, Wollongong', '2015', '2020-01-01', '2010-05-10', 'Fiesta', null, 'Ford', 'auto', 4, 174000, 'gas', 'sedan'),
+('SPLY-1022', 20.50, 1, 'Keira St, Wollongong', '2014', '2020-01-01', '2010-05-10', 'A4', null, 'Audi', 'auto', 4, 175000, 'gas', 'sedan'),
+('SPLY-1023', 20.50, 1, 'Suther St, Melbourne', '2013', '2020-01-01', '2010-05-10', 'Clio', null, 'Renault', 'auto', 4, 265000, 'diesel', 'sedan'),
+('SPLY-1024', 20.50, 1, 'Bligh St, Wollongong', '2018', '2020-01-01', '2010-05-10', 'Accord', null, 'Honda', 'auto', 4, 95000, 'gas', 'sedan'),
+('SPLY-1025', 50.50, 1, 'Bleh St, Woonona', '2009', '2020-01-01', '2010-05-10', 'Aventador', null, 'Lamborghini', 'auto', 2, 115000, 'gas', 'sportcar'),
+('SPLY-1026', 20.50, 1, 'Danko St, Woonona', '2009', '2020-01-01', '2010-05-10', 'GLC', null, 'Mercedes', 'auto', 7, 106000, 'gas', 'SUV'),		
+('SPLY-1027', 20.50, 1, 'Bligh St, Weerona', '2007', '2020-01-01', '2010-05-10', 'Sylphy', null, 'Nissan', 'auto', 4, 128000, 'gas', 'sedan'),
+('SPLY-1028', 20.50, 1, 'Macquarie St, Wollongong', '2015', '2020-01-01', '2010-05-10', '3', null, 'Mazda', 'auto', 4, 256000, 'gas', 'sedan'),
+('SPLY-1029', 20.50, 1, 'Sight St, Wollongong', '2018', '2020-01-01', '2010-05-10', 'A3', null, 'Audi', 'auto', 4, 192000, 'gas', 'sedan'),
+('SPLY-1030', 20.50, 1, 'Jardine St, Wollongong', '2015', '2020-01-01', '2010-05-10', 'Accord', null, 'Honda', 'auto', 4, 112000, 'gas', 'sedan');
+
+INSERT INTO Car 
 VALUES ('SPLY-350', 20.50, 1, 'Bligh St, Wollongong', '2001', '2018-12-31', '2010-05-10', 'Accord', null, 'Honda', 'auto',
 		4, 175000, 'gas', 'sedan');
 		
-INSERT INTO Car
+INSERT INTO Car 
 VALUES ('SPLY-375', 22.50, 1, 'Bligh St, Wollongong', '2001', '2019-12-31', '2005-05-10', 'Yaris', null, 'Toyota', 'manual',
 		4, 250000, 'gas', 'sedan');
 		
-INSERT INTO Car
+INSERT INTO Car 
 VALUES ('AXN-100', 25.50, 1, 'Keira St, Wollongong', '2002', '2019-12-31', '2010-05-20', 'Civic', null, 'Honda', 'auto',
 		4, 175000, 'gas', 'sedan');
 		
-INSERT INTO Car
+INSERT INTO Car 
 VALUES ('AXN-200', 20.50, 1, 'Blaze St, Thirroul', '2003', '2020-12-31', '2010-10-10', 'Astra', null, 'Holden', 'auto',
 		4, 200000, 'diesel', 'sedan');
 
-INSERT INTO Car
+INSERT INTO Car 
 VALUES ('SPLY-388', 30, 1, 'Bligh St, Wollongong', '2001', '2019-12-31', '2005-05-10', 'Yaris', null, 'Benz', 'auto',
 		4, 250000, 'gas', 'sedan');
 
-INSERT INTO Car
+INSERT INTO Car 
 VALUES ('SPLY-400', 31, 1, 'Bligh St, Wollongong', '2001', '2018-12-31', '2005-05-10', 'Yaris', null, 'BMW', 'auto',
 		4, 250000, 'gas', 'sedan');
 
-INSERT INTO CarImage
+INSERT INTO CarImage 
 VALUES ('SPLY-350', 'car1.jpg');		
 
-INSERT INTO CarImage
+INSERT INTO CarImage 
 VALUES ('SPLY-375', 'car2.jpg');
 
-INSERT INTO CarImage
+INSERT INTO CarImage 
 VALUES ('AXN-100', 'car3.jpg');
 
-INSERT INTO CarImage
+INSERT INTO CarImage 
 VALUES ('AXN-200', 'car4.jpg');
 
-INSERT INTO CarImage
+INSERT INTO CarImage 
 VALUES ('SPLY-388', 'car5.jpg');
 
-INSERT INTO CarImage
+INSERT INTO CarImage 
 VALUES ('SPLY-400', 'car6.jpg');
 
 
-INSERT INTO Booking
-VALUES ('1001', 'SPLY-350', '2018-04-28 11:00:00', '2018-04-30', 0);
-
-INSERT INTO Booking
-VALUES ('1002', 'AXN-100', '2018-04-20 12:00:00', '2018-04-24', 0);
-
-INSERT INTO Booking
-VALUES ('1003', 'AXN-200', '2018-04-27 11:00:00', '2018-04-29', 0);
-
-INSERT INTO Booking
-VALUES ('1004', 'SPLY-375', '2018-04-28 08:00:00', '2018-04-30', 0);
-
-INSERT INTO Booking
-VALUES ('1002', 'AXN-100', '2018-04-25 11:00:00', '2018-04-26', 0);
-
-INSERT INTO Booking
-VALUES ('1002', 'SPLY-350', '2018-04-25 10:00:00', '2018-04-26', 1);
-
-
-
-INSERT INTO Receipt
-VALUES ('2001', 'SPLY-350', '2018-04-28 11:00:00', '2018-04-30', 0);
-
-INSERT INTO Receipt
-VALUES ('2002', 'AXN-100', '2018-04-28 11:00:00', '2018-04-30', 0);
-
-INSERT INTO Receipt
-VALUES ('2003', 'AXN-200', '2018-04-28 11:00:00', '2018-04-30', 0);
-
-INSERT INTO Receipt
-VALUES ('2001', 'SPLY-375', '2018-04-28 11:00:00', '2018-04-30', 0);
-
-INSERT INTO Receipt
-VALUES ('2002', 'AXN-100', '2018-04-28 11:00:00', '2018-04-30', 0);
-
+INSERT INTO Booking 
+VALUES 
+('1001', 'SPLY-1001', '2018-04-28 11:00:00', '2018-04-30', 0),
+('1002', 'SPLY-1002', '2018-04-20 12:00:00', '2018-04-24', 0),
+('1003', 'SPLY-1003', '2018-04-27 11:00:00', '2018-04-29', 0),
+('1004', 'SPLY-1004', '2018-04-28 08:00:00', '2018-04-30', 0),
+('1005', 'SPLY-1005', '2018-04-25 11:00:00', '2018-04-26', 0),
+('1006', 'SPLY-1006', '2018-04-25 10:00:00', '2018-04-26', 0),
+('1007', 'SPLY-1007', '2018-04-25 11:00:00', '2018-04-26', 0),
+('1008', 'SPLY-1008', '2018-04-25 11:00:00', '2018-04-26', 0),
+('1009', 'SPLY-1009', '2018-04-26 11:00:00', '2018-04-27', 0),
+('1010', 'SPLY-1010', '2018-04-25 11:00:00', '2018-04-26', 0),
+('1011', 'SPLY-1011', '2018-04-25 11:00:00', '2018-04-26', 0),
+('1012', 'SPLY-1012', '2018-04-28 11:00:00', '2018-04-29', 0),
+('1013', 'SPLY-1013', '2018-04-25 11:00:00', '2018-04-26', 0),
+('1014', 'SPLY-1014', '2018-04-05 11:00:00', '2018-04-06', 0),
+('1015', 'SPLY-1015', '2018-04-25 11:00:00', '2018-04-26', 0),
+('1016', 'SPLY-1016', '2018-04-25 11:00:00', '2018-04-26', 0),
+('1017', 'SPLY-1017', '2018-04-25 11:00:00', '2018-04-26', 0),
+('1018', 'SPLY-1018', '2018-04-25 11:00:00', '2018-04-26', 0),
+('1019', 'SPLY-1019', '2018-04-15 11:00:00', '2018-04-26', 0),
+('1020', 'SPLY-1020', '2018-04-25 11:00:00', '2018-04-26', 0),
+('1021', 'SPLY-1021', '2018-04-25 11:00:00', '2018-04-26', 0),
+('1022', 'SPLY-1022', '2018-04-10 11:00:00', '2018-04-12', 0),
+('1023', 'SPLY-1023', '2018-04-25 11:00:00', '2018-04-26', 0),
+('1024', 'SPLY-1024', '2018-04-25 11:00:00', '2018-04-26', 0),
+('1025', 'SPLY-1025', '2018-04-10 11:00:00', '2018-04-12', 0),
+('1026', 'SPLY-1026', '2018-04-25 11:00:00', '2018-04-26', 0),
+('1027', 'SPLY-1027', '2018-04-25 11:00:00', '2018-04-26', 0),
+('1028', 'SPLY-1028', '2018-04-14 11:00:00', '2018-04-20', 0),
+('1029', 'SPLY-1029', '2018-04-25 11:00:00', '2018-04-26', 0),
+('1030', 'SPLY-1030', '2018-04-25 11:00:00', '2018-04-26', 0),
+('1030', 'SPLY-1001', '2018-04-25 11:00:00', '2018-04-26', 1);
 
 
-INSERT INTO Review
-VALUES ('1001', '2001', '2018-04-31', 'SPLY-350', 'Owner is nice and friendly, brake was not really sensitive.',
-		4, 0);
-		
-INSERT INTO Review
-VALUES ('1002', '2002', '2018-04-25', 'AXN-100', 'Condition of car was in an extremely bad state.',
-		1, 1);
-		
-INSERT INTO Review
-VALUES ('1003', '2003', '2018-04-31', 'AXN-200', 'Helpful owner, car is in great state.',
-		5, 1);
-		
-INSERT INTO Review
-VALUES ('1004', '2001', '2018-04-31', 'SPLY-375', 'Ran into some minor trouble with the car.',
-		3, 1);
-		
-INSERT INTO Review
-VALUES ('1004', '2002', '2018-04-31', 'AXN-100', 'Overall was a good experience.',
-		5, 1);
-		
-
-		
-INSERT INTO BankAccount
-VALUES ('11001', '1001');
-
-INSERT INTO BankAccount
-VALUES ('11002', '1002');
-
-INSERT INTO BankAccount
-VALUES ('11003', '1003');
-
-INSERT INTO BankAccount
-VALUES ('11004', '1004');
-
-INSERT INTO BankAccount
-VALUES ('22001', '2001');
-
-INSERT INTO BankAccount
-VALUES ('22002', '2002');
-
-INSERT INTO BankAccount
-VALUES ('22003', '2003');
-
-INSERT INTO BankAccount
-VALUES ('11', '1');
+INSERT INTO Receipt 
+VALUES 
+('1001', 'SPLY-1001', '2018-04-28 11:00:00', 200.00, 20.00),
+('1002', 'SPLY-1002', '2018-04-20 12:00:00', 250.00, 25.00),
+('1003', 'SPLY-1003', '2018-04-27 11:00:00', 200.00, 20.00),
+('1004', 'SPLY-1004', '2018-04-28 08:00:00', 100.00, 10.00),
+('1005', 'SPLY-1005', '2018-04-25 11:00:00', 200.00, 20.00),
+('1006', 'SPLY-1006', '2018-04-25 10:00:00', 120.00, 12.00),
+('1007', 'SPLY-1007', '2018-04-25 11:00:00', 200.00, 20.00),
+('1008', 'SPLY-1008', '2018-04-25 11:00:00', 300.00, 30.00),
+('1009', 'SPLY-1009', '2018-04-26 11:00:00', 200.00, 20.00),
+('1010', 'SPLY-1010', '2018-04-25 11:00:00', 210.00, 21.00),
+('1011', 'SPLY-1011', '2018-04-25 11:00:00', 200.00, 20.00),
+('1012', 'SPLY-1012', '2018-04-28 11:00:00', 130.00, 13.00),
+('1013', 'SPLY-1013', '2018-04-25 11:00:00', 140.00, 14.00),
+('1014', 'SPLY-1014', '2018-04-05 11:00:00', 150.00, 15.00),
+('1015', 'SPLY-1015', '2018-04-25 11:00:00', 160.00, 16.00),
+('1016', 'SPLY-1016', '2018-04-25 11:00:00', 170.00, 17.00),
+('1017', 'SPLY-1017', '2018-04-25 11:00:00', 180.00, 18.00),
+('1018', 'SPLY-1018', '2018-04-25 11:00:00', 190.00, 19.00),
+('1019', 'SPLY-1019', '2018-04-15 11:00:00', 200.00, 20.00),
+('1020', 'SPLY-1020', '2018-04-25 11:00:00', 100.00, 10.00),
+('1021', 'SPLY-1021', '2018-04-25 11:00:00', 200.00, 20.00),
+('1022', 'SPLY-1022', '2018-04-10 11:00:00', 200.00, 20.00),
+('1023', 'SPLY-1023', '2018-04-25 11:00:00', 200.00, 20.00),
+('1024', 'SPLY-1024', '2018-04-25 11:00:00', 200.00, 20.00),
+('1025', 'SPLY-1025', '2018-04-10 11:00:00', 100.00, 10.00),
+('1026', 'SPLY-1026', '2018-04-25 11:00:00', 200.00, 20.00),
+('1027', 'SPLY-1027', '2018-04-25 11:00:00', 200.00, 20.00),
+('1028', 'SPLY-1028', '2018-04-14 11:00:00', 250.00, 25.00),
+('1029', 'SPLY-1029', '2018-04-25 11:00:00', 200.00, 20.00),
+('1030', 'SPLY-1030', '2018-04-25 11:00:00', 240.00, 24.00);
 
 
 
-INSERT INTO BankCard
-VALUES ('0123456789012345', 'credit card', 1000.00, '2020-12-31', '1001', '11001');
+INSERT INTO Review 
+VALUES 
+('1001', '2001', '2018-04-31', 'SPLY-1001', 'Owner is nice and friendly, brake was not really sensitive.', 4, 0),
+('1002', '2002', '2018-04-25', 'SPLY-1002', 'Condition of car was in an extremely bad state.', 1, 1),
+('1003', '2003', '2018-04-31', 'SPLY-1003', 'Helpful owner, car is in great state.', 5, 1),
+('1004', '2004', '2018-04-31', 'SPLY-1004', 'Helpful owner, car is in great state.', 5, 1),
+('1005', '2005', '2018-04-31', 'SPLY-1005', 'Ran into some minor trouble with the car.', 3, 1),
+('1006', '2006', '2018-04-31', 'SPLY-1006', 'Worked perfectly!', 5, 1),
+('1007', '2007', '2018-04-31', 'SPLY-1007', 'Ran into some minor trouble with the car.', 3, 1),
+('1008', '2008', '2018-04-31', 'SPLY-1008', 'Condition of car was in an extremely bad state.', 1, 1),
+('1009', '2009', '2018-04-31', 'SPLY-1009', 'Ran into some minor trouble with the car.', 3, 1),
+('1010', '2010', '2018-04-31', 'SPLY-1010', 'Ran into some minor trouble with the car.', 3, 1),
+('1011', '2011', '2018-04-31', 'SPLY-1011', 'Owner is nice and friendly, brake was not really sensitive.', 4, 1);
 
-INSERT INTO BankCard
-VALUES ('1234567890123456', 'credit card', 2000.00, '2020-12-31', '1002', '11002');
+	
+	
+INSERT INTO BankAccount 
+VALUES 
+('11001','1001'), ('11002','1002'), ('11003','1003'), ('11004','1004'), ('11005','1005'),
+('11006','1006'), ('11007','1007'), ('11008','1008'), ('11009','1009'), ('11010','1010'),
+('11011','1011'), ('11012','1012'), ('11013','1013'), ('11014','1014'), ('11015','1015'),
+('11016','1016'), ('11017','1017'), ('11018','1018'), ('11019','1019'), ('11020','1020'),
+('11021','1021'), ('11022','1022'), ('11023','1023'), ('11024','1024'), ('11025','1025'),
+('11026','1026'), ('11027','1027'), ('11028','1028'), ('11029','1029'), ('11030','1030'),
+('22001','2001'), ('22002','2002'), ('22003','2003'), ('22004','2004'), ('22005','2005'),
+('22006','2006'), ('22007','2007'), ('22008','2008'), ('22009','2009'), ('22010','2010'),
+('22011','2011'), ('22012','2012'), ('22013','2013'), ('22014','2014'), ('22015','2015'),
+('22016','2016'), ('22017','2017'), ('22018','2018'), ('22019','2019'), ('22020','2020'),
+('22021','2021'), ('22022','2022'), ('22023','2023'), ('22024','2024'), ('22025','2025'), 
+('22026','2026'), ('22027','2027'), ('22028','2028'), ('22029','2029'), ('22030','2030'),
+('11', '1');
 
-INSERT INTO BankCard
-VALUES ('2345678901234567', 'credit card', 1500.00, '2020-12-31', '1003', '11003');
 
-INSERT INTO BankCard
-VALUES ('3456789012345678', 'credit card', 5000.00, '2020-12-31', '1004', '11004');
 
-INSERT INTO BankCard
-VALUES ('4567890123456789', 'credit card', 4000.00, '2021-12-31', '2001', '22001');
-
-INSERT INTO BankCard
-VALUES ('5678901234567890', 'credit card', 5000.00, '2021-12-31', '2002', '22002');
-
-INSERT INTO BankCard
-VALUES ('6789012345678901', 'credit card', 3000.00, '2021-12-31', '2003', '22003');
-
-INSERT INTO BankCard
-VALUES ('7890123456789012', 'credit card', 10000.00, '2019-12-31', '1', '11');
+INSERT INTO BankCard 
+VALUES 
+('0123456789012345','credit card',1000.00,'2020-12-31','1001','11001'),
+('1234567890123456','credit card',2000.00,'2020-12-31','1002','11002'),
+('2345678901234567','credit card',1500.00,'2020-12-31','1003','11003'),
+('3456789012345678','credit card',5000.00,'2020-12-31','1004','11004'),
+('5259837251524916','credit card',8637.00,'2017-07-10','1005','11005'),
+('5250598245893077','credit card',19874.00,'2018-05-10','1006','11006'),
+('5518808304900921','credit card',3605.00,'2018-08-24','1007','11007'),
+('5400517762281325','credit card',6696.00,'2018-10-09','1008','11008'),
+('5548271620524574','credit card',2082.00,'2019-02-13','1009','11009'),
+('5569425505863481','credit card',12684.00,'2017-09-12','1010','11010'),
+('5357833837960394','credit card',6526.00,'2017-06-10','1011','11011'),
+('5430300857564812','credit card',3621.00,'2017-08-08','1012','11012'),
+('5278767953360771','credit card',2504.00,'2017-06-22','1013','11013'),
+('5182324848431741','credit card',15444.00,'2018-10-09','1014','11014'),
+('5406817507145270','credit card',13459.00,'2019-01-01','1015','11015'),
+('5544765479334500','credit card',10193.00,'2019-01-26','1016','11016'),
+('5336614548277542','credit card',9441.00,'2018-12-13','1017','11017'),
+('5565654854325453','credit card',17442.00,'2019-02-19','1018','11018'),
+('5535345124587496','credit card',7157.00,'2018-03-15','1019','11019'),
+('5293552506146187','credit card',4697.00,'2018-10-23','1020','11020'),
+('5380803277639403','credit card',19978.00,'2018-09-05','1021','11021'),
+('5239749060469784','credit card',13767.00,'2019-03-01','1022','11022'),
+('5277856468845433','credit card',12951.00,'2018-09-06','1023','11023'),
+('5130803387582926','credit card',15940.00,'2018-12-12','1024','11024'),
+('5134474011581555','credit card',10319.00,'2019-04-22','1025','11025'),
+('5285151868698644','credit card',6134.00,'2017-09-17','1026','11026'),
+('5381963645522027','credit card',8283.00,'2018-02-28','1027','11027'),
+('5120009876990230','credit card',8257.00,'2019-04-10','1028','11028'),
+('5194505435690824','credit card',16994.00,'2018-12-28','1029','11029'),
+('5338384696224336','credit card',16682.00,'2018-09-05','1030','11030'),
+('4567890123456789','credit card',4000.00,'2021-12-31','2001','22001'),
+('5678901234567890','credit card',5000.00,'2021-12-31','2002','22002'),
+('6789012345678901','credit card',3000.00,'2021-12-31','2003','22003'),
+('5159388982071455','credit card',13794.00,'2018-08-14','2004','22004'),
+('5119381075053539','credit card',9644.00,'2017-10-08','2005','22005'),
+('5330065521136526','credit card',19690.00,'2017-06-28','2006','22006'),
+('5170338675948472','credit card',8038.00,'2018-06-29','2007','22007'),
+('5480134639041115','credit card',2571.00,'2019-02-04','2008','22008'),
+('5267054380724785','credit card',5457.00,'2017-08-24','2009','22009'),
+('5330996742413486','credit card',10550.00,'2017-09-06','2010','22010'),
+('5551866431363593','credit card',10378.00,'2018-07-01','2011','22011'),
+('5344259553878881','credit card',19526.00,'2018-02-08','2012','22012'),
+('5104434443781492','credit card',1966.00,'2018-02-14','2013','22013'),
+('5572010304836436','credit card',16104.00,'2018-08-09','2014','22014'),
+('5540418186811493','credit card',3815.00,'2017-09-19','2015','22015'),
+('5349053136020003','credit card',13942.00,'2017-09-26','2016','22016'),
+('5378898408745313','credit card',7415.00,'2018-07-25','2017','22017'),
+('5169524391369225','credit card',855.00,'2017-11-16','2018','22018'),
+('5172868527397278','credit card',8265.00,'2018-04-26','2019','22019'),
+('5434346866158522','credit card',16089.00,'2017-08-24','2020','22020'),
+('5502959168998101','credit card',17499.00,'2017-12-23','2021','22021'),
+('5172704903918504','credit card',4058.00,'2019-03-12','2022','22022'),
+('5432121729576166','credit card',14927.00,'2017-06-22','2023','22023'),
+('5447877199867087','credit card',13209.00,'2017-05-14','2024','22024'),
+('5310720560021112','credit card',12405.00,'2018-05-11','2025','22025'),
+('5190590811969228','credit card',10806.00,'2019-03-23','2026','22026'),
+('5259651260926982','credit card',8174.00,'2019-01-26','2027','22027'),
+('5472304038525519','credit card',14161.00,'2018-08-29','2028','22028'),
+('5209137289691568','credit card',19330.00,'2018-07-31','2029','22029'),
+('7890123456789012','credit card',10000.00,'2019-12-31','1','11');
 
 
 
 INSERT INTO Transaction 
-VALUES ('0123456789012345', '11001', '2018-04-01 18:00:00', 1000.00, 0.10);
-
-INSERT INTO Transaction 
-VALUES ('1234567890123456', '11002', '2018-04-02 18:00:00', 2000.00, 0.10);
-
-INSERT INTO Transaction 
-VALUES ('2345678901234567', '11003', '2018-04-01 18:00:00', 1000.00, 0.10);
-
-INSERT INTO Transaction 
-VALUES ('3456789012345678', '11004', '2018-04-05 10:00:00', 1500.00, 0.10);
-
-INSERT INTO Transaction 
-VALUES ('4567890123456789', '22001', '2018-04-01 12:00:00', 1000.00, 0.10);
-
-INSERT INTO Transaction 
-VALUES ('5678901234567890', '22002', '2018-04-10 18:00:00', 2000.00, 0.10);
-
-INSERT INTO Transaction 
-VALUES ('6789012345678901', '22003', '2018-04-10 20:00:00', 2000.00, 0.10);
-
-
-
-INSERT INTO Message
-VALUES ('1001', '2001', '2018-04-27 12:00:00', 'May I ask where you park your car?');
-
-INSERT INTO Message
-VALUES ('1001', '2001', '2018-04-19 12:00:00', 'May I ask where you park your car?');
-
-INSERT INTO Message
-VALUES ('1001', '2001', '2018-04-26 15:00:00', 'I will be there in 15 mins.');
-
-INSERT INTO Message
-VALUES ('1001', '2001', '2018-04-27 09:00:00', 'May I ask where you park your car?');
-
-INSERT INTO Message
-VALUES ('1001', '2001', '2018-04-24 12:00:00', 'I will be there in 30 mins.');
+VALUES 
+('0123456789012345', '11001', '2018-04-01 18:00:00', 1000.00, 0.10),
+('1234567890123456', '11002', '2018-04-02 18:00:00', 2000.00, 0.10),
+('2345678901234567', '11003', '2018-04-01 18:00:00', 1000.00, 0.10),
+('3456789012345678', '11004', '2018-04-05 10:00:00', 1500.00, 0.10),
+('5259837251524916', '11005', '2018-04-01 18:00:00', 1000.00, 0.10),
+('5250598245893077', '11006', '2018-04-01 18:00:00', 1000.00, 0.10),
+('5518808304900921', '11007', '2018-04-01 18:00:00', 1000.00, 0.10),
+('5400517762281325', '11008', '2018-04-01 18:00:00', 1000.00, 0.10),
+('5548271620524574', '11009', '2018-04-01 18:00:00', 1000.00, 0.10),
+('5569425505863481', '11010', '2018-04-01 18:00:00', 1000.00, 0.10),
+('5357833837960394', '11011', '2018-04-01 18:00:00', 1000.00, 0.10),
+('5430300857564812', '11012', '2018-04-01 18:00:00', 1000.00, 0.10),
+('5278767953360771', '11013', '2018-04-01 18:00:00', 1000.00, 0.10),
+('5182324848431741', '11014', '2018-04-01 18:00:00', 1000.00, 0.10),
+('5406817507145270', '11015', '2018-04-01 18:00:00', 1000.00, 0.10),
+('5544765479334500', '11016', '2018-04-01 18:00:00', 1000.00, 0.10),
+('5336614548277542', '11017', '2018-04-01 18:00:00', 1000.00, 0.10),
+('5565654854325453', '11018', '2018-04-01 18:00:00', 1000.00, 0.10),
+('5535345124587496', '11019', '2018-04-01 18:00:00', 1000.00, 0.10),
+('5293552506146187', '11020', '2018-04-01 18:00:00', 1000.00, 0.10),
+('5380803277639403', '11021', '2018-04-01 18:00:00', 1000.00, 0.10),
+('5239749060469784', '11022', '2018-04-01 18:00:00', 1000.00, 0.10),
+('5277856468845433', '11023', '2018-04-01 18:00:00', 1000.00, 0.10),
+('5130803387582926', '11024', '2018-04-01 18:00:00', 1000.00, 0.10),
+('5134474011581555', '11025', '2018-04-01 18:00:00', 1000.00, 0.10),
+('5285151868698644', '11026', '2018-04-01 18:00:00', 1000.00, 0.10),
+('5381963645522027', '11027', '2018-04-01 18:00:00', 1000.00, 0.10),
+('5120009876990230', '11028', '2018-04-01 18:00:00', 1000.00, 0.10),
+('5194505435690824', '11029', '2018-04-01 18:00:00', 1000.00, 0.10),
+('5338384696224336', '11030', '2018-04-01 18:00:00', 1000.00, 0.10),
+('4567890123456789', '22001', '2018-04-01 12:00:00', 1000.00, 0.10),
+('5678901234567890', '22002', '2018-04-10 18:00:00', 2000.00, 0.10),
+('6789012345678901', '22003', '2018-04-10 20:00:00', 2000.00, 0.10);
 
 
 
-INSERT INTO SocialMedia
-VALUES ('100001', 'Facebook', '1001');
+INSERT INTO Message 
+VALUES 
+('1001', '2001', '2018-04-27 12:00:00', 'May I ask where you park your car?'),
+('1002', '2002', '2018-04-19 12:00:00', 'May I ask where you park your car?'),
+('1003', '2003', '2018-04-26 15:00:00', 'I will be there in 15 mins.'),
+('1001', '2001', '2018-04-27 09:00:00', 'May I ask where you park your car?'),
+('1001', '2001', '2018-04-24 12:00:00', 'I will be there in 30 mins.'),
+('1004', '2004', '2018-04-26 12:00:00', 'May I ask where you park your car?'),
+('1005', '2005', '2018-04-10 12:00:00', 'May I ask where you park your car?'),
+('1006', '2006', '2018-04-12 12:00:00', 'May I ask where you park your car?'),
+('1007', '2007', '2018-04-30 12:00:00', 'On my way.'),
+('1008', '2008', '2018-04-25 12:00:00', 'May I ask where you park your car?'),
+('1009', '2009', '2018-04-28 12:00:00', 'May I ask where you park your car?'),
+('1010', '2010', '2018-04-27 11:00:00', 'Where do u park your car?'),
+('1011', '2011', '2018-04-27 20:00:00', 'May I ask where you park your car?'),
+('1012', '2012', '2018-04-06 21:00:00', 'May I ask where you park your car?'),
+('1013', '2013', '2018-04-27 13:00:00', 'Im coming'),
+('1014', '2014', '2018-04-05 12:00:00', 'May I ask where you park your car?'),
+('1015', '2015', '2018-04-17 15:00:00', 'May I ask where you park your car?'),
+('1016', '2016', '2018-04-17 08:00:00', 'I cant find your car?'),
+('1017', '2017', '2018-04-08 07:00:00', 'May I ask where you park your car?'),
+('2018', '1018', '2018-04-01 06:00:00', 'May I ask where you park your car?'),
+('2017', '1017', '2018-04-01 06:00:00', 'Address is 12 Kensington St.'),
+('2016', '1016', '2018-04-01 06:00:00', 'I can meet you after 10.'),
+('2015', '1015', '2018-04-01 06:00:00', 'On my way.'),
+('2014', '1014', '2018-04-01 06:00:00', 'Have a good trip!'),
+('2013', '1013', '2018-04-01 06:00:00', 'I will be there in 15 mins.'),
+('2012', '1012', '2018-04-01 06:00:00', 'Have a good ride.');
 
-INSERT INTO SocialMedia
-VALUES ('100002', 'Facebook', '1002');
-
-INSERT INTO SocialMedia
-VALUES ('100003', 'Facebook', '1003');
-
-INSERT INTO SocialMedia
-VALUES ('100004', 'Facebook', '1004');
-
-INSERT INTO SocialMedia
-VALUES ('200001', 'Facebook', '2001');
-
-INSERT INTO SocialMedia
-VALUES ('200002', 'Facebook', '2002');
-
-INSERT INTO SocialMedia
-VALUES ('200003', 'Facebook', '2003');
-
-INSERT INTO SocialMedia
-VALUES ('100000', 'Facebook', '1');
 
 
-INSERT INTO Policy
+
+INSERT INTO SocialMedia 
+VALUES 
+('renter1', 'Facebook', '1001'),
+('renter2', 'Facebook', '1002'),
+('renter3', 'Facebook', '1003'),
+('renter4', 'Facebook', '1004'),
+('renter5', 'Facebook', '1005'),
+('renter6', 'Facebook', '1006'),
+('renter7', 'Facebook', '1007'),
+('renter8', 'Facebook', '1008'),
+('renter9', 'Facebook', '1009'),
+('renter10', 'Facebook', '1010'),
+('renter11', 'Facebook', '1011'),
+('renter12', 'Facebook', '1012'),
+('renter13', 'Facebook', '1013'),
+('renter14', 'Facebook', '1014'),
+('renter15', 'Facebook', '1015'),
+('renter16', 'Facebook', '1016'),
+('renter17', 'Facebook', '1017'),
+('renter18', 'Facebook', '1018'),
+('renter19', 'Facebook', '1019'),
+('renter20', 'Facebook', '1020'),
+('renter21', 'Facebook', '1021'),
+('renter22', 'Facebook', '1022'),
+('renter23', 'Facebook', '1023'),
+('renter24', 'Facebook', '1024'),
+('renter25', 'Facebook', '1025'),
+('owner1', 'Facebook', '2001'),
+('owner2', 'Facebook', '2002'),
+('owner3', 'Facebook', '2003'),
+('owner4', 'Facebook', '2004'),
+('owner5', 'Facebook', '2005'),
+('owner6', 'Facebook', '2006'),
+('owner7', 'Facebook', '2007'),
+('owner8', 'Facebook', '2008'),
+('owner9', 'Facebook', '2009'),
+('owner10', 'Facebook', '2010'),
+('owner11', 'Facebook', '2011'),
+('owner12', 'Facebook', '2012'),
+('owner13', 'Facebook', '2013'),
+('owner14', 'Facebook', '2014'),
+('owner15', 'Facebook', '2015'),
+('owner16', 'Facebook', '2016'),
+('owner17', 'Facebook', '2017'),
+('owner18', 'Facebook', '2018'),
+('owner19', 'Facebook', '2019'),
+('owner20', 'Facebook', '2020'),
+('owner21', 'Facebook', '2021'),
+('owner22', 'Facebook', '2022'),
+('admin', 'Facebook', '1');
+
+
+INSERT INTO Policy 
 VALUES ('abc', 1.0, '2018-03-01', 10.000, '1', '11');
 
 

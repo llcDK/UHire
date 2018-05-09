@@ -13,8 +13,36 @@
 	session_start();
 	$myAccount = unserialize($_SESSION['account']);
 	
+	$userType = $myAccount->type();
+	// If the userType is admin, redirect to admin page
+	if($userType == "Admin")
+	{
+		// Re-direct to admin mode
+	}
+	else
+	{
+		
+	}
+	
 	// Create DB connection
 	$dbconnect = new DBConnection();
+	
+	// Set the state variable
+	/*
+		$state records the state of the page
+		0: Read-only mode
+		1: Edit mode
+		default: 0
+	*/
+	if(isset($_GET['state']) && !empty($_GET['state']))
+	{
+		$state = $_GET['state'];
+	}
+	else
+	{
+		$state = 0;
+	}
+	
 	
 ?>
 <div id="top">
@@ -32,65 +60,159 @@
             <a href="#contact">Contact</a>
          </div>
       </div>
-   </div>
+</div>
 
 <div id="mid">
-   <div id="midBanner"> MY ACCOUNT </div>
+	<div id="midBanner"> MY ACCOUNT : <?php echo strtoupper($userType); ?> </div>
 
-   <div id="midMain">
-      <div id="midLeft">
-         <div class="circleContainer"> <div id="ownerImg"></div> </div>
-         <div class="circleContainer"> <div id="weirdCircle"></div> </div>
-      </div>
+	<div id="midMain">
+		<div id="midLeft">
+			<div class="circleContainer"> <div id="ownerImg"></div> </div>
+			<div class="circleContainer"> <div id="weirdCircle"></div> </div>
+		</div>
 
-      <div id="userInfo">
-         <div id="midInputsTop">
-            <div id="midInputsLeft">
-               <div>
-                  <label>NAME: </label>
-                  <input type="text" value = "<?php echo $myAccount->getFirstName() . ' ' . $myAccount->getLastName(); ?>" /><br/>
-               </div>
+		<div id="userInfo">
+			<div id="midInputsTop">
+				<div id="midInputsLeft">
+					<span>PERSONAL INFORMATION</span>
+					<div>
+						<label>NAME: </label>
+						<?php 
+						
+							if($state == 1)
+							{
+							?>
+								<input type="text" value = "<?php echo $myAccount->getFirstName() . ' ' . $myAccount->getLastName(); ?>" /><br/>
+					  
+						<?php
+							}
+							else
+							{
+								echo $myAccount->getFirstName() . ' ' . $myAccount->getLastName(); 
+							}
+						?>
+					</div>
 
-               <div>
-                  <label>D.O.B: </label>
-                  <input type="text" value = "<?php echo "" ?>" /><br/>
-               </div>
+					<div>
+						<label>D.O.B: </label>
+						<?php
+							if($state == 1)
+							{
+							?>
+								<input type="text" value = "<?php echo "" ?>" /><br/>
+						
+						<?php
+							}
+							else
+							{
+								
+							}
+						?>
+					</div>
 
-               <div>
-                  <label>E-MAIL: </label>
-                  <input type="text" value = "" /><br/>
-               </div>
+					<div>
+						<label>E-MAIL: </label>
+						<?php
+							if($state == 1)
+							{
+							?>
+								<input type="text" value = "" /><br/>
+						<?php
+							}
+							else
+							{
+								
+							}
+						?>
+					</div>
 
-               <div>
-                  <label>GENDER: </label>
-                  <input type="text"/><br/>
-               </div>
+					<div>
+						<label>GENDER: </label>
+						<?php
+							if($state == 1)
+							{
+							?>
+								<input type="text"/><br/>
+						<?php
+							}
+							else
+							{
+								
+							}
+						?>
+					</div>
 
-               <div>
-                  <label>ADDRESS </label>
-                  <input type="text" value = "<?php echo $myAccount->getAddress(); ?>" /><br/>
-               </div>
-            </div>
-            <div id="midInputsRight">
-               <div>
-                  <label>VISA </label>
-                  <input type="text"/><br/>
-               </div>
-
-               <div>
-                  <label>MASTER </label>
-                  <input type="text"/><br/>
-               </div>
-            </div>
-         </div>
-         <div id="midInputsBot">
-            <button class="editButton"></button>
-            <button class="tickButton"></button>
-
-         </div>
-      </div>
-   </div>
-
+					<div>
+						<label>ADDRESS: </label>
+						<?php
+							if($state == 1)
+							{
+							?>
+								<input type="text" value = "<?php echo $myAccount->getAddress(); ?>" /><br/>
+						<?php
+							}
+							else
+							{
+								echo $myAccount->getAddress();
+							}
+						?>
+					</div>
+				</div>
+				<div id="midInputsRight">
+					<span>CREDIT CARD INFORMATION</span>
+					<div>
+						<label>VISA </label>
+						<?php
+							if($state == 1)
+							{	
+							?>
+								<input type="text"/><br/>
+						<?php
+							}
+							else
+							{
+								
+							}
+						?>
+							
+							
+					</div>
+					<div>
+						<label>MASTER </label>
+						<?php
+							if($state == 1)
+							{
+							?>
+								<input type="text"/><br/>
+						<?php
+							}
+							else
+							{
+								
+							}
+						?>
+					</div>
+				</div>
+			</div>
+			<div id="midInputsBot">
+				<?php
+					if($state == 0)
+					{
+					?>
+						<button class="editButton"></button>
+				<?php
+					}
+					else
+					{
+					?>
+						<button class="tickButton"></button>
+				<?php
+					}
+				?>
+				<!-- <button class="tickButton"></button> -->
+			</div>
+		</div>
+	</div>
 </div>
 
 
@@ -98,7 +220,6 @@
    <div id="botBanner"> UPLOAD CARS </div>
 
    <div id="carScroll">
-      <div id="left"><a href="#" class="previous round leftRight">&#8249;</a></div>
 
 	<?php
 		if($myAccount->type() == "Car owner")
@@ -108,6 +229,8 @@
 			foreach($cars as $car)
 			{
 				?>
+				<div id="left"><a href="#" class="previous round leftRight">&#8249;</a></div>
+				
 				<div class="tileContainer">
 					<div> <img class="carTile" src="<?php echo $car->getImageURL(); ?>" /> </div>
 					<div class="buttonGroup">
@@ -116,6 +239,7 @@
 					</div>
 				</div>
 	
+				<div id="right"><a href="#" class="next round leftRight">&#8250;</a></div>
 	<?php	
 			}
 			
@@ -135,33 +259,6 @@
 		
 	?>
 	
-	
-      <div class="tileContainer">
-         <div> <img class="carTile" src="images/myAccount/car3.png"/> </div>
-         <div class="buttonGroup">
-            <button class="editCar"></button>
-            <button class="deleteCar"></button>
-         </div>
-      </div>
-
-      <div class="tileContainer">
-         <div> <img class="carTile" src="images/myAccount/car3.png"/> </div>
-         <div class="buttonGroup">
-            <button class="editCar"></button>
-            <button class="deleteCar"></button>
-         </div>
-      </div>
-
-      <div class="tileContainer">
-         <div> <img class="carTile" src="images/myAccount/car3.png"/> </div>
-         <div class="buttonGroup">
-            <button class="editCar"></button>
-            <button class="deleteCar"></button>
-         </div>
-      </div>
-	
-      
-      <div id="right"><a href="#" class="next round leftRight">&#8250;</a></div>
    </div>
 
 </div>

@@ -9,6 +9,16 @@ create table Account(
   constraint acc_pk primary key(accNo)
 );
 
+create table Profile(
+  accNo varchar(20) NOT NULL,
+  dob Date NULL,
+  email varchar(50) NULL,
+  gender varchar(10) NULL,
+  pictureName varchar(100) NULL,
+  constraint pro_pk primary key(accNo),
+  constraint pro_fk foreign key(accNo) references Account(accNo) on delete cascade  
+);
+
 create table Car(
   plateNum varchar(20) NOT NULL,
   price decimal(10,2) NOT NULL,
@@ -49,7 +59,7 @@ create table Booking(
 
 /*No need for BookedDate as it can be calculated by Booking and indicated by column available*/
 
-create table Receiept(
+create table Receipt(
   accNo varchar(20) NOT NULL,
   plateNum varchar(20) NOT NULL,
   requestingTime DATETIME NOT NULL,
