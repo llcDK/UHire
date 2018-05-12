@@ -5,15 +5,28 @@
    <link href="css/myAccount/botStyle.css" rel="stylesheet" type="text/css"/ >
 </head>
 
-
-
 <body>
+<script>
+	function updateInfo()
+	{
+		var fname = document.getElementById('fnameInput').value;
+		var lname = document.getElementById('lnameInput').value;
+		var dob = document.getElementById('dobInput').value;
+		var email = document.getElementById('emailInput').value;
+		var gender = document.getElementById('genderInput').value;
+		var address = document.getElementById('addInput').value;
+		var bankAcc = document.getElementById('bankAccInput').value;
+		var cardNo = document.getElementById('cardNoInput').value;
+		var type = document.getElementById('typeInput').value;
+		var expire = document.getElementById('expireInput').value;
+		
+		window.location = "myAccount.php?state=2&fn=" + fname + "&ln=" + lname + "&d=" + dob + "&e=" + email + "&g=" + gender + "&ad=" + address + "&b=" + bankAcc + "&c=" + cardNo + "&t=" + type + "&ex=" + expire;
+		
+	}
+</script>
 <?php
 	include 'backend.php';
 	session_start();
-	
-	// Create DB connection
-	$dbconnect = new DBConnection();
 	
 	$myAccount = unserialize($_SESSION['account']);
 	$myAccount->initProfile($dbconnect);
@@ -34,6 +47,7 @@
 		$state records the state of the page
 		0: Read-only mode
 		1: Edit mode
+		2: Intermediate mode, for updating database
 		default: 0
 	*/
 	if(isset($_GET['state']) && !empty($_GET['state']))
@@ -45,6 +59,31 @@
 		$state = 0;
 	}
 	
+	// For the intermediate updating page
+	if($state == 2)
+	{
+		// Frist based on $_GET, create a new Account object
+		$newAccObj = new Account($myAccount->getAccNo(), $myAccount->getPassword(), $myAccount->type(), $_GET['fn'], $_GET['ln'], $_GET['ad'], $myAccount->getRating());
+		$newProfile = new Profile($_GET['d'], $_GET['e'], $_GET['g'], "");
+		$newAccObj->setProfile($newProfile);
+		$newAccObj->setBankAccount($_GET['b']);
+		
+		$newBankCardObj = new BankCard($_GET['c'], $_GET['t'], $myAccount->getBankCard()->getBalance(), $_GET['ex'], $myAccount->getAccNo());
+		$newAccObj->setBankCard($newBankCardObj);
+		
+		$flag = $myAccount->setDetail($dbconnect, $newAccObj); // $flag is either true or false
+		
+		echo "<script>window.location = 'myAccount.php?state=0';</script>";
+	}
+	else if($state == 4)
+	{
+		// Get the file from the $_POST
+		$uploadedPictureName = $_FILES['profilePic']['tmp_name'];
+		$myAccount->getProfile()->setProfilePicture($dbconnect, $uploadedPictureName, $myAccount->getAccNo());
+		
+		// Reload the page
+		echo "<script>window.location = 'myAccount.php?state=0';</script>";
+	}
 	
 ?>
 <div id="top">
@@ -69,7 +108,33 @@
 	
 	<div id="midMain">
 		<div id="midLeft">
-			<div class="circleContainer"> <div id="ownerImg"></div> </div>
+			<div class="circleContainer"> 
+				<?php 
+					if($state == 0)
+					{
+						?>
+						<div id="ownerImg" onClick = "window.location = 'myAccount.php?state=3'" style = "background-image: url(<?php echo $myAccount->getProfile()->getPictureURL(); ?>)"></div> 
+				<?php
+					}
+					else if($state == 1)
+					{
+						?>
+						<div id="ownerImg" style = "background-image: url(<?php echo $myAccount->getProfile()->getPictureURL(); ?>)"></div> 
+				<?php
+					}
+					else
+					{
+						?>
+						<div id="ownerImg" style = "background-image: url(<?php echo $myAccount->getProfile()->getPictureURL(); ?>)"></div>
+						UPLOAD YOUR NEW PROFILE PICTURE: <br/>
+						<form action = "myAccount.php?state=4" method = "POST" enctype = "multipart/form-data">
+							<input type = "file" name = "profilePic" value = "<?php echo Profile::getImageDir() . "default.jpg";?>" />
+							<button type = "submit">Submit</button>
+						</form>
+				<?php
+					}
+				?>
+			</div>
 			<div class="circleContainer"> <div id="weirdCircle"></div> </div>
 		</div>
 
@@ -78,18 +143,18 @@
 				<div id="midInputsLeft">
 					<span><b>PERSONAL INFORMATION</b></span>
 					<div>
-						<label>NAME: </label>
 						<?php 
 						
 							if($state == 1)
 							{
 							?>
-								<input type="text" value = "<?php echo $myAccount->getFirstName() . ' ' . $myAccount->getLastName(); ?>" /><br/>
-					  
+								FIRST NAME: <input id = "fnameInput" type="text" value = "<?php echo $myAccount->getFirstName(); ?>" /><br/>
+								LAST NAME: <input id = "lnameInput" type="text" value = "<?php echo $myAccount->getLastName(); ?>" /><br/>
 						<?php
 							}
 							else
 							{
+								echo "<label>NAME: </label>";
 								echo $myAccount->getFirstName() . ' ' . $myAccount->getLastName(); 
 							}
 						?>
@@ -101,7 +166,7 @@
 							if($state == 1)
 							{
 							?>
-								<input type="text" value = "<?php echo $myAccount->getProfile()->getDOB(); ?>" /><br/>
+								<input id = "dobInput" type="text" value = "<?php echo $myAccount->getProfile()->getDOB(); ?>" /><br/>
 						
 						<?php
 							}
@@ -118,7 +183,7 @@
 							if($state == 1)
 							{
 							?>
-								<input type="text" value = "<?php echo $myAccount->getProfile()->getEmail(); ?>" /><br/>
+								<input id = "emailInput" type="text" value = "<?php echo $myAccount->getProfile()->getEmail(); ?>" /><br/>
 						<?php
 							}
 							else
@@ -134,7 +199,7 @@
 							if($state == 1)
 							{
 							?>
-								<input type="text" value = "<?php echo $myAccount->getProfile()->getGender(); ?>" /><br/>
+								<input id = "genderInput" type="text" value = "<?php echo $myAccount->getProfile()->getGender(); ?>" /><br/>
 						<?php
 							}
 							else
@@ -150,7 +215,7 @@
 							if($state == 1)
 							{
 							?>
-								<input type="text" value = "<?php echo $myAccount->getAddress(); ?>" /><br/>
+								<input id = "addInput" type="text" value = "<?php echo $myAccount->getAddress(); ?>" /><br/>
 						<?php
 							}
 							else
@@ -172,7 +237,7 @@
 								if($state == 1)
 								{
 								?>
-									<input type="text" value = "<?php echo $myAccount->getBankAccount(); ?>" /><br/>
+									<input id = "bankAccInput" type="text" value = "<?php echo $myAccount->getBankAccount(); ?>" /><br/>
 							<?php		
 								}
 								else
@@ -192,7 +257,8 @@
 							if($state == 1)
 							{
 							?>
-								<input type="text" value = "<?php echo $myAccount->getBankCard()->getCardNo(); ?>" /><br/>
+								<input id = "cardNoInput" type="text" value = "<?php echo $myAccount->getBankCard()->getCardNo(); ?>" /><br/>
+								(note that once this card is valid and used, it will be binded with the account)
 						<?php
 							}
 							else
@@ -207,7 +273,7 @@
 							if($state == 1)
 							{
 							?>
-								<input type="text" value = "<?php echo $myAccount->getBankCard()->type(); ?>" /><br/>
+								<input id = "typeInput" type="text" value = "<?php echo $myAccount->getBankCard()->type(); ?>" /><br/>
 						<?php
 							}
 							else
@@ -217,17 +283,14 @@
 						?>
 					</div>
 					<div>
-						<label>BALANCE :</label>
 						<?php
-							if($state == 1)
+							if($state != 1)
 							{
-							?>
-								<input type="text" value = "<?php echo $myAccount->getBankCard()->getBalance(); ?>" /><br/>
+								?>
+								<label>BALANCE :</label>
+								<?php echo "$" . $myAccount->getBankCard()->getBalance(); ?>
+								
 						<?php
-							}
-							else
-							{
-								echo "$" . $myAccount->getBankCard()->getBalance();
 							}
 						?>
 					</div>
@@ -237,7 +300,7 @@
 							if($state == 1)
 							{
 							?>
-								<input type="text" value = "<?php echo $myAccount->getBankCard()->getExpireDate(); ?>" /><br/>
+								<input id = "expireInput" type="text" value = "<?php echo $myAccount->getBankCard()->getExpireDate(); ?>" /><br/>
 						<?php
 							}
 							else
@@ -253,13 +316,16 @@
 					if($state == 0)
 					{
 					?>
+						<!-- This will change the page to edit mode -->
 						<button class="editButton" onClick = "window.location = 'myAccount.php?state=1'"></button>
 				<?php
 					}
 					else
 					{
 					?>
-						<button class="tickButton" onClick = "window.location = 'myAccount.php?state=0'"></button>
+						<!-- This will change the page to finish mode -->
+						<button class="tickButton" onClick = "updateInfo()"></button>
+						<!--<button class="tickButton" onClick = "window.location = 'myAccount.php?state=0'"></button>-->
 				<?php
 					}
 				?>
@@ -271,7 +337,20 @@
 
 
 <div id="bot">
-   <div id="botBanner"> UPLOAD CARS </div>
+	<?php
+		if($myAccount->type() == "Car owner")
+		{
+			?>
+			<div id="botBanner"> UPLOAD CARS </div>
+	<?php	
+		}
+		else
+		{
+			?>
+			<div id="botBanner"> BECOME A CAR OWNER </div>
+	<?php
+		}
+	?>
 
    <div id="carScroll">
 

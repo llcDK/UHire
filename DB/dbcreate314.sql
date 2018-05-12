@@ -15,6 +15,7 @@ create table Profile(
   email varchar(50) NULL,
   gender varchar(10) NULL,
   pictureName varchar(100) NULL,
+  verified varchar(20) NULL,
   constraint pro_pk primary key(accNo),
   constraint pro_fk foreign key(accNo) references Account(accNo) on delete cascade  
 );

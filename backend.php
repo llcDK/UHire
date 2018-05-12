@@ -77,7 +77,7 @@
 		
 		// Links to references of cars, bankCards, BankAccounts, socialMedias, reviews, messages
 		private $cars;
-		private $bankCards;
+		private $bankCard;
 		private $bankAccounts;
 		private $socialMedias;
 		private $reviews;
@@ -137,7 +137,7 @@
 				$this->bankAccounts = "";
 			}
 			
-			$this->bankCards = BankCard::createBankCard($dbconnect, $this->accNo);
+			$this->bankCard = BankCard::createBankCard($dbconnect, $this->accNo);
 		}
 		
 		function getCars($dbconnect)
@@ -150,6 +150,11 @@
 		function getAccNo()
 		{
 			return $this->accNo;
+		}
+		
+		function getPassword()
+		{
+			return $this->password;
 		}
 		
 		function type()
@@ -184,7 +189,7 @@
 		
 		function getBankCard()
 		{
-			return $this->bankCards;
+			return $this->bankCard;
 		}
 		
 		function getBankAccount()
@@ -192,13 +197,71 @@
 			return $this->bankAccounts;
 		}
 		
-		function setDetail($accNo, $password, $fname, $lname, $address)
+		function equal($other)
 		{
-			// Change the information of this object
-			
-			// Update database
-			
-			// Update the page
+			if($this->accNo == $other->accNo && $this->type == $other->type && $this->fname == $other->fname && $this->lname == $other->lname
+				&& $this->address == $other->address && $this->profile->equal($other->profile) && $this->bankAccounts == $other->bankAccounts 
+				&& $this->bankCard->equal($other->bankCard))
+				return true;
+			else
+				return false;
+		}
+		
+		// Mutators
+		function setProfile($profile)
+		{
+			$this->profile = $profile;
+		}
+		
+		function setBankAccount($bankAcc)
+		{
+			$this->bankAccounts = $bankAcc;
+		}
+		
+		function setBankCard($bankCard)
+		{
+			$this->bankCard = $bankCard;
+		}
+		
+		
+		function setDetail($dbconnect, $updatingObj)
+		{
+			if(!$this->equal($updatingObj))
+			{	
+				// Update profile then account.
+				$this->profile->setDetail($dbconnect, $updatingObj->profile, $this->accNo);
+				
+				// Update database for account
+				// Change the information of this object
+				$this->accNo = $updatingObj->accNo;
+				$this->type = $updatingObj->type;
+				$this->fname = $updatingObj->fname;
+				$this->lname = $updatingObj->lname;
+				$this->address = $updatingObj->address;
+				
+				$updateAcc = "update Account set type = '$this->type', fname = '$this->fname', lname = '$this->lname', address = '$this->address' where accNo = '$this->accNo';";
+				$dbconnect->executeCommand($updateAcc);
+				
+				// Update the bankAcc
+				$this->bankAccounts = $updatingObj->bankAccounts;
+				$bankAccQuery = "update BankAccount set bankAccNo = '$this->bankAccounts' where accNo = '$this->accNo';";
+				
+				// Sometimws you can't change as the bankAccount has to exists.
+				$dbconnect->executeCommand($bankAccQuery);
+				
+				// Update bankCard Information in database
+				$this->bankCard->setDetail($dbconnect, $updatingObj->bankCard);
+				
+				//$this->bankCards->setDetail($dbconnect, $updatingObj->bankCards, $this->accNo);
+				
+				// Change verified to to-be verified
+				
+				return true;
+			}
+			else
+			{
+				return true;
+			}
 			
 		}
 		
@@ -213,6 +276,7 @@
 		private $pictureName;
 		
 		public static $imageDir = "images/profileImage/";
+		public static $defaultPicName = "default.jpg";
 		
 		function __construct($dob, $email, $gender, $pictureName)
 		{
@@ -227,6 +291,11 @@
 			return Profile::$imageDir;
 		}
 		
+		static function getDefaultPictureName()
+		{
+			return Profile::$defaultPicName;
+		}
+		
 		static function createProfile($dbconnect, $accNo)
 		{
 			$profileQuery = "select * from Profile where accNo = '$accNo';";
@@ -234,11 +303,11 @@
 			if(mysqli_num_rows($queryResult) > 0)
 			{
 				$profileRow = mysqli_fetch_row($queryResult);
-				$profileObj = new Profile($profileRow[1], $profileRow[2], $profileRow[3], Profile::getImageDir() . $profileRow[4]);
+				$profileObj = new Profile($profileRow[1], $profileRow[2], $profileRow[3], $profileRow[4]);
 			}
 			else
 			{
-				$profileObj = new Profile("", "", "", Profile::getImageDir() . "default.jpg");
+				$profileObj = new Profile("", "", "", Profile::getDefaultPictureName());
 			}
 			
 			return $profileObj;
@@ -261,8 +330,73 @@
 		
 		function getPictureURL()
 		{
-			return $this->pictureName;
+			if(empty($this->pictureName) || !isset($this->pictureName))
+				return Profile::getImageDir() . Profile::getDefaultPictureName();
+			return Profile::getImageDir() . $this->pictureName;
 		}
+		
+		function equal($other)
+		{
+			if($this->dob == $other->dob && $this->email == $other->email && $this->gender == $other->gender)
+				return true;
+			
+			return false;
+		}
+		
+		function setProfilePicture($dbconnect, $tempFileLocation, $accNo)
+		{
+			if(!isset($this->pictureName) || empty($this->pictureName) || $this->pictureName == Profile::getDefaultPictureName())
+			{
+				// It used to use a default image.
+			}
+			else
+			{
+				// It is replacing the previous image
+				// First clean up the old file
+				echo "deleting ... ";
+				unlink($this->getPictureURL());
+			}
+			
+			// it currently uses default profile picture
+			$temp = explode(".", $tempFileLocation);
+			$newFileName = round(microtime(true)) . "." . end($temp);
+			
+			// Rename until the new file exits;
+			while(file_exists($newFileName)) $newFileName = round(microtime(true)) . "." . end($temp);
+			
+			// Save the file to the directory
+			move_uploaded_file($tempFileLocation, Profile::getImageDir() . $newFileName);
+			
+			// Update the database
+			$updatePictureQuery = "update Profile set pictureName = '$newFileName' where accNo = '$accNo';";
+			$dbconnect->executeCommand($updatePictureQuery);
+			
+			// Update the current object
+			$this->pictureName = $newFileName;
+		}
+		
+		function setDetail($dbconnect, $updatingObj, $accNo)
+		{
+			if(!$this->equal($updatingObj))
+			{
+				// Change the information of this object
+				$this->dob = $updatingObj->dob;
+				$this->email = $updatingObj->email;
+				$this->gender = $updatingObj->gender;
+				
+				// Update the database
+				$updateAcc = "update Profile set dob = '$this->dob', email = '$this->email', gender = '$this->gender' where accNo = '$accNo';";
+				$dbconnect->executeCommand($updateAcc);
+				
+				
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		
 		
 	}
 	
@@ -494,6 +628,40 @@
 			return $bankCardObj;
 		}
 		
+		function equal($other)
+		{
+			if($this->cardNo == $other->cardNo && $this->type == $other->type && $this->expireDate == $other->expireDate)
+			{
+				return true;
+			}
+			
+			return false;
+		}
+		
+		function setDetail($dbconnect, $updatingObj)
+		{
+			if(!$this->equal($updatingObj))
+			{
+				//echo "TRUE";
+				//echo serialize($updatingObj) . "<br/>";
+				//echo serialize($this);
+				
+				// Update the database
+				$updateQuery = "update BankCard set type = '$updatingObj->type', expireDate = '$updatingObj->expireDate' where cardNo = '$this->cardNo';";
+				// Update this object
+				$this->cardNo = $updatingObj->cardNo;
+				$this->type = $updatingObj->type;
+				$this->expireDate = $updatingObj->expireDate;
+				
+				$dbconnect->executeCommand($updateQuery);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		
 		function getCardNo()
 		{
 			return $this->cardNo;
@@ -534,6 +702,7 @@
 			$objString = serialize($acc);
 			echo unserialize($objString)->getAccNo();
 		*/
+			$dbconnect = new DBConnection();
 		?>
 	</body>
 </html>

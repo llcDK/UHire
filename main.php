@@ -36,7 +36,6 @@
 	<?php
 		include 'backend.php';
 		// Connect to the DB
-		$dbconnect = new DBConnection();
 		
 		
 		if(!empty($_GET['action']) && $_GET['action'] == "search")
