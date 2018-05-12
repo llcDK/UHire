@@ -47,7 +47,10 @@
 		$state records the state of the page
 		0: Read-only mode
 		1: Edit mode
-		2: Intermediate mode, for updating database
+		2: Intermediate mode, for editing and updating database
+		3: Upload profile picture mode
+		4: Intermediate mode, for storing profile picture and updating database for profile picture
+		5: Verify account mode
 		default: 0
 	*/
 	if(isset($_GET['state']) && !empty($_GET['state']))
@@ -64,7 +67,7 @@
 	{
 		// Frist based on $_GET, create a new Account object
 		$newAccObj = new Account($myAccount->getAccNo(), $myAccount->getPassword(), $myAccount->type(), $_GET['fn'], $_GET['ln'], $_GET['ad'], $myAccount->getRating());
-		$newProfile = new Profile($_GET['d'], $_GET['e'], $_GET['g'], "");
+		$newProfile = new Profile($_GET['d'], $_GET['e'], $_GET['g'], "", "NO");
 		$newAccObj->setProfile($newProfile);
 		$newAccObj->setBankAccount($_GET['b']);
 		
@@ -83,6 +86,29 @@
 		
 		// Reload the page
 		echo "<script>window.location = 'myAccount.php?state=0';</script>";
+	}
+	else if($state == 5)
+	{
+		// Verify the account
+		$verifyResult = $myAccount->verify($dbconnect);
+		if($verifyResult)
+		{
+			echo "<script>alert('Verify the account successfully');</script>";
+		}
+		else
+		{
+			echo "<script>alert('Fail to verify the account');</script>";
+		}
+		echo "<script>window.location = 'myAccount.php?state=0';</script>";
+	}
+	
+?>
+
+<?php
+	// All PHP functions
+	function verifyAccount()
+	{
+		return "To verifiy";
 	}
 	
 ?>
@@ -122,7 +148,7 @@
 						<div id="ownerImg" style = "background-image: url(<?php echo $myAccount->getProfile()->getPictureURL(); ?>)"></div> 
 				<?php
 					}
-					else
+					else if($state == 3)
 					{
 						?>
 						<div id="ownerImg" style = "background-image: url(<?php echo $myAccount->getProfile()->getPictureURL(); ?>)"></div>
@@ -131,6 +157,12 @@
 							<input type = "file" name = "profilePic" value = "<?php echo Profile::getImageDir() . "default.jpg";?>" />
 							<button type = "submit">Submit</button>
 						</form>
+				<?php
+					}
+					else
+					{
+						?>
+						<div id="ownerImg" style = "background-image: url(<?php echo $myAccount->getProfile()->getPictureURL(); ?>)"></div>
 				<?php
 					}
 				?>
@@ -167,6 +199,7 @@
 							{
 							?>
 								<input id = "dobInput" type="text" value = "<?php echo $myAccount->getProfile()->getDOB(); ?>" /><br/>
+								(HAS TO BE IN FORM YYYY-MM-DD) <br/>
 						
 						<?php
 							}
@@ -224,6 +257,27 @@
 							}
 						?>
 					</div>
+					
+					<div>
+						<?php 
+						if($state == 0)
+						{
+							if(!$myAccount->getProfile()->verified())
+							{
+								// NOT VERIFIED 
+							?>
+								You haven't verified your account. To verifiy: <br />
+								<button id = "verifyButton" onClick = "window.location = 'myAccount.php?state=5'" >VERIFY</button><br/>	
+						<?php
+							}
+							else
+							{
+								echo " VERIFIED: TRUE";
+							}
+						}
+						?>
+					</div>
+					
 				</div>
 				<div id="midInputsRight">
 					<span><b>CREDIT CARD INFORMATION</b></span>
@@ -320,7 +374,7 @@
 						<button class="editButton" onClick = "window.location = 'myAccount.php?state=1'"></button>
 				<?php
 					}
-					else
+					else if($state == 1)
 					{
 					?>
 						<!-- This will change the page to finish mode -->
@@ -393,14 +447,70 @@
 	?>
 	
    </div>
+   <div id = "reviewBox">
+	<?php
+		$reviews = Review::getReviews($dbconnect, $myAccount->getAccNo());
+		if(sizeof($reviews) > 0)
+		{
+			?>
+			<table style = "border: 3px solid red" >
+				<tr>
+					<th>renterID</th>
+					<th>Time of the review<th>
+					<th>Plate Number</th>
+					<th>Review</th>
+					<th>Rating</th>
+				</tr>
+		<?php	
+			foreach($reviews as $rev)
+			{
+			?>
+				<tr>
+				<?php
+				if($rev->anon())
+				{
+					?>
+					<td>Anonymous</td>
+				<?php	
+				}
+				else
+				{
+					?>
+					<td><?php echo $rev->getOwner(); ?></td>
+				<?php
+				}
+				?>
+					<td><?php echo $rev->getTime(); ?></td>
+					<td><?php echo $rev->getPlateNum(); ?></td>
+					<td><?php echo $rev->getContent(); ?></td>
+					<td><?php echo $rev->getRating(); ?></td>
+				</tr>
+			<?php
+			}
+			
+			?>
+			</table>
+		<?php
+		}
+		else
+		{
+			?>
+			<div> Currently no ratings </div>
+			<div> Currently no reviews </div>
+		<?php
+		}
+	?>
+   </div>
 
 </div>
 
+<!--
 <div id="footer">
+
    <div id="footerData"> <span id="footerText">COPYRIGHT © 2018 Design By Wenjuan Sun </span></div>
    <div id="footerImage"> <img src="images/myAccount/socialIcons.png" id="socialMedia"/> </div>
 </div>
-
+-->
 
 </body>
 

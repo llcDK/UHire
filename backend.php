@@ -265,6 +265,41 @@
 			
 		}
 		
+		function verify($dbconnect)
+		{
+			if((empty($this->fname) || !isset($this->fname) || empty(trim($this->fname))) && (empty($this->lname) || !isset($this->lname) || empty(trim($this->lname))))
+			{
+				$this->profile->setVerify($dbconnect, "NO", $this->accNo);
+				//echo "<script>alert('1');</script>";
+			}
+			else if(empty($this->address) || !isset($this->address) || empty(trim($this->address)))
+			{
+				$this->profile->setVerify($dbconnect, "NO", $this->accNo);
+				//echo "<script>alert('2');</script>";
+			}
+			else if(!$this->profile->verify())
+			{
+				$this->profile->setVerify($dbconnect, "NO", $this->accNo);
+				//echo "<script>alert('3');</script>";
+			}	
+			else if(empty($this->bankAccounts) || !isset($this->bankAccounts) || empty(trim($this->bankAccounts)))
+			{
+				$this->profile->setVerify($dbconnect, "NO", $this->accNo);
+				//echo "<script>alert('4');</script>";
+			}
+			else if(!$this->bankCard->verify())
+			{
+				$this->profile->setVerify($dbconnect, "NO", $this->accNo);
+				//echo "<script>alert('5');</script>";
+			}
+			else
+			{
+				$this->profile->setVerify($dbconnect, "YES", $this->accNo);
+				//echo "<script>alert('6');</script>";
+			}
+			
+			return $this->profile->verified();
+		}
 		
 	}
 	
@@ -274,16 +309,18 @@
 		private $email;
 		private $gender;
 		private $pictureName;
+		private $verified;
 		
 		public static $imageDir = "images/profileImage/";
 		public static $defaultPicName = "default.jpg";
 		
-		function __construct($dob, $email, $gender, $pictureName)
+		function __construct($dob, $email, $gender, $pictureName, $verified = "NO")
 		{
 			$this->dob = $dob;
 			$this->email = $email;
 			$this->gender = $gender;
 			$this->pictureName = $pictureName;
+			$this->verified = $verified;
 		}
 		
 		static function getImageDir()
@@ -296,6 +333,18 @@
 			return Profile::$defaultPicName;
 		}
 		
+		function verified()
+		{
+			if(strtoupper($this->verified) == "YES")
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		
 		static function createProfile($dbconnect, $accNo)
 		{
 			$profileQuery = "select * from Profile where accNo = '$accNo';";
@@ -303,11 +352,11 @@
 			if(mysqli_num_rows($queryResult) > 0)
 			{
 				$profileRow = mysqli_fetch_row($queryResult);
-				$profileObj = new Profile($profileRow[1], $profileRow[2], $profileRow[3], $profileRow[4]);
+				$profileObj = new Profile($profileRow[1], $profileRow[2], $profileRow[3], $profileRow[4], $profileRow[5]);
 			}
 			else
 			{
-				$profileObj = new Profile("", "", "", Profile::getDefaultPictureName());
+				$profileObj = new Profile("", "", "", Profile::getDefaultPictureName(), "NO");
 			}
 			
 			return $profileObj;
@@ -353,7 +402,6 @@
 			{
 				// It is replacing the previous image
 				// First clean up the old file
-				echo "deleting ... ";
 				unlink($this->getPictureURL());
 			}
 			
@@ -375,6 +423,13 @@
 			$this->pictureName = $newFileName;
 		}
 		
+		function setVerify($dbconnect, $newState, $accNo)
+		{
+			// Update the database
+			$verifyQuery = "update Profile set verified = '$newState' where accNo = '$accNo';";
+			$dbconnect->executeCommand($verifyQuery);
+		}
+		
 		function setDetail($dbconnect, $updatingObj, $accNo)
 		{
 			if(!$this->equal($updatingObj))
@@ -383,11 +438,11 @@
 				$this->dob = $updatingObj->dob;
 				$this->email = $updatingObj->email;
 				$this->gender = $updatingObj->gender;
+				$this->verified = "NO";
 				
 				// Update the database
-				$updateAcc = "update Profile set dob = '$this->dob', email = '$this->email', gender = '$this->gender' where accNo = '$accNo';";
+				$updateAcc = "update Profile set dob = '$this->dob', email = '$this->email', gender = '$this->gender', verified = '$this->verified' where accNo = '$accNo';";
 				$dbconnect->executeCommand($updateAcc);
-				
 				
 				return true;
 			}
@@ -397,7 +452,43 @@
 			}
 		}
 		
+		function verify()
+		{
+			// DOB has to be in form YYYY-MM-DD
+			if(!Profile::validateDate($this->dob))
+				return false;
+			else if(!Profile::checkEmail($this->email))
+				return false;
+			else if(empty($this->gender) || !isset($this->gender) || empty(trim($this->gender)))
+				return false;
+			else
+				return true;
+		}
 		
+		
+		// Private (Helper) functions 
+		
+		static function validateDate($date, $format = 'Y-m-d')
+		{
+			$d = DateTime::createFromFormat($format, $date);
+			return $d && $d->format($format) == $date;
+		}
+		
+		static function checkEmail($email) 
+		{
+			if ( strpos($email, '@') !== false ) 
+			{
+				$split = explode('@', $email);
+				return (strpos($split['1'], '.') !== false ? true : false);
+			}
+			else 
+			{
+				return false;
+			}
+		}
+		
+		
+
 	}
 	
 	
@@ -682,9 +773,101 @@
 			return $this->expireDate;
 		}
 		
+		function verify()
+		{
+			if(empty($this->cardNo) || !isset($this->cardNo) || empty(trim($this->cardNo)))
+				return false;
+			else if(empty($this->type) || !isset($this->type) || empty(trim($this->type)))
+				return false;
+			else if(empty($this->expireDate) || !isset($this->expireDate) || empty(trim($this->expireDate)) || !BankCard::validateDate($this->expireDate))
+				return false;
+			else 
+				return true;
+		}
+		
+		// Private functions
+		
+		private static function validateDate($date, $format = 'Y-m-d')
+		{
+			$d = DateTime::createFromFormat($format, $date);
+			return $d && $d->format($format) == $date;
+		}
+		
 	}
 	
-	
+	class Review
+	{
+		private $renter;
+		private $owner;
+		private $time;
+		private $plateNum;
+		private $content;
+		private $rating;
+		private $anon;
+		
+		function __construct($renter, $owner, $time, $plateNum, $content, $rating, $anon)
+		{
+			$this->renter = $renter;
+			$this->owner = $owner;
+			$this->time = $time;
+			$this->plateNum = $plateNum;
+			$this->content = $content;
+			$this->rating = $rating;
+			$this->anon = $anon;
+		}
+		
+		function getRenter()
+		{
+			return $this->renter;
+		}
+		
+		function getOwner()
+		{
+			return $this->owner;
+		}
+		
+		function getTime()
+		{
+			return $this->time;
+		}
+		
+		function getPlateNum()
+		{
+			return $this->plateNum;
+		}
+		
+		function getContent()
+		{
+			return $this->content;
+		}
+		
+		function getRating()
+		{
+			return $this->rating;
+		}
+		
+		function anon()
+		{
+			return $this->anon;
+		}
+		
+		static function getReviews($dbconnect, $accNo)
+		{
+			$allReviews = array();
+			$reviewQuery = "select * from Review where owner = '$accNo';";
+			$reviewsTable = $dbconnect->executeCommand($reviewQuery);
+			if($reviewsTable != false && mysqli_num_rows($reviewsTable) > 0)
+			{
+				while($row = mysqli_fetch_row($reviewsTable))
+				{
+					$review = new Review($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6]);
+					$allReviews[] = $review;
+				}
+			}
+			
+			return $allReviews;
+		}
+	}
 ?>
 
 <html>
