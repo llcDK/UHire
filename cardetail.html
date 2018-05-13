@@ -1,28 +1,281 @@
 <html>
 	<head>
 		<title>Cartdetailed</title>
-		<link href="css/myAccount/topStyle.css" rel="stylesheet" type="text/css"/ >
-		<link href="css/myAccount/midStyle.css" rel="stylesheet" type="text/css"/ >
-		<link href="css/myAccount/botStyle.css" rel="stylesheet" type="text/css"/ >
-		<link href="css/upload.css" rel="cardeatil" type="text/css"/ >
+		<link href="css/carde.css" rel="stylesheet" type="text/css"/>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<!-- font -->
+		<link href="http://fonts.googleapis.com/css?family=Kaushan+Script&amp;subset=latin-ext" rel="stylesheet">
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+		<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700italic,700,400italic,300italic,300' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<!-- //font -->
 	</head>
 	<body>
-	<div id="top">
+	<script>
+	$(document).ready(function()
+	{
+		$('[data-toggle="tooltip"]').tooltip();   
+	});
+	</script>
+	
+	
+	
+
+	<!--banner-->
+	<div class="bigtop">
+		<!--class="darken"-->
       <div class="darken">
 
-         <div id="Banner">
+         <div id="banner">
             <div id="topText"> UDRIVE </div>
          </div>
 
-         <div class="topnav">
-            <a href="main.php">Home</a>
-            <a href="myAccount.php" class="active"> My Account</a>
-            <a href="messages.html">Messages</a>
-            <a href="#help"> Help </a>
-            <a href="#contact">Contact</a>
-         </div>
-      </div>
-</div>
+			<div class="topnav">
+	\			<a href="main.php">Home</a>
+				<a href="myAccount.php"> My Account</a>
+				<a href="messages.html">Messages</a>
+				<a href="#help"> Help </a>
+				<a href="#contact">Contact</a>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!--car infomation-->
+	<div class="cif" id="cif">
+		<div class="cif-top">
+			<h3>D</h3>
+		</div>
+		<div class="w3l-cif">
+			<div class="container">
+				<div class="w3ls-heading">
+					<h2>Detail</h2>
+				</div>
+				<div class="cif-info">
+					<p>You can see the car 's detailed information. You can also message owner and check owner's information. Cras tincidunt rhoncus turpis. Nulla elit nibh, vehicula vitae tortor a, fermentum euismod erat. Phasellus vel eros sed sem luctus fringilla sed eleifend eros. Sed et elementum lectus. Aenean ultrices pharetra vestibulum. Praesent a turpis sed nunc auctor vehicula id a sapien. Proin at nulla commodo, pretium enim et, fringilla elit.</p>
+					
+					</div>
+				</div>
+			</div>
+		</div>
+	<!-- Second section -->
+	
+		<div class="picture-section container-fluid no-padding">
+		<div class="container">
+			<div class="padding-100"></div>
+		</div>
+		<div class="col-md-6 img-block">
+			<img src="images/detailImage/d2.jpg" class="img-thumbnail" alt="car_pi">
+		</div>
+		
+		<div class="col-md-6">
+	
+					<div class="section-header">
+						<h3>Booking Information</h3>
+						
+							<table class="table table-striped">
+								<thead>
+								  <tr>
+									<th>PLATE NUMBER</th>
+									<th>PRICE</th>
+									<th>LOCATION</th>
+									<th>AVAIABLE TO DATE</th>
+								  </tr>
+								</thead>
+								<tbody>
+								  <tr>
+									<td>TZ397</td>
+									<td>$32.00/Per Day</td>
+									<td>Wollongong</td>
+									<td>09/10/2019</td>
+								  </tr>
+								</table>  
+							</div>
+						<a class="bu1" href="#" title="Read More">Message</a>
+						<a class="bu2" href="#" title="Read More">Booking</a>
+					<div class="profile_container" >
+						<a href="1.html" data-toggle="tooltip" title="press me!"><image id="profile" src="images/detailImage/pro1.png"/></a>
+					</div>	
+					</div>
+					<div class="padding-100"></div>
+		
+		</div>
+		
+		
+	<!-- //second section-->
+	
+	<!-- //third section-->
+		<div class="about w3layouts agileits" id="about">
+		<div class="container">
 
+			<h3>Car information</h3>
+			<p class="p1 w3layouts agileits">You can see the following information about the car you like.</p>
+
+			<div class="about-grids w3layouts agileits">
+				<div class="col-md-4 col-sm-4 w3layouts agileits about-grid about-grid-1">
+					<div class="about-image w3layouts agileits">
+						<img src="images/detailImage/icon1.jpg" alt="W3layouts Agileits">
+					</div>
+					<div class="about-info w3layouts agileits">
+						<h4>Number Of Seats</h4>
+						<p>5</p>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-4 w3layouts agileits about-grid about-grid-2">
+					<div class="about-image w3layouts agileits">
+						<img src="images/detailImage/icon2.jpg" alt="W3layouts Agileits">
+					</div>
+					<div class="about-info w3layouts agileits">
+						<h4>Car Type</h4>
+						<p>Roadster</p>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-4 w3layouts agileits about-grid about-grid-3">
+					<div class="about-image w3layouts agileits">
+						<img src="images/detailImage/icon3.jpg" alt="W3layouts Agileits">
+					</div>
+					<div class="about-info w3layouts agileits">
+						<h4>Fuel Type</h4>
+						<p>98#</p>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-4 w3layouts agileits about-grid about-grid-4">
+					<div class="about-image w3layouts agileits">
+						<img src="images/detailImage/icon4.jpg"  alt="W3layouts Agileits">
+					</div>
+					<div class="about-info w3layouts agileits">
+						<h4>Odometer</h4>
+						<p>60000/KM</p>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-4 w3layouts agileits about-grid about-grid-5">
+					<div class="about-image w3layouts agileits">
+						<img src="images/detailImage/icon5.jpg" alt="W3layouts Agileits">
+					</div>
+					<div class="about-info w3layouts agileits">
+						<h4>Purchase Date</h4>
+						<p>09/10/2016</p>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-4 w3layouts agileits about-grid about-grid-6">
+					<div class="about-image w3layouts agileits">
+						<img src="images/detailImage/icon6.jpg"  alt="W3layouts Agileits">
+					</div>
+					<div class="about-info w3layouts agileits">
+						<h4>Brand</h4>
+						<p>Adi</p>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-4 w3layouts agileits about-grid about-grid-7">
+					<div class="about-image w3layouts agileits">
+						<img src="images/detailImage/icon7.jpg"  alt="W3layouts Agileits">
+					</div>
+					<div class="about-info w3layouts agileits">
+						<h4>Model</h4>
+						<p>A8</p>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-4 w3layouts agileits about-grid about-grid-8">
+					<div class="about-image w3layouts agileits">
+						<img src="images/detailImage/icon8.jpg" alt="W3layouts Agileits">
+					</div>
+					<div class="about-info w3layouts agileits">
+						<h4>Transmission</h4>
+						<p>None</p>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-4 w3layouts agileits about-grid about-grid-9">
+					<div class="about-image w3layouts agileits">
+						<img src="images/detailImage/icon9.jpg" alt="W3layouts Agileits">
+					</div>
+					<div class="about-info w3layouts agileits">
+						<h4>Descripssion</h4>
+						<p>None</p>
+					</div>
+				</div>
+				
+				</div>
+				<div class="clearfix"></div>
+			</div>
+	<!-- //third section-->
+	<!-- fourth section-->
+	<div class="padding-100"></div>
+	
+	<div class="beijing">
+			<div class="container" >
+			  <h3>REVIEW</h3>
+			  <!-- Left-aligned -->
+				<div class="media">
+					<div class="media-left">
+					  <img src="images/detailImage/person3.png" class="media-object" style="width:60px">
+					</div>
+					<div class="media-body">
+						<h4 class="media-heading">William</h4>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star nochecked"></span>
+						<span class="fa fa-star nochecked"></span>
+					  <p>The car is really nice,Thanks Crusie!!!</p>
+					</div>
+				 </div>
+				 <hr>
+				 
+				 
+				  <div class="media-left">
+					 <img src="images/detailImage/person2.jpg" class="media-object" style="width:60px">
+					</div>
+					<div class="media-body">
+					  <h4 class="media-heading">James</h4>
+					  <span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star nochecked"></span>
+					  <p>Crusie is really nice man.Tell us a lot of travelling information and shared a useful experience.The car is also very nice.Overally,Thanks!!</p>
+					</div>
+					<hr>
+				  
+				  <div class="media-left">
+					  <img src="images/detailImage/person1.jpg" class="media-object" style="width:60px">
+					</div>
+					<div class="media-body">
+					  <h4 class="media-heading">Nichkun</h4>
+					  <span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+					  <p>perfect!!!</p>
+					</div>
+					<hr>
+					
+					
+					<div class="media-left">
+					  <img src="images/detailImage/person4.jpg" class="media-object" style="width:60px">
+					</div>
+					<div class="media-body">
+					  <h4 class="media-heading">Chloe</h4>
+					  <span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+					  <p>This car is very suit for my familly and had a very good trip!</p>
+					</div>
+					<hr>
+	
+					<div>
+					
+					
+					</div>
+			</div>
+	</div>
+	<!--// fourth section-->
+	
 	</body>
 </html>
