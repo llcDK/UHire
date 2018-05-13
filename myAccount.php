@@ -30,15 +30,21 @@
 	
 	$myAccount = unserialize($_SESSION['account']);
 	$myAccount->initProfile($dbconnect);
+	$myAccount->initReview($dbconnect);
 	$userType = $myAccount->type();
 	// If the userType is admin, redirect to admin page
 	if($userType == "Admin")
 	{
 		// Re-direct to admin mode
 	}
-	else
+	else if($userType == "Car owner")
 	{
-		
+		// Set global variable for the page of displaying car list
+		if(!isset($_SESSION['carIndex']))
+		{
+			$_SESSION['carIndex'] = 0;
+		}
+		$carIndex = $_SESSION['carIndex'];
 	}
 	
 	
@@ -51,6 +57,7 @@
 		3: Upload profile picture mode
 		4: Intermediate mode, for storing profile picture and updating database for profile picture
 		5: Verify account mode
+		6: Intermediate mode, Previous/next page for car listing
 		default: 0
 	*/
 	if(isset($_GET['state']) && !empty($_GET['state']))
@@ -101,6 +108,19 @@
 		}
 		echo "<script>window.location = 'myAccount.php?state=0';</script>";
 	}
+	else if($state == 6)
+	{
+		if($_GET['action'] == 'prev')
+		{
+			$_SESSION['carIndex'] -= 3;
+		}
+		else if($_GET['action'] == 'next')
+		{
+			$_SESSION['carIndex'] += 3;
+		}
+		echo "<script>window.location = 'myAccount.php?state=0'; </script>";
+	}
+
 	
 ?>
 
@@ -412,25 +432,40 @@
 		if($myAccount->type() == "Car owner")
 		{
 			// If the account belongs to a car owner
+			
+			if($carIndex > 0)
+			{
+			?>
+				<div id="left"><a href="myAccount.php?state=6&action=prev" class="previous round leftRight">&#8249;</a></div>			
+		<?php
+			}
+	
 			$cars = $myAccount->getCars($dbconnect);
-			foreach($cars as $car)
+			for($i = $carIndex; $i < min(sizeof($cars), $carIndex+3); $i++)
 			{
 				?>
-				<div id="left"><a href="#" class="previous round leftRight">&#8249;</a></div>
 				
 				<div class="tileContainer">
-					<div> <img class="carTile" src="<?php echo $car->getImageURL(); ?>" /> </div>
+					<div> <img class="carTile" src="<?php echo $cars[$i]->getImageURL(); ?>" /> </div>
 					<div class="buttonGroup">
 						<button class="editCar"></button>
 						<button class="deleteCar"></button>
 					</div>
 				</div>
 	
-				<div id="right"><a href="#" class="next round leftRight">&#8250;</a></div>
-	<?php	
+		<?php	
 			}
 			
+			if($carIndex + 3 < sizeof($cars))
+			{
+			?>
 			
+				<div id="right"><a href="myAccount.php?state=6&action=next" class="next round leftRight">&#8250;</a></div>
+		<?php
+			}
+			?>
+			
+		<?php	
 			
 		}
 		else if($myAccount->type() == "Car renter")
@@ -449,10 +484,24 @@
    </div>
    <div id = "reviewBox">
 	<?php
-		$reviews = Review::getReviews($dbconnect, $myAccount->getAccNo());
+		$reviews = $myAccount->getReviews();
 		if(sizeof($reviews) > 0)
 		{
+			if($myAccount->getRating() == 0)
+			{
 			?>
+				<div>Total Ratings: Not enough ratings</div>
+		<?php
+				
+			}
+			else
+			{
+		?>	
+				<div>Total Rating: <?php echo $myAccount->getRating(); ?></div>
+		<?php
+			}
+		?>
+			
 			<table style = "border: 3px solid red" >
 				<tr>
 					<th>renterID</th>

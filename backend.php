@@ -73,7 +73,7 @@
 		private $fname;
 		private $lname;
 		private $address;
-		private $rating; // -1 indicates less than 10 people rated
+		private $rating; // -1 indicates less than 5 people rated
 		
 		// Links to references of cars, bankCards, BankAccounts, socialMedias, reviews, messages
 		private $cars;
@@ -140,6 +140,15 @@
 			$this->bankCard = BankCard::createBankCard($dbconnect, $this->accNo);
 		}
 		
+		function initReview($dbconnect)
+		{
+			// Init the list of reviews given to the account
+			$this->reviews = Review::getReviews($dbconnect, $this->accNo);
+			
+			// Set the ratings
+			$this->rating = Review::calcRating($dbconnect, $this->accNo);
+		}
+		
 		function getCars($dbconnect)
 		{
 			$carsOfThisAccount = "select * from Car where carOwnerAcc = {$this->accNo} ;";
@@ -179,6 +188,9 @@
 		
 		function getRating()
 		{
+			if($this->rating == -1)
+				return 0;
+			
 			return $this->rating;
 		}
 		
@@ -195,6 +207,11 @@
 		function getBankAccount()
 		{
 			return $this->bankAccounts;
+		}
+		
+		function getReviews()
+		{
+			return $this->reviews;
 		}
 		
 		function equal($other)
@@ -851,6 +868,29 @@
 			return $this->anon;
 		}
 		
+		static function calcRating($dbconnect, $accNo)
+		{
+			$reviewsQuery = "select count(*), avg(rating) from Review where owner = '$accNo' and rating is not NULL;";
+			$reviewResult = $dbconnect->executeCommand($reviewsQuery);
+			if(mysqli_num_rows($reviewResult) > 0)
+			{
+				$reviewSum = mysqli_fetch_row($reviewResult);
+				// If there are 10 more reviews, then it is valuable
+				if($reviewSum[0] >= 5)
+				{
+					return $reviewSum[1];
+				}
+				else
+				{
+					return -1;
+				}
+			}
+			else
+			{
+				return -1;
+			}
+		}
+		
 		static function getReviews($dbconnect, $accNo)
 		{
 			$allReviews = array();
@@ -886,6 +926,7 @@
 			echo unserialize($objString)->getAccNo();
 		*/
 			$dbconnect = new DBConnection();
+			
 		?>
 	</body>
 </html>
