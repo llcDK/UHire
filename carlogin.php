@@ -89,7 +89,7 @@
 			<a id="rsub"href="forget_pwd.php">Forgot password</a>
 		</div>
      
-	<div  id="or_line">
+	<div id="or_line">
 			<span class='left1'></span>
 			<span class = "orr">OR</span>
 			<span class = 'right1'></span>

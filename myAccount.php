@@ -448,7 +448,22 @@
 				<div class="tileContainer">
 					<div> <img class="carTile" src="<?php echo $cars[$i]->getImageURL(); ?>" /> </div>
 					<div class="buttonGroup">
-						<button class="editCar"></button>
+					<form action = "upload.php?state=0" method = "POST">
+						<input type = "hidden" name = "pn" value = "<?php echo empty($cars[$i]->getPlateNum())? "" : $cars[$i]->getPlateNum() ; ?>" />
+						<input type = "hidden" name = "pd" value = "<?php echo empty($cars[$i]->getPrice())? "" : $cars[$i]->getPrice() ; ?>" />
+						<input type = "hidden" name = "loc" value = "<?php echo empty($cars[$i]->getLocation())? "" : $cars[$i]->getLocation() ; ?>" />
+						<input type = "hidden" name = "at" value = "<?php echo empty($cars[$i]->getAvaiableTo())? "" : $cars[$i]->getAvaiableTo() ; ?>" />
+						<input type = "hidden" name = "yb" value = "<?php echo empty($cars[$i]->getYearBought())? "" : $cars[$i]->getYearBought(); ?>" />
+						<input type = "hidden" name = "m" value = "<?php echo empty($cars[$i]->getModel())? "" : $cars[$i]->getModel(); ?>" />
+						<input type = "hidden" name = "desc" value = "<?php echo empty($cars[$i]->getFullDescription())? "" : $cars[$i]->getFullDescription(); ?>" />
+						<input type = "hidden" name = "b" value = "<?php echo empty($cars[$i]->getBrand())? "" : $cars[$i]->getBrand() ; ?>" />
+						<input type = "hidden" name = "t" value = "<?php echo empty($cars[$i]->getTransmission())? "" : $cars[$i]->getTransmission(); ?>" />
+						<input type = "hidden" name = "ns" value = "<?php echo empty($cars[$i]->getNumberSeats())? "" : $cars[$i]->getNumberSeats() ; ?>" />
+						<input type = "hidden" name = "odo" value = "<?php echo empty($cars[$i]->getOdometer())? "" : $cars[$i]->getOdometer() ; ?>" />
+						<input type = "hidden" name = "ft" value = "<?php echo empty($cars[$i]->getFuelType())? "" : $cars[$i]->getFuelType(); ?>" />
+						<input type = "hidden" name = "bt" value = "<?php echo empty($cars[$i]->getBobyType())? "" : $cars[$i]->getBobyType(); ?>" />
+						<button type = "submit" class="editCar"></button>
+					</form>
 						<button class="deleteCar"></button>
 					</div>
 				</div>
@@ -472,10 +487,7 @@
 		{
 			// Display a button that can let the renter upload a car and becomes a car owner
 			?>
-			<form action = "upload.php">
-				<button type = "submit">Become a car owner</button>
-			</form>
-			
+				<button type = "submit" onClick = "window.location = 'upload.php?state=0&action=insert';">Become a car owner</button>
 	<?php
 		}
 		
@@ -525,7 +537,7 @@
 				else
 				{
 					?>
-					<td><?php echo $rev->getOwner(); ?></td>
+					<td><?php echo $rev->getRenter(); ?></td>
 				<?php
 				}
 				?>

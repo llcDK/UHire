@@ -240,6 +240,13 @@
 			$this->bankCard = $bankCard;
 		}
 		
+		function setUserType($dbconnect, $type)
+		{
+			$this->type = $type;
+			// Update the database
+			$updateTypeQuery = "update Account set type = '$type' where accNo = '$this->accNo';";
+			$dbconnect->executeCommand($updateTypeQuery);
+		}
 		
 		function setDetail($dbconnect, $updatingObj)
 		{
@@ -516,6 +523,7 @@
 		private $avaiable; // 1: Avaiable, 0: Not avaiable
 		private $location;
 		private $carOwnerAcc;	// reference to a car owner
+		private $avaiableTo;
 		private $year;
 		private $model;
 		private $description;
@@ -535,29 +543,38 @@
 			return Car::$imageDir;
 		}
 		
-		function __construct($plateNum, $price, $avaiable, $location, $carOwnerAcc, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType, $image)
+		function __construct($plateNum, $price, $avaiable, $location, $carOwnerAcc, $avaiableTo, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType, $image)
 		{
-			$this->updateCar($plateNum, $price, $avaiable, $location, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType, $image);
+			$this->updateCar($plateNum, $price, $avaiable, $location, $avaiableTo, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType, $image);
 			$this->carOwnerAcc = $carOwnerAcc;
 		}
 		
 		// Factory method
-		public static function createCar()
+		public static function createCar($dbconnect, $plateNum, $price, $location, $carOwnerAcc, $avaiableTo, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType, $image = "car0.jpg")
 		{
 			// Create a car instance
+			$car = new Car($plateNum, $price, 1, $location, $carOwnerAcc, $avaiableTo, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType, $image);
 			
 			// Update the database
+			$insertQuery = "insert into Car values('$plateNum', '$price', 1, '$location', '$carOwnerAcc', '$avaiableTo', '$year', '$model', '$description', '$brand', '$transmission', '$seatNumber', '$odometer', '$fuelType', '$bodyType');";
+			$flag = $dbconnect->executeCommand($insertQuery);
 			
-			// Update page
-			
+			if($flag)
+			{
+				return $car;
+			}
+			else
+				return false;
+						
 		}
 		
-		public function updateCar($plateNum, $price, $avaiable, $location, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType, $image)
+		public function updateCar($plateNum, $price, $avaiable, $location, $avaiableTo, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType, $image)
 		{
 			$this->plateNum = $plateNum;
 			$this->price = $price;
 			$this->avaiable = $avaiable;
 			$this->location = $location;
+			$this->avaiableTo = $avaiableTo;
 			$this->year = $year;
 			$this->model = $model;
 			$this->description = $description;
@@ -586,7 +603,7 @@
 					$imageRow = mysqli_fetch_row($imageNameRow);
 					$imageName = $imageRow[0];
 					
-					$newCar = new Car($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6], $row[7], $row[8], $row[9], $row[10], $row[11], $row[12], $row[13], $imageName);
+					$newCar = new Car($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6], $row[7], $row[8], $row[9], $row[10], $row[11], $row[12], $row[13], $row[14], $imageName);
 					$cars[] = $newCar;
 				}
 			}
@@ -639,10 +656,10 @@
 			return $result;
 		}
 		
-		public function setDetail($dbconnect, $plateNum, $price, $avaiable, $location, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType)
+		public function setDetail($dbconnect, $plateNum, $price, $avaiable, $location, $avaiableTo, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType)
 		{
 			// Change the information of this object 
-			updateCar($plateNum, $price, $avaiable, $location, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType);
+			updateCar($plateNum, $price, $avaiable, $location, $avaiableTo, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType);
 			// Update database
 			
 			// Update page
@@ -663,6 +680,11 @@
 				
 		}
 		
+		public function getPlateNum()
+		{
+			return $this->plateNum;
+		}
+		
 		public function getBrand()
 		{
 			return $this->brand;
@@ -671,6 +693,21 @@
 		public function getLocation()
 		{
 			return $this->location;
+		}
+		
+		public function getAvaiableTo()
+		{
+			return $this->avaiableTo;
+		}
+		
+		public function getYearBought()
+		{
+			return $this->year;
+		}
+		
+		public function getDescription()
+		{
+			return $this->description;
 		}
 		
 		public function getPrice()
@@ -697,6 +734,32 @@
 			
 			return Car::getImageDir() . $this->image;
 		}
+		
+		public function getTransmission()
+		{
+			return $this->transmission;
+		}
+		
+		public function getNumberSeats()
+		{
+			return $this->seatNumber;
+		}
+		
+		public function getOdometer()
+		{
+			return $this->odometer;
+		}
+		
+		public function getFuelType()
+		{
+			return $this->fuelType;
+		}
+		
+		public function getBobyType()
+		{
+			return $this->bodyType;
+		}
+		
 	}
 	
 	class BankCard
