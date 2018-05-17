@@ -441,6 +441,7 @@
 			}
 	
 			$cars = $myAccount->getCars($dbconnect);
+			
 			for($i = $carIndex; $i < min(sizeof($cars), $carIndex+3); $i++)
 			{
 				?>
@@ -449,6 +450,8 @@
 					<div> <img class="carTile" src="<?php echo $cars[$i]->getImageURL(); ?>" /> </div>
 					<div class="buttonGroup">
 					<form action = "upload.php?state=0" method = "POST">
+						<input type = "hidden" name = "action" value = "update" />
+						
 						<input type = "hidden" name = "pn" value = "<?php echo empty($cars[$i]->getPlateNum())? "" : $cars[$i]->getPlateNum() ; ?>" />
 						<input type = "hidden" name = "pd" value = "<?php echo empty($cars[$i]->getPrice())? "" : $cars[$i]->getPrice() ; ?>" />
 						<input type = "hidden" name = "loc" value = "<?php echo empty($cars[$i]->getLocation())? "" : $cars[$i]->getLocation() ; ?>" />

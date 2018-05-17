@@ -568,6 +568,23 @@
 						
 		}
 		
+		public static function modifyCar($dbconnect, $plateNum, $price, $location, $carOwnerAcc, $avaiableTo, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType, $image)
+		{
+			// Update the database
+			$updateQuery = "update Car set plateNum = '$plateNum', price = '$price', location = '$location', carOwnerAcc = '$carOwnerAcc', avaiableTo = '$avaiableTo', 
+			year = '$year', model = '$model', description = '$description', brand = '$brand', transmission = '$transmission', numSeat = '$seatNumber', odometer = '$odometer', fuelType = '$fuelType', bodyType = '$bodyType'
+			where plateNum = '$plateNum';";
+			$flag = $dbconnect->executeCommand($updateQuery);
+			
+			if($flag)
+			{
+				return true;
+			}
+			else
+				return false;
+			
+		}		
+		
 		public function updateCar($plateNum, $price, $avaiable, $location, $avaiableTo, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType, $image)
 		{
 			$this->plateNum = $plateNum;
@@ -585,6 +602,7 @@
 			$this->fuelType = $fuelType;
 			$this->bodyType = $bodyType;
 			$this->image = $image;
+			
 		}
 		
 		// Return a list of cars with certain certira

@@ -54,7 +54,7 @@
 			{
 				echo "<script>alert('Failed to upload a new car, something is wrong!');</script>";
 				// Return to the same page
-				
+				echo "<script>window.location = 'upload.php?state=0';</script>";
 			}
 			else
 			{
@@ -71,6 +71,31 @@
 		else if($_POST['action'] == "update")
 		{
 			
+			// Get the existing car
+			// Get all variables from $_POST
+			$plateNum = $_POST['pn'];
+			$price = $_POST['pd'];
+			$location = $_POST['loc'];
+			$avaiableTo = $_POST['at'];
+			$year = $_POST['yb'];
+			$model = $_POST['m'];
+			$description = $_POST['desc'];
+			$brand = $_POST['b'];
+			$transmission = $_POST['t'];
+			$numberOfSeats = $_POST['ns'];
+			$odometer = $_POST['odo'];
+			$fuelType = $_POST['ft'];
+			$bodyType = $_POST['bt'];
+			
+			
+			// Update a existing car
+			$flag = Car::modifyCar($dbconnect, $plateNum, $price, $location, $myAccount->getAccNo(), $avaiableTo, $year, $model, $description, $brand, $transmission, $numberOfSeats, $odometer, $fuelType, $bodyType, "");
+			
+			if($flag)
+			{
+				echo "<script>alert('Update Car successfully!');</script>";
+				echo "<script>window.location = 'myAccount.php?state=0';</script>";
+			}
 		}
 	}
 ?>
@@ -187,7 +212,7 @@
 					<span> Description  </span>
 				</div>
 				<div class="infoInput">
-					<textarea type="text" id="desc" rows="10" cols="30" name = "desc" value = "<?php echo $_POST['desc']; ?>" > </textarea>
+					<textarea type="text" id="desc" rows="10" cols="30" name = "desc" value = "<?php echo $_POST['desc']; ?>" > <?php echo $_POST['desc']; ?> </textarea>
 				</div>
 			</div>
 
@@ -243,8 +268,8 @@
 				<div class="infoInput">
 					<input type="text" id="body" name = "bt" value = "<?php echo $_POST['bt']; ?>" />
 				</div>
-			</div>		
-
+			</div>
+			
 			<input type = "hidden" name = "action" value = "<?php echo empty($_GET['action'])? $_POST['action'] : $_GET['action'] ; ?>" />
 			
 			<div id="submitDiv">
