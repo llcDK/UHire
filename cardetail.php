@@ -15,13 +15,44 @@
 		<!-- //font -->
 	</head>
 	<body>
-	<script>
-	$(document).ready(function()
-	{
-		$('[data-toggle="tooltip"]').tooltip();   
-	});
-	</script>
-	
+	<?php
+		// Helper function to display the content of a car
+		function display($content)
+		{
+			if(empty($content))
+			{
+				return "None";
+			}
+			else
+			{
+				return $content;
+			}
+		}
+	?>
+	<?php
+		include 'backend.php';
+		session_start();
+		$myAccount = unserialize($_SESSION['account']);
+		
+		// Capture the carPlateNum to display from $_GET['carPlateNum']
+		if(isset($_GET['carPlateNum']))
+		{
+			$plateNum = $_GET['carPlateNum'];
+			// Query the instance from the database
+			//Write the query
+			$getSingleCarQuery = "select * from Car where plateNum = '$plateNum';";
+			
+			$carList = Car::getCars($dbconnect, $getSingleCarQuery);
+			$car = $carList[0];
+		}
+		else
+		{
+			// Nothing to capture
+		}
+		
+		// Print out the object to test if it works
+		//print_r($car);
+	?>
 	
 	
 
@@ -35,7 +66,7 @@
          </div>
 
 			<div class="topnav">
-	\			<a href="main.php">Home</a>
+				<a href="main.php">Home</a>
 				<a href="myAccount.php"> My Account</a>
 				<a href="messages.html">Messages</a>
 				<a href="#help"> Help </a>
@@ -69,39 +100,39 @@
 			<div class="padding-100"></div>
 		</div>
 		<div class="col-md-6 img-block">
-			<img src="images/detailImage/d2.jpg" class="img-thumbnail" alt="car_pi">
+			<img src=<?php echo $car->getImageURL(); ?> class="img-thumbnail" alt="car_pi">
 		</div>
 		
 		<div class="col-md-6">
 	
-					<div class="section-header">
-						<h3>Booking Information</h3>
-						
-							<table class="table table-striped">
-								<thead>
-								  <tr>
-									<th>PLATE NUMBER</th>
-									<th>PRICE</th>
-									<th>LOCATION</th>
-									<th>AVAIABLE TO DATE</th>
-								  </tr>
-								</thead>
-								<tbody>
-								  <tr>
-									<td>TZ397</td>
-									<td>$32.00/Per Day</td>
-									<td>Wollongong</td>
-									<td>09/10/2019</td>
-								  </tr>
-								</table>  
-							</div>
-						<a class="bu1" href="#" title="Read More">Message</a>
-						<a class="bu2" href="#" title="Read More">Booking</a>
-					<div class="profile_container" >
-						<a href="1.html" data-toggle="tooltip" title="press me!"><image id="profile" src="images/detailImage/pro1.png"/></a>
-					</div>	
+			<div class="section-header">
+				<h3>Booking Information</h3>
+				
+					<table class="table table-striped">
+						<thead>
+						  <tr>
+							<th>PLATE NUMBER</th>
+							<th>PRICE</th>
+							<th>LOCATION</th>
+							<th>AVAIABLE TO DATE</th>
+						  </tr>
+						</thead>
+						<tbody>
+						  <tr>
+							<td><?php echo $car->getPlateNum(); ?></td>
+							<td>$<?php echo $car->getPrice(); ?>/Per Day</td>
+							<td><?php echo $car->getLocation(); ?></td>
+							<td><?php echo $car->getAvaiableTo(); ?></td>
+						  </tr>
+						</table>  
 					</div>
-					<div class="padding-100"></div>
+				<a class="bu1" href="#" title="Read More">Message</a>
+				<a class="bu2" href="#" title="Read More">Book</a>
+			<div class="profile_container" >
+				<a href="1.html" data-toggle="tooltip" title="press me!"><image id="profile" src="images/detailImage/pro1.png"/></a>
+			</div>	
+			</div>
+			<div class="padding-100"></div>
 		
 		</div>
 		
@@ -122,7 +153,7 @@
 					</div>
 					<div class="about-info w3layouts agileits">
 						<h4>Number Of Seats</h4>
-						<p>5</p>
+						<p><?php echo display($car->getNumberSeats()); ?></p>
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-4 w3layouts agileits about-grid about-grid-2">
@@ -131,7 +162,7 @@
 					</div>
 					<div class="about-info w3layouts agileits">
 						<h4>Car Type</h4>
-						<p>Roadster</p>
+						<p><?php echo display($car->getBrand()); ?></p>
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-4 w3layouts agileits about-grid about-grid-3">
@@ -140,7 +171,7 @@
 					</div>
 					<div class="about-info w3layouts agileits">
 						<h4>Fuel Type</h4>
-						<p>98#</p>
+						<p><?php echo display($car->getFuelType()); ?></p>
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-4 w3layouts agileits about-grid about-grid-4">
@@ -149,7 +180,7 @@
 					</div>
 					<div class="about-info w3layouts agileits">
 						<h4>Odometer</h4>
-						<p>60000/KM</p>
+						<p><?php echo display($car->getOdometer()); ?>KM</p>
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-4 w3layouts agileits about-grid about-grid-5">
@@ -158,7 +189,7 @@
 					</div>
 					<div class="about-info w3layouts agileits">
 						<h4>Purchase Date</h4>
-						<p>09/10/2016</p>
+						<p><?php echo display($car->getYearBought()); ?></p>
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-4 w3layouts agileits about-grid about-grid-6">
@@ -167,7 +198,7 @@
 					</div>
 					<div class="about-info w3layouts agileits">
 						<h4>Brand</h4>
-						<p>Adi</p>
+						<p><?php echo display($car->getBrand()); ?></p>
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-4 w3layouts agileits about-grid about-grid-7">
@@ -176,7 +207,7 @@
 					</div>
 					<div class="about-info w3layouts agileits">
 						<h4>Model</h4>
-						<p>A8</p>
+						<p><?php echo display($car->getModel()); ?></p>
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-4 w3layouts agileits about-grid about-grid-8">
@@ -185,7 +216,7 @@
 					</div>
 					<div class="about-info w3layouts agileits">
 						<h4>Transmission</h4>
-						<p>None</p>
+						<p><?php echo display($car->getTransmission()); ?></p>
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-4 w3layouts agileits about-grid about-grid-9">
@@ -194,7 +225,7 @@
 					</div>
 					<div class="about-info w3layouts agileits">
 						<h4>Descripssion</h4>
-						<p>None</p>
+						<p><?php echo display($car->getFullDescription()); ?></p>
 					</div>
 				</div>
 				
@@ -209,7 +240,62 @@
 			<div class="container" >
 			  <h3>REVIEW</h3>
 			  <!-- Left-aligned -->
-				<div class="media">
+				<!--<div class="media"> -->
+				<?php
+					// Get all reviews for this car
+					// Frist write the query
+					$plateNum = $car->getPlateNum();
+					$getReviewQuery = "select * from Review where plateNum = '$plateNum';";
+					$reviewsToDisplay = Review::queryReviews($dbconnect, $getReviewQuery);
+					
+					// Loop through and display the results
+					if(sizeof($reviewsToDisplay) > 0)
+					{
+						foreach($reviewsToDisplay as $rev)
+						{
+							$accObj = Account::queryAccount($dbconnect, $rev->getRenter());
+							//print_r($accObj);
+							
+							$profileImageURL = $accObj->getProfile()->getPictureURL();
+							?>
+							<div class="media-left">
+								<img src="<?php echo $profileImageURL ?>" class="media-object" style="width:60px">
+							</div>
+							<div class="media-body">
+								<h4 class="media-heading"><?php echo $accObj->getFirstName() . " " . $accObj->getLastName(); ?></h4>
+								<?php
+									// Loop through to display rating
+									$rating = $rev->getRating();
+									$checkedStars = $rating;
+									$unCheckedStars = 5 - $rating;
+									// Print checked stars
+									for($i = 0; $i < $checkedStars; $i++)
+									{
+										?>
+										<span class="fa fa-star checked"></span>
+								<?php
+									}
+									// Print unchecked stars
+									for($i = 0; $i < $unCheckedStars; $i++)
+									{
+										?>
+										<span class="fa fa-star nochecked"></span>
+								<?php
+									}
+									
+								?>
+								<p><?php echo $rev->getContent(); ?></p>
+							</div>
+				<?php			
+						}
+					}
+					else
+					{
+						echo "Currently no reviews for this car";
+					}
+				?>
+				
+				<!--
 					<div class="media-left">
 					  <img src="images/detailImage/person3.png" class="media-object" style="width:60px">
 					</div>
@@ -222,7 +308,6 @@
 						<span class="fa fa-star nochecked"></span>
 					  <p>The car is really nice,Thanks Crusie!!!</p>
 					</div>
-				 </div>
 				 <hr>
 				 
 				 
@@ -268,11 +353,8 @@
 					  <p>This car is very suit for my familly and had a very good trip!</p>
 					</div>
 					<hr>
+				-->
 	
-					<div>
-					
-					
-					</div>
 			</div>
 	</div>
 	<!--// fourth section-->

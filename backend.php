@@ -116,6 +116,17 @@
 			
 		}
 		
+		public static function queryAccount($dbconnect, $accNo)
+		{
+			$accQuery = "select * from Account where accNo = '$accNo';";
+			$resultTable = $dbconnect->executeCommand($accQuery);
+			$accRow = mysqli_fetch_row($resultTable);
+			$accObj = new Account($accRow[0], $accNo[1], $accRow[2], $accRow[3], $accRow[4], $accRow[5], $accRow[6]);
+			$accObj->initProfile($dbconnect);
+			
+			return $accObj;
+		}
+		
 		function initProfile($dbconnect)
 		{
 			$this->profile = Profile::createProfile($dbconnect, $this->accNo);
@@ -680,9 +691,9 @@
 			updateCar($plateNum, $price, $avaiable, $location, $avaiableTo, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType);
 			// Update database
 			
-			// Update page
-			
 		}
+		
+		
 		
 		public function book($acc)
 		{
@@ -696,6 +707,11 @@
 			
 				// If not having enough credit, update page
 				
+		}
+		
+		public function getReview($dbconnect)
+		{
+			
 		}
 		
 		public function getPlateNum()
@@ -974,9 +990,26 @@
 		
 		static function getReviews($dbconnect, $accNo)
 		{
-			$allReviews = array();
+			//$allReviews = array();
 			$reviewQuery = "select * from Review where owner = '$accNo';";
+			/*
 			$reviewsTable = $dbconnect->executeCommand($reviewQuery);
+			if($reviewsTable != false && mysqli_num_rows($reviewsTable) > 0)
+			{
+				while($row = mysqli_fetch_row($reviewsTable))
+				{
+					$review = new Review($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6]);
+					$allReviews[] = $review;
+				}
+			}
+			*/
+			return Review::queryReviews($dbconnect, $reviewQuery);
+		}
+		
+		static function queryReviews($dbconnect, $query)
+		{
+			$allReviews = array();
+			$reviewsTable = $dbconnect->executeCommand($query);
 			if($reviewsTable != false && mysqli_num_rows($reviewsTable) > 0)
 			{
 				while($row = mysqli_fetch_row($reviewsTable))

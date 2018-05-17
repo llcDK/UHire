@@ -152,6 +152,7 @@
 						{
 							if(3*$i + $j < $rowCount)
 							{
+								$carString = serialize($carsToDisplay[3*$i + $j]);
 								?>
 								<div class="cell">
 									<div class="carImage tdImg">
@@ -165,7 +166,10 @@
 									<br/>
 									<p class="descText">DESCRIPTION: <?php echo $carsToDisplay[3*$i + $j]->getFullDescription(); ?></p>
 									<br/>
-									<button  > Read More </button>
+									<form action = "cardetail.php">
+										<input type = "hidden" name = "carPlateNum" value = "<?php echo $carsToDisplay[3*$i + $j]->getPlateNum(); ?>" />
+										<button type = "submit"> Read More </button>
+									</form>
 								</div>
 					<?php
 							}
