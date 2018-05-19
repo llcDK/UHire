@@ -684,6 +684,7 @@
 			// First consider the price and avaiable and brand
 			
 			$price = empty($price) || !isset($price)? PHP_INT_MAX : $price;
+			$ava = empty($ava) || !isset($ava)? '0000-00-00' : $ava;
 			
 			$query = "select * from Car where price <= $price and avaiableTo > '$ava' and brand like '%$brand%';";
 			
@@ -737,7 +738,7 @@
 				
 				$currentTime = date("Y-m-d h:i:s");
 				
-				$transaction = Transaction::createTransaction($dbconnect, $acc->getAccNo(), $carOwnerAcc, $currentTime, $totalAmount, $comission);
+				$transaction = Transaction::createTransaction($dbconnect, $acc->getBankCard()->getCardNo(), $carOwnerAcc, $currentTime, $totalAmount, $comission);
 				
 				// Create a booking
 				$bookingTill = new DateTime($currentTime);
@@ -1186,7 +1187,39 @@
 			return $receiptObj;
 		}
 		
+		static function queryReceipt($dbconnect, $query)
+		{
+			$receiptTable = $dbconnect->executeCommand($query);
+			$receiptRow = mysqli_fetch_row($receiptTable);
+			$receiptObj = new Receipt($receiptRow[0], $receiptRow[1], $receiptRow[2], $receiptRow[3], $receiptRow[4]);
+			
+			return $receiptObj;
+		}
 		
+		function getAccNo()
+		{
+			return $this->accNo;
+		}
+		
+		function getPlateNum()
+		{
+			return $this->plateNum;
+		}
+		
+		function getTime()
+		{
+			return $this->requestingTime;
+		}
+		
+		function getAmount()
+		{
+			return $this->moneyPaid;
+		}
+		
+		function getCommission()
+		{
+			return $this->commission;
+		}
 	}
 	
 	

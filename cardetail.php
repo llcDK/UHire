@@ -104,7 +104,7 @@
 				if($receipt != false)
 				{
 					// Print the receipt for the user
-					
+					echo "<script>window.location = 'receipt.php?accNo=" . $receipt->getAccNo() . "&plateNum=" . $receipt->getPlateNum() . "&time=" . $receipt->getTime() . "'</script>";
 					
 				}
 				else
