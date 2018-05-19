@@ -263,7 +263,7 @@
    </div>
 
 
-   <div id="bot">
+   <div id="bot" >
       <div id="botBanner">
 
 

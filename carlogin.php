@@ -42,6 +42,9 @@
 			// Process the account into a object
 			$accRow = mysqli_fetch_row($dbqueryResult);
 			$accObj = new Account($accRow[0], $accRow[1], $accRow[2], $accRow[3], $accRow[4], $accRow[5], $accRow[6]);
+			$accObj->initBankInfo($dbconnect);
+			$accObj->initProfile($dbconnect);
+			$accObj->initReview($dbconnect);
 			session_start();
 			
 			$_SESSION['account'] = serialize($accObj);

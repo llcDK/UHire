@@ -15,6 +15,26 @@
 		<!-- //font -->
 	</head>
 	<body>
+	<script>
+		function bookCar()
+		{
+			// Use javaScript to capture the booking date
+			var bookDay = prompt('How long do you want to book? (in days)');
+			if(confirm('Confirm your action'))
+			{
+				// Comfirmed and keep going
+				var plateNum = document.getElementById('plateNum').innerHTML;
+				
+				//alert(plateNum);
+				window.location = "cardetail.php?state=1&carPlateNum=" + plateNum + "&days=" + bookDay;
+			}
+			else
+			{
+				// Booking cancelled
+				alert('Booking process canceled');
+			}
+		}
+	</script>
 	<?php
 		// Helper function to display the content of a car
 		function display($content)
@@ -50,8 +70,53 @@
 			// Nothing to capture
 		}
 		
-		// Print out the object to test if it works
-		//print_r($car);
+		// Set the state variable
+		/*
+			$state records the state of the page
+			0: Read mode
+			1: Intermediate mode: Book a car
+			
+		*/
+		if(empty($_GET['state']) || !isset($_GET['state']))
+		{
+			// No state, default sate 0
+			$state = 0;
+		}
+		else
+		{
+			// Intermediate mode
+			$state = $_GET['state'];
+		}
+		
+		//If state = 1 Book car
+		if($state == 1)
+		{
+			$bookingDays = empty($_GET['days'])? 0:$_GET['days'] ;
+			if($bookingDays <= 0)
+			{
+				echo "<script>alert('Not a valid booking duration!');</script>";
+				// Back to the page
+				echo "<script>window.location = 'cardetail.php';</script>";
+			}
+			else
+			{
+				$receipt = $car->book($dbconnect, $myAccount, $bookingDays);
+				if($receipt != false)
+				{
+					// Print the receipt for the user
+					
+					
+				}
+				else
+				{
+					echo "<script>alert('Booking failed, check your duration or credit!');</script>";
+				}
+				
+			}
+			
+		}
+		
+
 	?>
 	
 	
@@ -119,7 +184,7 @@
 						</thead>
 						<tbody>
 						  <tr>
-							<td><?php echo $car->getPlateNum(); ?></td>
+							<td id = "plateNum"><?php echo $car->getPlateNum(); ?></td>
 							<td>$<?php echo $car->getPrice(); ?>/Per Day</td>
 							<td><?php echo $car->getLocation(); ?></td>
 							<td><?php echo $car->getAvaiableTo(); ?></td>
@@ -127,7 +192,7 @@
 						</table>  
 					</div>
 				<a class="bu1" href="#" title="Read More">Message</a>
-				<a class="bu2" href="#" title="Read More">Book</a>
+				<a class="bu2" onClick = "bookCar()" title="Read More">Book</a>
 			<div class="profile_container" >
 				<a href="1.html" data-toggle="tooltip" title="press me!"><image id="profile" src="images/detailImage/pro1.png"/></a>
 			</div>	

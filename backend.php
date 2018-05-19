@@ -123,6 +123,8 @@
 			$accRow = mysqli_fetch_row($resultTable);
 			$accObj = new Account($accRow[0], $accNo[1], $accRow[2], $accRow[3], $accRow[4], $accRow[5], $accRow[6]);
 			$accObj->initProfile($dbconnect);
+			$accObj->initBankInfo($dbconnect);
+			$accObj->initReview($dbconnect);
 			
 			return $accObj;
 		}
@@ -548,6 +550,8 @@
 		
 		// Static variables
 		public static $imageDir = "images/carImage/";
+		public static $commissionRate = 0.1;
+		public static $bond = 200;
 		
 		private static function getImageDir()
 		{
@@ -596,6 +600,16 @@
 			
 		}		
 		
+		private static function getCommissionRate()
+		{
+			return Car::$commissionRate;
+		}
+		
+		private static function getBond()
+		{
+			return Car::$bond;
+		}
+		
 		public function updateCar($plateNum, $price, $avaiable, $location, $avaiableTo, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType, $image)
 		{
 			$this->plateNum = $plateNum;
@@ -614,6 +628,14 @@
 			$this->bodyType = $bodyType;
 			$this->image = $image;
 			
+		}
+		
+		public function setAvaiable($dbconnect, $newSate)
+		{
+			$this->avaiable = $newSate;
+			// Update the database
+			$updateCarStatusQuery = "update Car set available = $newSate where plateNum = '$this->plateNum';";
+			$dbconnect->executeCommand($updateCarStatusQuery);
 		}
 		
 		// Return a list of cars with certain certira
@@ -694,18 +716,48 @@
 		}
 		
 		
-		
-		public function book($acc)
+		public function book($dbconnect, $acc, $day)
 		{
+			$comission = Car::getCommissionRate() * $this->price * $day;
+			
 			// Check if there are enough credit
+			$totalAmount = $this->price * $day + $comission + Car::getBond();
 			
-				// If ther are enough credit, Set avaiable to 0
+			if($acc->getBankCard()->getBalance() >= $totalAmount && date_diff(new DateTime($this->avaiableTo), new DateTime()) >= $day)
+			{	
+				// If ther are enough credits, Set avaiable to 0
+				$this->setAvaiable($dbconnect, 0);
 				
-				// Send a receipt to the renter
+				// Make a transaction
+				// Frist we need to get the bankAcc of the car owner
+				$findCarownerBankAccQuery = "select bankAccNo from BankAccount where accNo = '$this->carOwnerAcc';";
+				$carOwnerBankAccResult = $dbconnect->executeCommand($findCarownerBankAccQuery);
+				$carOwnerBankAccRow = mysqli_fetch_row($carOwnerBankAccResult);
+				$carOwnerAcc = $carOwnerBankAccRow[0];
 				
-				// Update page
-			
-				// If not having enough credit, update page
+				$currentTime = date("Y-m-d h:i:s");
+				
+				$transaction = Transaction::createTransaction($dbconnect, $acc->getAccNo(), $carOwnerAcc, $currentTime, $totalAmount, $comission);
+				
+				// Create a booking
+				$bookingTill = new DateTime($currentTime);
+				$bookingTill->add(new DateInterval('P' . $day . 'D'));
+				$bookingTill = $bookingTill->format('Y-m-d');
+				
+				$bookingObj = Booking::createBooking($dbconnect, $acc->getAccNo(), $this->plateNum, $currentTime, "$bookingTill", 0);
+								
+				//print_r($bookingObj);
+				
+				// Execute the transaction
+				$receipt = $transaction->process($dbconnect, $acc->getAccNo(), $this->plateNum);
+				
+				return $receipt;
+			}
+			else
+			{
+				// If not having enough credit or invalid length, update page
+				return false;
+			}
 				
 		}
 		
@@ -1022,6 +1074,122 @@
 			return $allReviews;
 		}
 	}
+	
+	class Transaction
+	{
+		private $cardNo;
+		private $bankAccNo;
+		private $time;
+		private $amount;
+		private $commission;
+		
+		public static $adminBankAcc = "11";
+		
+		function __construct($cardNo, $bankAccNo, $time, $amount, $commission)
+		{
+			$this->cardNo = $cardNo;
+			$this->bankAccNo = $bankAccNo;
+			$this->time = $time;
+			$this->amount = $amount;
+			$this->commission = $commission;
+		}
+		
+		static function createTransaction($dbconnect, $cardNo, $bankAccNo, $time, $amount, $commission)
+		{
+			$transObj = new Transaction($cardNo, $bankAccNo, $time, $amount, $commission);
+			// insert an transaction object into the database
+			$insertTransQuery = "insert into Transaction values('$cardNo', '$bankAccNo', '$time', $amount, $commission);";
+			$dbconnect->executeCommand($insertTransQuery);
+			
+			return $transObj;
+		}
+		
+		private static function getAdminBankAcc()
+		{
+			return Transaction::$adminBankAcc;
+		}
+		
+		function process($dbconnect, $accNo, $plateNum)
+		{
+			// Note that when a transaction is created, it has been stored in the database
+			// Process will actually, transfer money from the cardNo to bankAccNo and transfer money from cardNo to admin Account
+			
+			// Frist decrease the balance in the card
+			$change = $this->amount;
+			$bankCardNo = $this->cardNo;
+			$updateBalanceQueryForRenter = "update BankCard set balance = balance - $change where cardNo = '$bankCardNo'; ";
+			$flag = $dbconnect->executeCommand($updateBalanceQueryForRenter);
+			
+			// Detail of bank account is invisible in this system
+			
+			// Create Receipts
+			$receiptObj = Receipt::createReceipt($dbconnect, $accNo, $plateNum, $this->time, $this->amount, $this->commission);
+			
+			return $receiptObj;
+		}
+	}
+	
+	class Booking
+	{
+		private $accNo;
+		private $plateNum;
+		private $requestingTime;
+		private $bookTill;
+		private $deleted;
+		
+		function __construct($accNo, $plateNum, $requestingTime, $bookTill, $deleted = 0)
+		{
+			$this->accNo = $accNo;
+			$this->plateNum = $plateNum;
+			$this->requestingTime = $requestingTime;
+			$this->bookTill = $bookTill;
+			$this->deleted = $deleted;
+		}
+		
+		static function createBooking($dbconnect, $accNo, $plateNum, $requestingTime, $bookTill, $deleted = 0)
+		{
+			$booking = new Booking($accNo, $plateNum, $requestingTime, $bookTill, $deleted);
+			
+			// Insert into the database
+			$insertBookingQuery = "insert into Booking values('$accNo', '$plateNum', '$requestingTime', '$bookTill', $deleted);";
+			$dbconnect->executeCommand($insertBookingQuery);
+			
+			return $booking;
+		}
+	}
+	
+	class Receipt
+	{
+		private $accNo;
+		private $plateNum;
+		private $requestingTime;
+		private $moneyPaid;
+		private $commission;
+		
+		function __construct($accNo, $plateNum, $requestingTime, $moneyPaid, $commission)
+		{
+			$this->accNo = $accNo;
+			$this->plateNum = $plateNum;
+			$this->requestingTime = $requestingTime;
+			$this->moneyPaid = $moneyPaid;
+			$this->commission = $commission;
+		}
+		
+		static function createReceipt($dbconnect, $accNo, $plateNum, $requestingTime, $moneyPaid, $commission)
+		{
+			// Frist create a Receipt object
+			$receiptObj = new Receipt($accNo, $plateNum, $requestingTime, $moneyPaid, $commission);
+			// Insert into the database
+			$insertReceiptQuery = "insert into Receipt values('$accNo', '$plateNum', '$requestingTime', $moneyPaid, $commission);";
+			$dbconnect->executeCommand($insertReceiptQuery);
+			
+			return $receiptObj;
+		}
+		
+		
+	}
+	
+	
 ?>
 
 <html>

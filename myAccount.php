@@ -29,8 +29,8 @@
 	session_start();
 	
 	$myAccount = unserialize($_SESSION['account']);
-	$myAccount->initProfile($dbconnect);
-	$myAccount->initReview($dbconnect);
+	$myAccount = Account::queryAccount($dbconnect, $myAccount->getAccNo());
+	$_SESSION['account'] = serialize($myAccount);
 	$userType = $myAccount->type();
 	// If the userType is admin, redirect to admin page
 	if($userType == "Admin")
