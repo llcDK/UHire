@@ -54,7 +54,8 @@
 
 
 
-   <div id="top"> <div class="darken">
+   <div id="top"> 
+   <div class="darken">
       <div id="topBanner">
          <div id="logo">            
          </div>
@@ -74,7 +75,7 @@
       <div id="topMain">
 
          <div id="title">
-            <h2> <span id="txtUDRIVE"> UDRIVE </span> </h2>
+            <h1> <span id="txtUDRIVE"> UDRIVE </span> </h1>
             <h1> <span style="color:green;">ONLINE</span>
                  <span style="color:white;"> RENT </span>
                  <span style="color:green;"> YOUR </span>
