@@ -1,7 +1,7 @@
-images/car0.jpg
-images/car1.jpg
-images/car2.jpg
-images/car3.jpg
-images/car4.jpg
-images/car5.jpg
-images/car6.jpg
+car0.jpg
+car1.jpg
+car2.jpg
+car3.jpg
+car4.jpg
+car5.jpg
+car6.jpg
