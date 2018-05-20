@@ -131,9 +131,9 @@
 				<div id="topText"> UDRIVE </div>
 			 </div>
 				<div class="topnav">
-		\			<a href="main.php">Home</a>
+					<a href="main.php">Home</a>
 					<a href="myAccount.php" class="active"> My Account</a>
-					<a href="messages.html" >Messages</a>
+					<a href="messages.php" >Messages</a>
 					<a href="#help"> Help </a>
 					<a href="#contact">Contact</a>
 				</div>
@@ -190,7 +190,7 @@
 						  </tr>
 						</table>  
 					</div>
-				<a class="bu1" href="#" title="Read More">Message</a>
+				<a class="bu1" onClick='window.location = "<?php echo "MBox.php?otherAcc=$car->getOwnerAcc()"; ?>";' title="Read More">Message</a>
 				<a class="bu2" onClick = "bookCar()" title="Read More">Book</a>
 			<div class="profile_container" >
 				<a href="1.html" data-toggle="tooltip" title="press me!"><image id="profile" src="images/detailImage/pro1.png"/></a>

@@ -19,6 +19,14 @@
 		
 	</head>
 	<body>
+		<?php
+			include 'backend.php';
+			session_start();
+	
+			$myAccount = unserialize($_SESSION['account']);
+			$myAccount = Account::queryAccount($dbconnect, $myAccount->getAccNo());
+			
+		?>
 		<div class="bigtop">
 			<!--class="darken"-->
 		  <div class="darken">
@@ -41,38 +49,61 @@
 		<div class="padding-100"></div>
 		
 	<div class="container1">
-				<div class="container" onclick="window.open(*http://www.baidu.com*)">
+		<?php
+			// Get all current Chat
+			$allChats = Chat::getRelatedChats($dbconnect, $myAccount->getAccNo());
+			// Loop for all chat bot
+			foreach($allChats as $chatObj)
+			{
+				// Get another accounts detail
+				$otherAccount = Account::queryAccount($dbconnect, $chatObj->getLastMessage()->getOppsoiteAcc($myAccount->getAccNo()));
+				$otherAcc = $otherAccount->getAccNo();
+				$chatBotLocation = "window.location = 'MBox.php?otherAcc=$otherAcc';" ;
+				?>
+				<div class="container" onclick="<?php echo $chatBotLocation; ?>">
 				  <img src="images/messages/person2.jpg" alt="Avatar" style="width:90px">
-				  <p class="text-left"><span>Chris Robet.</span></p>
-				  <p>Hey there, just wondering if your car would be able to fit 2 large suitcases in the boot? Hey there, just wondering if your car would be able to fit 2 large suitcases in the boot? Hey there, just wondering if your car would be able to fit 2 large suitcases in the boot? </p>
+				  <p class="text-left"><span><?php echo $otherAccount->getFirstName() . " " . $otherAccount->getLastName(); ?></span></p>
+				  <p><?php echo $chatObj->getLastMessage()->getContent(); ?></p>
 				  
-				  <a><i class="material-icons">chat</i></a><p class="text-right">30/03/18 04:00pm</p>
+				  <a><i class="material-icons">chat</i></a><p class="text-right"><?php echo $chatObj->getLastMessage()->getTime(); ?></p>
 				</div>
-				<div class="container">
-				  <img src="images/messages/person3.jpg" alt="Avatar" style="width:90px">
-				  <p class="text-left"><span>Jeremy Clarkson.</span></p>
-				  <p>Hi, just wondering if it's okay if I return the car around 3pm today? </p>
-				  <p class="text-right">30/03/18 12:00am </p>
-				</div>
-				<div class="container">
-				  <img src="images/messages/person2.jpg" alt="Avatar" style="width:90px">
-				  <p class="text-left"><span>Chris Robet.</span></p>
-				  <p>Hey there, just wondering if your car would be able to fit 2 large suitcases in the boot? Hey there, just wondering if your car would be able to fit 2 large suitcases in the boot? Hey there, just wondering if your car would be able to fit 2 large suitcases in the boot? </p>
-				  <p class="text-right">30/03/18 11:30am</p>
-				</div>
-				<div class="container">
-				  <img src="images/messages/person3.jpg" alt="Avatar" style="width:90px">
-				  <p class="text-left"><span>Jeremy Clarkson.</span></p>
-				  <p>Hi, just wondering if it's okay if I return the car around 3pm today? </p>
-				  <p class="text-right">30/03/18 10:32am </p>
-				</div>
-				<div class="container">
-				  <img src="images/messages/person2.jpg" alt="Avatar" style="width:90px">
-				  <p class="text-left"><span>Chris Robet.</span></p>
-				  <p>Hey there, just wondering if your car would be able to fit 2 large suitcases in the boot? Hey there, just wondering if your car would be able to fit 2 large suitcases in the boot? Hey there, just wondering if your car would be able to fit 2 large suitcases in the boot? </p>
-				  <p class="text-right">30/03/18 9:30am</p>
-				</div>
-
+			<?php
+			}
+		?>
+	
+		<!--
+		<div class="container" onclick="window.open(*http://www.baidu.com*)">
+		  <img src="images/messages/person2.jpg" alt="Avatar" style="width:90px">
+		  <p class="text-left"><span>Chris Robet.</span></p>
+		  <p>Hey there, just wondering if your car would be able to fit 2 large suitcases in the boot? Hey there, just wondering if your car would be able to fit 2 large suitcases in the boot? Hey there, just wondering if your car would be able to fit 2 large suitcases in the boot? </p>
+		  
+		  <a><i class="material-icons">chat</i></a><p class="text-right">30/03/18 04:00pm</p>
+		</div>
+		<div class="container">
+		  <img src="images/messages/person3.jpg" alt="Avatar" style="width:90px">
+		  <p class="text-left"><span>Jeremy Clarkson.</span></p>
+		  <p>Hi, just wondering if it's okay if I return the car around 3pm today? </p>
+		  <p class="text-right">30/03/18 12:00am </p>
+		</div>
+		<div class="container">
+		  <img src="images/messages/person2.jpg" alt="Avatar" style="width:90px">
+		  <p class="text-left"><span>Chris Robet.</span></p>
+		  <p>Hey there, just wondering if your car would be able to fit 2 large suitcases in the boot? Hey there, just wondering if your car would be able to fit 2 large suitcases in the boot? Hey there, just wondering if your car would be able to fit 2 large suitcases in the boot? </p>
+		  <p class="text-right">30/03/18 11:30am</p>
+		</div>
+		<div class="container">
+		  <img src="images/messages/person3.jpg" alt="Avatar" style="width:90px">
+		  <p class="text-left"><span>Jeremy Clarkson.</span></p>
+		  <p>Hi, just wondering if it's okay if I return the car around 3pm today? </p>
+		  <p class="text-right">30/03/18 10:32am </p>
+		</div>
+		<div class="container">
+		  <img src="images/messages/person2.jpg" alt="Avatar" style="width:90px">
+		  <p class="text-left"><span>Chris Robet.</span></p>
+		  <p>Hey there, just wondering if your car would be able to fit 2 large suitcases in the boot? Hey there, just wondering if your car would be able to fit 2 large suitcases in the boot? Hey there, just wondering if your car would be able to fit 2 large suitcases in the boot? </p>
+		  <p class="text-right">30/03/18 9:30am</p>
+		</div>
+		-->
 	</div>
 	<div class="padding-100"></div>
 	<footer>

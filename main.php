@@ -27,8 +27,9 @@
 			window.location = "myAccount.php";
 		}
 
-      function goMessage() {
-         window.location = "messages.html"
+      function goMessage() 
+	  {
+         window.location = "messages.php";
       }
 	</script>
 	

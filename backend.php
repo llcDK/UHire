@@ -524,8 +524,6 @@
 			}
 		}
 		
-		
-
 	}
 	
 	
@@ -765,6 +763,11 @@
 		public function getReview($dbconnect)
 		{
 			
+		}
+		
+		public function getOwnerAcc()
+		{
+			return $this->$carOwnerAcc;
 		}
 		
 		public function getPlateNum()
@@ -1240,12 +1243,92 @@
 		static function createMessage($dbconnect, $sender, $reciever, $time, $content)
 		{
 			$MessageObj = new Message($sender, $reciever, $time, $content);
-			$insertMessageQuery = "insert into Message values($sender, $reciever, $time, $content); ";
+			$insertMessageQuery = "insert into Message values('$sender', '$reciever', '$time', '$content'); ";
+			$dbconnect->executeCommand($insertMessageQuery);
+			
+			return $MessageObj;
+		}
+		
+		function getSender()
+		{
+			return $this->sender;
+		}
+		
+		function getReciever()
+		{
+			return $this->reciever;
+		}
+		
+		function getTime()
+		{
+			return $this->time;
+		}
+		
+		function getContent()
+		{
+			return $this->content;
+		}
+		
+		function getOppsoiteAcc($acc)
+		{
+			if($this->sender == $acc)
+				return $this->reciever;
+			else
+				return $this->sender;
 		}
 	}
 	
 	class Chat
 	{
+		private $messages;
+		
+		function __construct($dbconnect, $acc1, $acc2)
+		{
+			$messages = array();
+			// sender: from acc1 to acc2
+			$messageQuery = "select * from Message where (senderAcc = '$acc1' and receiverAcc = '$acc2') or (senderAcc = '$acc2' and receiverAcc = '$acc1') order by time;";
+			$result = $dbconnect->executeCommand($messageQuery);
+			if(mysqli_num_rows($result) > 0)
+			{
+				while($row = mysqli_fetch_row($result))
+				{
+					$messageObj = new Message($row[0], $row[1], $row[2], $row[3]);
+					$messages[] = $messageObj;
+				}
+			}
+			
+			$this->messages = $messages;
+		}
+		
+		static function getRelatedChats($dbconnect, $acc)
+		{
+			$findRalatedAccQuery = "select receiverAcc from Message where senderAcc = '$acc' union select senderAcc from Message where receiverAcc = '$acc';";
+			$AllAccount = $dbconnect->executeCommand($findRalatedAccQuery);
+			$relatedChat = array();
+			if(mysqli_num_rows($AllAccount) > 0)
+			{
+				while($row = mysqli_fetch_row($AllAccount))
+				{
+					$relatedAcc = $row[0];
+					$chatObj = new Chat($dbconnect, $acc, $relatedAcc);
+					$relatedChat[] = $chatObj;
+				}
+				
+				return $relatedChat;
+			}
+			
+			return false;
+		}
+		
+		function getMessages()
+		{
+			return $this->messages;
+		}
+		
+		function getLastMessage()
+		{
+			return $this->messages[count($this->messages) - 1];
+		}
 		
 	}
 	
@@ -1259,15 +1342,7 @@
 	</head>
 	<body>
 		<?php
-		/*
-			//echo DBConnection::getServerName();
-			$dbconnect = new DBConnection();
-			//$connection = mysqli_connect("localhost:808", "root", "") or die (mysqli_error());;
-			
-			$acc = new Account("John");
-			$objString = serialize($acc);
-			echo unserialize($objString)->getAccNo();
-		*/
+
 			$dbconnect = new DBConnection();
 			
 		?>
