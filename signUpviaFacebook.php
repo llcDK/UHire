@@ -42,17 +42,16 @@
     
     echo "db";
     include 'backend.php';
-    $dbconnect = new DBConnection();
+	
 	$accNo = "";	// Same as Facebook account
 	
 	$checkExist = "select * from Account where accNo = $user_profile->identifier";
+
+	$insertQueryToAccount = "insert into Account values('$user_profile->identifier', 'SocialLogin', 'Car renter', '$user_profile->firstName',  '$user_profile->lastName', NULL, NULL);";
+	$insertQueryTosocialMedia = "insert into SocialMedia values('$user_profile->identifier', 'Google', '$user_profile->identifier');";
 	
-
-	$insertQueryToAccount = "insert into Account values($user_profile->identifier, 'SocialLogin', 'Car renter', $user_profile->firstName,  $user_profile->lastName, NULL, NULL);";
-	$insertQueryTosocialMedia = "insert into SocialMedia values($user_profile->identifier, 'Facebook', $user_profile->identifier);";
-
-	$dbconnect->executeCommand($insertQueryTosocialMedia);
 	$dbconnect->executeCommand($insertQueryToAccount);
+	$dbconnect->executeCommand($insertQueryTosocialMedia);
 	
 	// After inserting, serialise and store account variable
 	$accObj = new Account($user_profile->identifier, 'SocialLogin', 'Car renter', $user_profile->firstName,  $user_profile->lastName);
