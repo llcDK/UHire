@@ -289,7 +289,7 @@
 						<img src="images/detailImage/icon9.jpg" alt="W3layouts Agileits">
 					</div>
 					<div class="about-info w3layouts agileits">
-						<h4>Descripssion</h4>
+						<h4>Description</h4>
 						<p><?php echo display($car->getFullDescription()); ?></p>
 					</div>
 				</div>
