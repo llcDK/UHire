@@ -1,8 +1,19 @@
 <html>
 <head>
-   <link href="css/myAccount/topStyle.css" rel="stylesheet" type="text/css"/ >
-   <link href="css/myAccount/midStyle.css" rel="stylesheet" type="text/css"/ >
-   <link href="css/myAccount/botStyle.css" rel="stylesheet" type="text/css"/ >
+	<title>My Account</title>
+   <link href="css/MyAccount.css" rel="stylesheet" type="text/css">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<!-- font -->
+		<link href="http://fonts.googleapis.com/css?family=Kaushan+Script&amp;subset=latin-ext" rel="stylesheet">
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+		<link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700italic,700,400italic,300italic,300" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		
 </head>
 
 <body>
@@ -132,25 +143,29 @@
 	}
 	
 ?>
-<div id="top">
-      <div class="darken">
+	<div class="bigtop">
+			<!--class="darken"-->
+		  <div class="darken">
 
-         <div id="Banner">
-            <div id="topText"> UDRIVE </div>
-         </div>
-
-         <div class="topnav">
-            <a href="main.php">Home</a>
-            <a href="myAccount.php" class="active"> My Account</a>
-            <a href="messages.php">Messages</a>
-            <a href="#help"> Help </a>
-            <a href="#contact">Contact</a>
-         </div>
-      </div>
-</div>
+			 <div id="banner">
+				<div id="topText"> UDRIVE </div>
+			 </div>
+				<div class="topnav">
+		\			<a href="main.php">Home</a>
+					<a href="myAccount.php" class="active"> My Account</a>
+					<a href="messages.html" >Messages</a>
+					<a href="#help"> Help </a>
+					<a href="#contact">Contact</a>
+				</div>
+			</div>
+	</div>
+		
+		<div class="padding-100"></div>
+		<div class="tittle"> <h2>.My Account.</h2><div>
+		<div class="padding-100"></div>
 
 <div id="mid">
-	<div id="midBanner"> MY ACCOUNT : <?php echo strtoupper($userType); ?> </div>
+	<div id="midBanner"> My Account : <?php echo strtoupper($userType); ?> </div>
 	
 	<div id="midMain">
 		<div id="midLeft">

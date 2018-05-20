@@ -122,24 +122,23 @@
 	
 
 	<!--banner-->
-	<div class="bigtop">
-		<!--class="darken"-->
-      <div class="darken">
+	<body>
+		<div class="bigtop">
+			<!--class="darken"-->
+		  <div class="darken">
 
-         <div id="banner">
-            <div id="topText"> UDRIVE </div>
-         </div>
-
-			<div class="topnav">
-				<a href="main.php">Home</a>
-				<a href="myAccount.php"> My Account</a>
-				<a href="messages.html">Messages</a>
-				<a href="#help"> Help </a>
-				<a href="#contact">Contact</a>
+			 <div id="banner">
+				<div id="topText"> UDRIVE </div>
+			 </div>
+				<div class="topnav">
+		\			<a href="main.php">Home</a>
+					<a href="myAccount.php" class="active"> My Account</a>
+					<a href="messages.html" >Messages</a>
+					<a href="#help"> Help </a>
+					<a href="#contact">Contact</a>
+				</div>
 			</div>
 		</div>
-	</div>
-	
 	
 	<!--car infomation-->
 	<div class="cif" id="cif">

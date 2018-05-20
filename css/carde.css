@@ -18,7 +18,6 @@
 	
 }
 
-
 .bigtop
 {  
 	display: block;
@@ -96,10 +95,9 @@
 
 /* Add a color to the active/current link */
 .topnav a.active {
-    background-color: #4CAF50;
+    background-color: #da4d83;
     color: white;
 }
-
 /*-- detai --*/
 .cif{
     position: relative;

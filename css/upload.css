@@ -1,22 +1,3 @@
-#pageHeading
-{
-	height:3%;
-	text-align:center;
-	color:green;
-}
-
-#yellowLine {
-	width: 100%;
-	text-align: center;
-}
-
-#yellowLine * 	{
-	width: 3%;
-	border-color:yellow;
-	background-color: yellow;
-}
-
-
 
 #image {
 	margin-top: 3%;
