@@ -17,7 +17,7 @@
 	use Hybridauth\Hybridauth; 
 
     $config = array(
-      "base_url" => "http://localhost:806/Uhire(git)/google.php",
+      "base_url" => "http://localhost:806/UHire(git)/google.php",
       "providers" => array (
         "Google" => array (
           "enabled" => true,
