@@ -17,7 +17,7 @@
 	use Hybridauth\Hybridauth; 
 
     $config = array(
-      "base_url" => "https://tianming.ga/UHire/google.php",
+      "base_url" => "google.php",
       "providers" => array (
         "Google" => array (
           "enabled" => true,

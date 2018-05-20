@@ -81,7 +81,6 @@
 			<div class="margin">
 				<!-- left -->
 				<div class="s-12 m-12 l-8 footer-links">
-					
 					<p>Copyright &copy; 2017.Company name All rights reserved.</p>
 				</div>
 				<!-- right -->
@@ -95,7 +94,7 @@
 		</div>
 	</div>
 </footer>
-	</footer>
+
 	
 	
 		
