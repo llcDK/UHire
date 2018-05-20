@@ -1,0 +1,8 @@
+Electric
+Gasoline
+Diesel
+Autogas
+Biodiesel
+Ethanol
+Unleaded 95
+Super Unleaded

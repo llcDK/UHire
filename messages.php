@@ -27,7 +27,7 @@
 				<div id="topText"> UDRIVE </div>
 			 </div>
 				<div class="topnav">
-		\			<a href="main.php">Home</a>
+					<a href="main.php">Home</a>
 					<a href="myAccount.php"> My Account</a>
 					<a href="messages.html"  class="active">Messages</a>
 					<a href="#help"> Help </a>

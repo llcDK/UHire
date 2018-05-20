@@ -43,7 +43,7 @@ create table Car(
 create table CarImage(
   plateNum varchar(20) NOT NULL,
   imageFileName varchar(100) NOT NULL,
-  constraint carimg_pk primary key(imageFileName),
+  constraint carimg_pk primary key(plateNum),
   constraint carimg_fk foreign key(plateNum) references Car(plateNum)
 );
 
