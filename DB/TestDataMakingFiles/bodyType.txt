@@ -1,0 +1,15 @@
+SUV
+Sedan
+Hatchback
+Sportscar
+Coupe
+Crossover
+Convertible
+Pickup
+Microcar
+Station Wagon
+Roadster
+Minivan
+CUV
+Commercial
+AWD

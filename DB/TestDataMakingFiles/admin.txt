@@ -1,0 +1,13 @@
+
+INSERT INTO Account 
+VALUES ('1', 'admin', 'Admin', 'Tianming', 'Zhao', 'Northfields Ave, Wollongong', 5.0);
+
+INSERT INTO BankAccount 
+VALUES ('11', '1');
+
+INSERT INTO BANKCARD 
+VALUES ('7890123456789012','credit card',10000.00,'2019-12-31','1','11');
+
+
+INSERT INTO Policy 
+VALUES ('abc', 1.0, '2018-03-01', 10.000, '1', '11');

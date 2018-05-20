@@ -1,0 +1,10 @@
+Avenue
+Boulavard
+Lane
+Crescent
+Drive
+Highway
+Place
+Street
+Way
+Road
