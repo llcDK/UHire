@@ -17,13 +17,11 @@
 	use Hybridauth\Hybridauth; 
 
     $config = array(
-      "base_url" => "https://tianming.ga/UHire/facebook.php",
+      "base_url" => "https://tianming.ga/UHire/google.php",
       "providers" => array (
-        "Facebook" => array (
+        "Google" => array (
           "enabled" => true,
-          "keys"    => array ( "id" => "164171094252865", "secret" => "16ef9711b9471d45dcfe59f15da94411" ),
-          "scope"   => ['email'], // optional
-          "photo_size" => 200, // optional
+          "keys"    => array ( "id" => "47786754348-i456hpaebt3f2u4mb6pina1t7l547938.apps.googleusercontent.com", "secret" => "GskkFoKCYbqG4iiBCfPYPIwM" ),
     )));
  
     //require_once( "vendor/hybridauth/hybridauth/hybridauth/Hybrid/Auth.php" );
@@ -31,7 +29,7 @@
     $hybridauth = new Hybrid_Auth( $config );
     echo "test";
  
-    $adapter = $hybridauth->authenticate("Facebook");
+    $adapter = $hybridauth->authenticate("Google");
     echo "fb fired";
  
     $user_profile = $adapter->getUserProfile();
