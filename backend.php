@@ -1222,6 +1222,34 @@
 		}
 	}
 	
+	class Message
+	{
+		private $sender;
+		private $reciever;
+		private $time;
+		private $content;
+		
+		function __construct($sender, $reciever, $time, $content)
+		{
+			$this->sender = $sender;
+			$this->reciever = $reciever;
+			$this->time = $time;
+			$this->content = $content;
+		}
+		
+		static function createMessage($dbconnect, $sender, $reciever, $time, $content)
+		{
+			$MessageObj = new Message($sender, $reciever, $time, $content);
+			$insertMessageQuery = "insert into Message values($sender, $reciever, $time, $content); ";
+		}
+	}
+	
+	class Chat
+	{
+		
+	}
+	
+	
 	
 ?>
 
