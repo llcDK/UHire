@@ -404,46 +404,48 @@
 							}
 						?>
 					</div>
+						<div id="midInputsBot">
+							<?php
+								if($state == 0)
+								{
+								?>
+									<!-- This will change the page to edit mode -->
+									<button style="font-size:15px" onClick = "window.location = 'myAccount.php?state=1'">Edit<i class="fa fa-pencil"></i></button>
+							<?php
+								}
+								else if($state == 1)
+								{
+								?>
+									<!-- This will change the page to finish mode -->
+									<button style="font-size:15px" onClick = "updateInfo()">Done<i class="fa fa-heart"></i></button>
+									<!--<button class="tickButton" onClick = "window.location = 'myAccount.php?state=0'"></button>-->
+							<?php
+								}
+							?>
+						<!-- <button class="tickButton"></button> -->
+						</div>
 				</div>
 			</div>
-			<div id="midInputsBot">
-				<?php
-					if($state == 0)
-					{
-					?>
-						<!-- This will change the page to edit mode -->
-						<button style="font-size:20px" onClick = "window.location = 'myAccount.php?state=1'">Edit<i class="fa fa-pencil"></i></button>
-				<?php
-					}
-					else if($state == 1)
-					{
-					?>
-						<!-- This will change the page to finish mode -->
-						<button style="font-size:20px" class="tickButton" onClick = "updateInfo()">Done<i class="fa fa-heart"></button>
-						<!--<button class="tickButton" onClick = "window.location = 'myAccount.php?state=0'"></button>-->
-				<?php
-					}
-				?>
-				<!-- <button class="tickButton"></button> -->
-			</div>
+			
 		</div>
 	</div>
 </div>
 
-
-<div id="bot">
+<div class="padding-100"></div>
+<div class=".container-fluid">
+<div class="bocar">
 	<?php
 		if($myAccount->type() == "Car owner")
 		{
 			?>
-			<div id="botBanner"> UPLOADED CARS </div>
+			<div><h1>UPLOADED CARS</h1> </div>
 			<button onClick> UPLOAD A NEW CAR </button>
 	<?php	
 		}
 		else
 		{
 			?>
-			<div id="botBanner"> BECOME  CAR OWNER </div>
+			<div id="botBanner"><button> BECOME  CAR OWNER</button>  </div>
 	<?php
 		}
 	?>
@@ -518,6 +520,9 @@
 		
 	?>
 	
+	
+	
+   </div>
    </div>
    <div id = "reviewBox">
 	<?php

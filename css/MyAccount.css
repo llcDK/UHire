@@ -122,7 +122,11 @@
 	font-family:'Montserrat', sans-serif;
 }  
 
-
+.padding-100
+ {
+    padding-top: 15px;
+	 padding-bottom: 65px;
+  }
 
 
 
@@ -150,7 +154,7 @@
    float:left;
    width:24%;
    height:600px;
-   margin-left:15px;
+   margin-left:100px;
 }
 
 #userInfo
@@ -279,12 +283,50 @@
   width: 100%;
 }
 
-.bot
+.bocar
 {
-	background-color:red;
-	heigh:800px;
-	width:100%;
+	display: block;
+	width: 100%;
+	background-image: url(../images/myAccount/b1.jpg);
+    top:0;
+	background-repeat:no repeat
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+    background-size: cover;
+    min-height: 230px;
+	
+	align:center;
+	background-attachment: fixed;
+	
+	overflow:hidden;
+	
+	
 }
+
+
+.bocar h1
+{
+	color:white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* footer  */
 .footer {
