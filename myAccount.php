@@ -433,6 +433,8 @@
 
 <div class="padding-100"></div>
 
+<div class="carBox">
+
 <div class="bot">
 	<?php
 		if($myAccount->type() == "Car owner")
@@ -499,7 +501,7 @@
 						<input type = "hidden" name = "bt" value = "<?php echo empty($cars[$i]->getBobyType())? "" : $cars[$i]->getBobyType(); ?>" />
 						<button type = "submit" class="editCar"><i class="fa fa-pencil" style='font-size:24px'></i></button>
 					</form>
-						<button class="deleteCar"><i class="fa fa-pencil" style='font-size:24px'></i></button>
+						<button class="deleteCar"><i class="fa fa-times" style='font-size:24px'></i></button>
 					</div>
 				</div>
 	
@@ -529,11 +531,13 @@
 	?>
 </div>
 </div>
+</div>
    
    
    
    
    <div id = "reviewBox">
+   <div class=".cantainer-fluid">
 	<?php
 		$reviews = $myAccount->getReviews();
 		if(sizeof($reviews) > 0)
@@ -595,22 +599,38 @@
 		else
 		{
 			?>
-			<div> Currently no ratings </div>
-			<div> Currently no reviews </div>
+			<div><h4> Currently no ratings<h4> </div>
+			<div><h4>Currently no reviews <h4></div>
+			
 		<?php
 		}
 	?>
+	</div>
    </div>
 
 
 
-<!--
-<div id="footer">
+<footer>
+		<div class="copyright">
+	    <div class="line">
+			<div class="margin">
+				<!-- left -->
+				<div class="s-12 m-12 l-8 footer-links">
+					<p>Copyright &copy; 2017.Company name All rights reserved.</p>
+				</div>
+				<!-- right -->
+				<div class="s-12 m-12 l-4 payment-methods">
+					<i class="fa fa-cc-visa fa-2x"></i>
+					<i class="fa fa-cc-mastercard fa-2x"></i> 
+					<i class="fa fa-cc-paypal fa-2x"></i>
+					<i class="fa fa-credit-card fa-2x"></i>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
 
-   <div id="footerData"> <span id="footerText">COPYRIGHT © 2018 Design By Wenjuan Sun </span></div>
-   <div id="footerImage"> <img src="images/myAccount/socialIcons.png" id="socialMedia"/> </div>
-</div>
--->
+
 
 </body>
 
