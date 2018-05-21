@@ -438,8 +438,13 @@
 		if($myAccount->type() == "Car owner")
 		{
 			?>
-			<div><h1>UPLOADED CARS</h1> </div>
-			<button onClick> UPLOAD A NEW CAR </button>
+
+			<div id="botBanner"> UPLOADED CARS </div>
+			<form method = "POST" action = "upload.php?">
+				<input type = "hidden" name = "action" value = "insert" />
+				<button onClick = "window.location = 'upload.php?state=0&action=insert';"> UPLOAD A NEW CAR </button>
+			</form>
+
 	<?php	
 		}
 		else
