@@ -180,8 +180,8 @@
 					<a href="main.php">Home</a>
 					<a href="myAccount.php"> My Account</a>
 					<a href="messages.php" >Messages</a>
-					<a href="#help"> Help </a>
-					<a href="#contact">Contact</a>
+					<a href="receipt.php"> My Receipt </a>
+					<a href="main.php">Contact</a>
 				</div>
 			</div>
 		</div>

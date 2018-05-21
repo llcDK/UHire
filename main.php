@@ -61,7 +61,7 @@
 
 
    <div id="top"> 
-   <div class="darken">
+   
       <div id="topBanner">
          <div id="logo">            
          </div>
@@ -70,7 +70,7 @@
             <button class="topButton" onclick = "goHome()" >HOME</button>
             <button class="topButton" onclick = "goAccount()" >MY ACCOUNT</button>
             <button class="topButton" onclick = "goMessage()" >MESSAGE</button>
-            <button class="topButton" onclick = "goHelp()" >HELP</button>
+            <button class="topButton" onclick = "goHelp()" > MY RECEIPT</button>
             <button class="topButton" onclick = "goContact()" >CONTACT</button>
             <button class="topButton" id="topSearch"></button>
          </div>
@@ -128,9 +128,9 @@
 
 
       </div>
-   </div></div>
+   </div>
 
-
+	<div class="padding-100"></div>
 	<div id="mid">
 		<div id="midBanner">
 			<div id="midBannerHeader">
@@ -138,6 +138,8 @@
 				<h4 id="midBannerText">UPLOAD</h4>
 				<h3 class="headerPipe">|</h3>
 			</div>
+			
+			<div class="padding-50"></div>
 		<p class="midBannerSub"> Here is the latest information on cars</p> <p class="midBannerSub"> You can pick what interests you</p>
 		</div>
 		
@@ -269,7 +271,7 @@
 	  
    </div>
 
-
+	<div class="padding-100"></div>
    <div id="bot" >
       <div id="botBanner">
 
@@ -279,10 +281,12 @@
             <h4 id="botBannerText">CONTACT US</h4>
             <h3 class="headerPipe">|</h3>
          </div>
-
+          <div class="padding-50"></div>
 
          <p class="botBannerSub">If you have any problems, please fill the following form</p> <p class="botBannerSub"> so that you can contact us</p>
       </div>
+	  
+	  <div class="padding-50"></div>
 
       <div id="contactus">
 

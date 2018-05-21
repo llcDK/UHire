@@ -5,12 +5,6 @@ body
     margin: 0;
 }
 
-.darken
-{
-   background: rgba(0, 0, 0, 0.5);
-   height:100%;
-   width:100%;
-}
 
 #top
 {
@@ -89,7 +83,9 @@ body
 
    border-style:none;
    border-width:1px;
-   font-size:10;
+   font-size: 13;
+    margin-top: 20;
+    margin-right: 3;
 }
 
 .topButton:hover
@@ -98,8 +94,17 @@ body
    border-color:AliceBLue; 
 }
 
+.padding-100
+{
+	padding-top: 40px;
+	padding-bottom:40px;
+}
 
-
+.padding-50
+{
+	padding-top: 20px;
+	padding-bottom:20px;
+}
 #topMain
 {
    /*border-style:solid;*/
