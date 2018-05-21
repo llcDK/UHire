@@ -437,7 +437,10 @@
 		{
 			?>
 			<div id="botBanner"> UPLOADED CARS </div>
-			<button onClick> UPLOAD A NEW CAR </button>
+			<form method = "POST" action = "upload.php?">
+				<input type = "hidden" name = "action" value = "insert" />
+				<button onClick = "window.location = 'upload.php?state=0&action=insert';"> UPLOAD A NEW CAR </button>
+			</form>
 	<?php	
 		}
 		else

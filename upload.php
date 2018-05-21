@@ -56,10 +56,13 @@
 		$fuelType = $_POST['ft'];
 		$bodyType = $_POST['bt'];
 		
-		// get the avaiablility of the current car
-		$carQuery = "select * from Car where plateNum = '$plateNum';";
-		$uploadingCars = Car::getCars($dbconnect, $carQuery);
-		$uploadingCar = $uploadingCars[0];
+		// get the avaiablility of the current car if it is updating
+		if($_POST['action'] == "update")
+		{
+			$carQuery = "select * from Car where plateNum = '$plateNum';";
+			$uploadingCars = Car::getCars($dbconnect, $carQuery);
+			$uploadingCar = $uploadingCars[0];
+		}
 	}
 	else
 	{
@@ -80,10 +83,10 @@
 	
 	if($state == 1)
 	{
+		echo $myAccount->type();
 		// Depend on the operations: Insert a new car or edit an existing car
 		if($_POST['action'] == "insert")
 		{
-			
 			// Create a new car and return true / false: depending on if it is valid
 			$newCar = Car::createCar($dbconnect, $plateNum, $price, $location, $myAccount->getAccNo(), $avaiableTo, $year, $model, $description, $brand, $transmission, $numberOfSeats, $odometer, $fuelType, $bodyType);
 			
@@ -96,11 +99,15 @@
 			else
 			{
 				echo "<script>alert('Upload a car successfully!');</script>";
-				echo "<script>alert('Congratulations! You are a car owner now!');</script>";
-				// Account type became 'car owner' and return to the previous page.
-				$myAccount->setUserType($dbconnect, 'Car owner');
-				// Change the account session variable
-				$_SESSION['account'] = serialize($myAccount);
+				
+				if($myAccount->type() == "Car renter")
+				{
+					echo "<script>alert('Congratulations! You are a car owner now!');</script>";
+					// Account type became 'car owner' and return to the previous page.
+					$myAccount->setUserType($dbconnect, 'Car owner');
+					// Change the account session variable
+					$_SESSION['account'] = serialize($myAccount);
+				}
 				echo "<script>window.location = 'myAccount.php?state=0';</script>";
 			}
 			
@@ -183,7 +190,7 @@
 				<div class="infoHeading">
 					<p>
 						<?php
-							if(isset($_POST['pn']) && !empty($_POST['pn']) && isset($uploadingCar->getAvaiable()) && !empty($uploadingCar->getAvaiable()))
+							if(isset($_POST['pn']) && !empty($_POST['pn']) && !empty($_POST['action']) && $_POST['action'] == "update")
 							{
 								?>
 								Status :

@@ -144,7 +144,7 @@
 			 </div>
 				<div class="topnav">
 					<a href="main.php">Home</a>
-					<a href="myAccount.php" class="active"> My Account</a>
+					<a href="myAccount.php"> My Account</a>
 					<a href="messages.php" >Messages</a>
 					<a href="#help"> Help </a>
 					<a href="#contact">Contact</a>
