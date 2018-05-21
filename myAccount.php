@@ -151,9 +151,9 @@
 				<div id="topText"> UDRIVE </div>
 			 </div>
 				<div class="topnav">
-		\			<a href="main.php">Home</a>
+					<a href="main.php">Home</a>
 					<a href="myAccount.php" class="active"> My Account</a>
-					<a href="messages.html" >Messages</a>
+					<a href="messages.php" >Messages</a>
 					<a href="#help"> Help </a>
 					<a href="#contact">Contact</a>
 				</div>
@@ -163,7 +163,7 @@
 		<div class="padding-100"></div>
 		<div class="tittle"> <h2>.My Account.</h2><div>
 		<div class="padding-100"></div>
-<div class="bcimg">
+
 <div id="container-fluid">
 	<div class="container"><h3>"<?php echo strtoupper($userType); ?>"<h3></div>
 	
@@ -403,46 +403,45 @@
 							}
 						?>
 					</div>
-							<div class="midInputsBot">
-						<?php
-							if($state == 0)
-							{
-							?>
-								<!-- This will change the page to edit mode -->
-								<button style="font-size:15px" onClick = "window.location = 'myAccount.php?state=1'">Edit<i class="fa fa-pencil"></i></button>
-						<?php
-							}
-							else if($state == 1)
-							{
-							?>
-								<!-- This will change the page to finish mode -->
-								<button style="font-size:15px" onClick = "updateInfo()">Done<i class="fa fa-heart"></i></button>
-								<!--<button class="tickButton" onClick = "window.location = 'myAccount.php?state=0'"></button>-->
-						<?php
-							}
-						?>
-						<!-- <button class="tickButton"></button> -->
-					</div>
 				</div>
 			</div>
-			
+			<div id="midInputsBot">
+				<?php
+					if($state == 0)
+					{
+					?>
+						<!-- This will change the page to edit mode -->
+						<button style="font-size:20px" onClick = "window.location = 'myAccount.php?state=1'">Edit   <i class="fa fa-pencil"></i></button>
+				<?php
+					}
+					else if($state == 1)
+					{
+					?>
+						<!-- This will change the page to finish mode -->
+						<button style="font-size:20px" class="tickButton" onClick = "updateInfo()">Done   <i class="fa fa-heart"></button>
+						<!--<button class="tickButton" onClick = "window.location = 'myAccount.php?state=0'"></button>-->
+				<?php
+					}
+				?>
+				<!-- <button class="tickButton"></button> -->
+			</div>
 		</div>
 	</div>
 </div>
-</div>
+
 
 <div id="bot">
 	<?php
 		if($myAccount->type() == "Car owner")
 		{
 			?>
-			<div id="botBanner"><h2> UPLOAD CARS</h2> </div>
+			<div id="botBanner"> UPLOAD CARS </div>
 	<?php	
 		}
 		else
 		{
 			?>
-			<div id="botBanner"><h2> BECOME A CAR OWNER </div>
+			<div id="botBanner"> BECOME  CAR OWNER </div>
 	<?php
 		}
 	?>
