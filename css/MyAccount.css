@@ -123,71 +123,31 @@
 }  
 
 /* middle */
-
-#mid
+.container h3
 {
-   border-style:solid;
-   height:800px;
-}
-
-#midBanner
-{
-   width:100%;
-   height:5%;
-   position:relative;
-   top:1%;
-   text-align:center;
-   border-style:solid;
+	color:#239e55;
+	font-family: 'Kaushan Script', cursive;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 5px;
 }
 
 #midMain
 {
-   
-   width:100%;
-   height:70%;
-   border-style:solid;
-   border-color:yellow;
-
-   display:inline-block;
+	
+	
+	/*background-color:orange;*/
+	height:600px;
+	
 }
-
-#ownerImg
-{
-   float:right;
-   height:60%;
-   width:50%;
-   border-style:solid;
-   border-radius:100%;
-   
-
-   background-position:center;
-   background-size:160px auto;
-   background-repeat:no-repeat;
-}
-
-#weirdCircle
-{
-   height:30%;
-   width:25%;
-   border-style:solid;
-   border-radius:100%;
-
-   background-image:url("../../images/myAccount/carPic.png");
-
-   background-position:center;
-   background-size:80px auto;
-   background-repeat:no-repeat;
-}
-
 
 #midLeft
 {
    float:left;
    width:24%;
-   height:100%;
-
-   border-style:solid;
-   border-color:pink;
+   height:600px;
+   margin-left:15px;
 }
 
 #userInfo
@@ -195,85 +155,122 @@
    float:right;
    width:75%;
    height:100%;
+   border-radius: 50%;
    
-   border-radius:20%;
-   border-style:solid;
-   border-color: #4CAF50;
+   
+}
+
+#ownerImg
+{
+   float:left;
+   height:200px;
+   width:200PX;
+   
+   border-radius:100%;
+   margin-top:80px;
+   margin-left:15px;
+   border: 1px solid #239e55;
+   background-position:center;
+   background-size: cover;
+	background-attachment: fixed
+   background-repeat:no-repeat;
+}
+
+.weirdCircle
+{
+   height:150px;
+   width:150px;
+   border: 1px solid #239e55;
+   
+   border-radius:100%;
+	margin-top:-40px;
+   margin-left:120px;
+   background-image:url("../images/myAccount/carPic.png");
+
+   background-position:center;
+    background-size: cover;
+	background-attachment: fixed
+   background-repeat:no-repeat;
+}
+
+
+#midInputsTop
+{
+  height:600px;
+  width:100%;
+  display:inline-block;
+ 
 }
 
 
 #midInputsLeft
 {
-  border-style:solid;
+ 
   width:48%;
-  height:100%;
+  margin-top:50;
   float:left;
+  text-align:left;
+
+}
+
+#midInputsLeft  h4
+{
+	color:black;
+	font-family:'Titillium Web', sans-serif;
+	
+	
+	
 }
 
 #midInputsLeft *
 {
-   padding: 5 5 5 5;
+   padding: 10;
 }
 
 #midInputsRight
 {
-  border-style:solid;
+	
+  
   width:48%;
-  height:100%;
-  float:left;
+  margin-top:50;
+  float:right;
+  text-align:left;
+   display:inline-block;
+}
+
+#midInputsRight h4
+{
+	color:black;
+	font-family:'Titillium Web', sans-serif;
 }
 
 #midInputsRight *
 {
-   padding: 5 5 5 5;
+   padding: 10;
 }
 
-#midInputsTop
-{
-  height:90%;
-  width:100%;
-  display:inline-block;
-  border-style:solid;
-  border-color:purple;
-}
 
 #midInputsBot
 {
   width:100%;
   height:10%;
-  border-style:solid;
-  border-color:orange;
+ 
 }
 
-#midInputsBot *
+
+#midInputsBot button
+
 {
-    position:relative;
-    float:right;   
+	background-color:#239e55;
+	border-radius:30px;
+	width:100px;
+	border-style:none;
+	color:white;
+	float:right;
 }
 
-.tickButton
-{
-     background-image:url("../../images/myAccount/tickBlack.png");
-   width:80px;
-   height:40px;
-   border-style:solid;
 
-   background-position:center;
-   background-size:80px auto;
-   background-repeat:no-repeat;
-}
 
-.editButton
-{
-   background-image:url("../../images/myAccount/editBlack.png");
-   width:80px;
-   height:40px;
-   border-style:solid;
-
-   background-position:center;
-   background-size:80px auto;
-   background-repeat:no-repeat;
-}
 
 
 .circleContainer

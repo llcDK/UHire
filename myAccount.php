@@ -13,7 +13,7 @@
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
 		<link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700italic,700,400italic,300italic,300" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		
+		<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
 </head>
 
 <body>
@@ -164,8 +164,8 @@
 		<div class="tittle"> <h2>.My Account.</h2><div>
 		<div class="padding-100"></div>
 
-<div id="mid">
-	<div id="midBanner"> My Account : <?php echo strtoupper($userType); ?> </div>
+<div id="container-fluid">
+	<div class="container"><h3>"<?php echo strtoupper($userType); ?>"<h3></div>
 	
 	<div id="midMain">
 		<div id="midLeft">
@@ -202,33 +202,34 @@
 					}
 				?>
 			</div>
-			<div class="circleContainer"> <div id="weirdCircle"></div> </div>
+			<div class="weirdCircle"></div>
 		</div>
 
+		
 		<div id="userInfo">
 			<div id="midInputsTop">
 				<div id="midInputsLeft">
-					<span><b>PERSONAL INFORMATION</b></span>
+					<h4>PERSONAL INFORMATION<h4>
 					<div>
 						<?php 
 						
 							if($state == 1)
 							{
 							?>
-								FIRST NAME: <input id = "fnameInput" type="text" value = "<?php echo $myAccount->getFirstName(); ?>" /><br/>
-								LAST NAME: <input id = "lnameInput" type="text" value = "<?php echo $myAccount->getLastName(); ?>" /><br/>
+								<b>First Name:</b> <input id = "fnameInput" type="text" value = "<?php echo $myAccount->getFirstName(); ?>" /><br/>
+								<b>Last  Name:</b> <input id = "lnameInput" type="text" value = "<?php echo $myAccount->getLastName(); ?>" /><br/>
 						<?php
 							}
 							else
 							{
-								echo "<label>NAME: </label>";
+								echo "<i class='fa fa-user' style='font-size:24px'></i> <label>Full Name: </label>";
 								echo $myAccount->getFirstName() . ' ' . $myAccount->getLastName(); 
 							}
 						?>
 					</div>
 
 					<div>
-						<label>D.O.B: </label>
+						<i class="fa fa-calendar" style='font-size:24px'></i><label>D.O.B: </label>
 						<?php
 							if($state == 1)
 							{
@@ -246,7 +247,7 @@
 					</div>
 
 					<div>
-						<label>E-MAIL: </label>
+						<i class="fa fa-envelope" style='font-size:24px'></i> <label>E-Mail: </label>
 						<?php
 							if($state == 1)
 							{
@@ -262,7 +263,7 @@
 					</div>
 
 					<div>
-						<label>GENDER: </label>
+						<i class="fa fa-female" style='font-size:24px'></i>/<i class="fa fa-male" style='font-size:24px'></i><label>Gender: </label>
 						<?php
 							if($state == 1)
 							{
@@ -278,7 +279,7 @@
 					</div>
 
 					<div>
-						<label>ADDRESS: </label>
+						<i class="fa fa-institution" style='font-size:24px'></i><label>Address: </label>
 						<?php
 							if($state == 1)
 							{
@@ -302,12 +303,12 @@
 								// NOT VERIFIED 
 							?>
 								You haven't verified your account. To verifiy: <br />
-								<button id = "verifyButton" onClick = "window.location = 'myAccount.php?state=5'" >VERIFY</button><br/>	
+								<i class="fa fa-angellist" style="font-size:24px"></i><button id = "verifyButton" onClick = "window.location = 'myAccount.php?state=5'" >VERIFY</button><br/>	
 						<?php
 							}
 							else
 							{
-								echo " VERIFIED: TRUE";
+								echo "<label><i class='fa fa-angellist' style='font-size:24px'></i> Verified:</labe>" .'True';
 							}
 						}
 						?>
@@ -315,13 +316,13 @@
 					
 				</div>
 				<div id="midInputsRight">
-					<span><b>CREDIT CARD INFORMATION</b></span>
+					<h4>CREDIT CARD INFORMATION<h4>
 					<div>
 						<?php
 							if(!empty($myAccount->getBankAccount()))
 							{
 							?>
-								<label>BANK ACCOUNT: </label>
+								<i class="fa fa-credit-card" style='font-size:24px'></i> <label>BANK ACCOUNT: </label>
 						<?php
 								if($state == 1)
 								{
@@ -340,7 +341,11 @@
 							
 					</div>
 					<div>
-						<label>BANK CARD: </label><br/>
+						 <label>BANK CARD:<i class="fa fa-cc-visa" style="color:navy font-size:24px"></i>
+										  <i class="fa fa-cc-amex" style="color:blue;"></i>
+										  <i class="fa fa-cc-mastercard" style="color:red;"></i>
+										  <i class="fa fa-cc-discover" style="color:orange;"></i> </label><br/>
+						<i class="fa fa-sort-numeric-asc" style='font-size:24px'></i> 
 						<label>CARD NO. :</label>
 						<?php
 							if($state == 1)
@@ -357,7 +362,7 @@
 						?>
 					</div>
 					<div>
-						<label>TYPE :</label>
+						<i class="fa fa-cc-mastercard" style='font-size:24px'></i> <label>TYPE :</label>
 						<?php
 							if($state == 1)
 							{
@@ -376,7 +381,7 @@
 							if($state != 1)
 							{
 								?>
-								<label>BALANCE :</label>
+								<i class="fa fa fa-money" style='font-size:24px'></i> <label>BALANCE :</label>
 								<?php echo "$" . $myAccount->getBankCard()->getBalance(); ?>
 								
 						<?php
@@ -384,7 +389,7 @@
 						?>
 					</div>
 					<div>
-						<label>EXPIRE DATE :</label>
+						<i class="fa fa-calendar" style='font-size:24px'></i> <label>EXPIRE DATE :</label>
 						<?php
 							if($state == 1)
 							{
@@ -406,14 +411,14 @@
 					{
 					?>
 						<!-- This will change the page to edit mode -->
-						<button class="editButton" onClick = "window.location = 'myAccount.php?state=1'"></button>
+						<button style="font-size:20px" onClick = "window.location = 'myAccount.php?state=1'">Edit   <i class="fa fa-pencil"></i></button>
 				<?php
 					}
 					else if($state == 1)
 					{
 					?>
 						<!-- This will change the page to finish mode -->
-						<button class="tickButton" onClick = "updateInfo()"></button>
+						<button style="font-size:20px" class="tickButton" onClick = "updateInfo()">Done   <i class="fa fa-heart"></button>
 						<!--<button class="tickButton" onClick = "window.location = 'myAccount.php?state=0'"></button>-->
 				<?php
 					}
