@@ -441,7 +441,7 @@
 		else
 		{
 			?>
-			<div id="botBanner"> BECOME A CAR OWNER </div>
+			<div id="botBanner"> BECOME  CAR OWNER </div>
 	<?php
 		}
 	?>
