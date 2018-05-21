@@ -79,14 +79,13 @@
 	<div id="loginuser">
 		
 		<form method="post" action="carlogin.php?action=login">  
-		<input type="text" id="name" name="username" placeholder = "User" /> </br>
-        <input type="password" id="password" name="password"  placeholder = "Password" /> 
-	</div>
-  
+			<input type="text" id="name" name="username" placeholder = "User" /> </br>
+			<input type="password" id="password" name="password"  placeholder = "Password" /> 
 			<div id="login_control">  
 				<button type ="submit"class="button">Log In </button>
 			</div>
-	 </form>
+		</form>
+	</div>
 		<div id="si" >
 			<a id="fsub"href="register.php">Sign up</a>
 			<a id="rsub"href="forget_pwd.php">Forgot password</a>
@@ -101,13 +100,14 @@
 	<div id= main>
 	
 		<div id="icon">
-			<a href = "signUpviaFacebook.php"><img style="width:35px;hight:35px" src = "images/login/face.png"/></a>
+			<a href = "signUpviaFacebook.php"><img style="width:35px;hight:35px" src = "images/login/gog.png"/></a>
 		</div>
-	
+		
+		<!--
 		<div  id="icon2">
 			<img style="width:35px;hight:35px" src = "images/login/gog.png"/>
 		</div>
-	
+		-->
 	</div>
 </div>  
 

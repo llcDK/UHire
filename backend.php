@@ -684,7 +684,7 @@
 			$price = empty($price) || !isset($price)? PHP_INT_MAX : $price;
 			$ava = empty($ava) || !isset($ava)? '0000-00-00' : $ava;
 			
-			$query = "select * from Car where price <= $price and avaiableTo > '$ava' and brand like '%$brand%';";
+			$query = "select * from Car where price <= $price and avaiableTo > '$ava' and brand like '%$brand%' limit 6;";
 			
 			// Call getCars function to return a list of cars that match the cirteria
 			$partialResult = Car::getCars($dbconnect, $query);
