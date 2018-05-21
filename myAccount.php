@@ -152,9 +152,9 @@
 				<div id="topText"> UDRIVE </div>
 			 </div>
 				<div class="topnav">
-		\			<a href="main.php">Home</a>
+					<a href="main.php">Home</a>
 					<a href="myAccount.php" class="active"> My Account</a>
-					<a href="messages.html" >Messages</a>
+					<a href="messages.php" >Messages</a>
 					<a href="#help"> Help </a>
 					<a href="#contact">Contact</a>
 				</div>
@@ -164,7 +164,7 @@
 		<div class="padding-100"></div>
 		<div class="tittle"> <h2>.My Account.</h2><div>
 		<div class="padding-100"></div>
-<div class="bcimg">
+
 <div id="container-fluid">
 	<div class="container"><h3>"<?php echo strtoupper($userType); ?>"<h3></div>
 	
@@ -429,7 +429,7 @@
 		</div>
 	</div>
 </div>
-</div>
+
 
 <div id="bot">
 	<?php
@@ -442,7 +442,7 @@
 		else
 		{
 			?>
-			<div id="botBanner"> BECOME A CAR OWNER </div>
+			<div id="botBanner"> BECOME  CAR OWNER </div>
 	<?php
 		}
 	?>

@@ -237,7 +237,7 @@
 					</div>
 					<div class="about-info w3layouts agileits">
 						<h4>Car Type</h4>
-						<p><?php echo display($car->getBrand()); ?></p>
+						<p><?php echo display($car->getBobyType()); ?></p>
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-4 w3layouts agileits about-grid about-grid-3">

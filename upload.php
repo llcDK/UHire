@@ -39,25 +39,34 @@
 		$state = 0;
 	}
 	
+	if(isset($_POST['pn']) && !empty($_POST['pn']))
+	{
+		// Get all variables from $_POST
+		$plateNum = $_POST['pn'];
+		$price = $_POST['pd'];
+		$location = $_POST['loc'];
+		$avaiableTo = $_POST['at'];
+		$year = $_POST['yb'];
+		$model = $_POST['m'];
+		$description = $_POST['desc'];
+		$brand = $_POST['b'];
+		$transmission = $_POST['t'];
+		$numberOfSeats = $_POST['ns'];
+		$odometer = $_POST['odo'];
+		$fuelType = $_POST['ft'];
+		$bodyType = $_POST['bt'];
+		
+		// get the avaiablility of the current car
+		$carQuery = "select * from Car where plateNum = '$plateNum';";
+		$uploadingCars = Car::getCars($dbconnect, $carQuery);
+		$uploadingCar = $uploadingCars[0];
+	}
+	
 	if($state == 1)
 	{
 		// Depend on the operations: Insert a new car or edit an existing car
 		if($_POST['action'] == "insert")
 		{
-			// Get all variables from $_POST
-			$plateNum = $_POST['pn'];
-			$price = $_POST['pd'];
-			$location = $_POST['loc'];
-			$avaiableTo = $_POST['at'];
-			$year = $_POST['yb'];
-			$model = $_POST['m'];
-			$description = $_POST['desc'];
-			$brand = $_POST['b'];
-			$transmission = $_POST['t'];
-			$numberOfSeats = $_POST['ns'];
-			$odometer = $_POST['odo'];
-			$fuelType = $_POST['ft'];
-			$bodyType = $_POST['bt'];
 			
 			// Create a new car and return true / false: depending on if it is valid
 			$newCar = Car::createCar($dbconnect, $plateNum, $price, $location, $myAccount->getAccNo(), $avaiableTo, $year, $model, $description, $brand, $transmission, $numberOfSeats, $odometer, $fuelType, $bodyType);
@@ -81,25 +90,7 @@
 			
 		}
 		else if($_POST['action'] == "update")
-		{
-			
-			// Get the existing car
-			// Get all variables from $_POST
-			$plateNum = $_POST['pn'];
-			$price = $_POST['pd'];
-			$location = $_POST['loc'];
-			$avaiableTo = $_POST['at'];
-			$year = $_POST['yb'];
-			$model = $_POST['m'];
-			$description = $_POST['desc'];
-			$brand = $_POST['b'];
-			$transmission = $_POST['t'];
-			$numberOfSeats = $_POST['ns'];
-			$odometer = $_POST['odo'];
-			$fuelType = $_POST['ft'];
-			$bodyType = $_POST['bt'];
-			
-			
+		{	
 			// Update a existing car
 			$flag = Car::modifyCar($dbconnect, $plateNum, $price, $location, $myAccount->getAccNo(), $avaiableTo, $year, $model, $description, $brand, $transmission, $numberOfSeats, $odometer, $fuelType, $bodyType, "");
 			
@@ -109,7 +100,10 @@
 				echo "<script>window.location = 'myAccount.php?state=0';</script>";
 			}
 		}
+		
 	}
+
+	
 ?>
 
 	<div class="bigtop">
@@ -120,7 +114,7 @@
 				<div id="topText"> UDRIVE </div>
 			 </div>
 				<div class="topnav">
-		\			<a href="main.php">Home</a>
+					<a href="main.php">Home</a>
 					<a href="myAccount.php" class="active"> My Account</a>
 					<a href="messages.html" >Messages</a>
 					<a href="#help"> Help </a>
@@ -152,12 +146,11 @@
 	<div class="infoHeadings">
 
 		<div class="infoHeading">
-					<p> Plate number </p>
+				<p> Plate number </p>
 				</div>
 				<div class="infoInput">
 					<input type="text" id="plateNum" name = "pn" value = "<?php echo $_POST['pn']; ?>" />
 				</div>
-				
 				
 			
 			<div>
@@ -172,7 +165,18 @@
 			<!-- Below is a read-only filed -->
 			<div>
 				<div class="infoHeading">
-					<p> Status : Avaiable </p>
+					<p> Status : 
+						<?php 
+							if($uploadingCar->getAvaiable() == 1)
+							{
+								echo "AVAILABLE";
+							}
+							else
+							{
+								echo "BOOKED";
+							}
+						?>
+					</p>
 				</div>
 			</div>
 			
