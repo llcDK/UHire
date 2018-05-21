@@ -437,7 +437,7 @@
 		{
 			?>
 			<div id="botBanner"> UPLOADED CARS </div>
-			<button onClick = "window.location = 'upload.php';"> UPLOAD A NEW CAR </button>
+			<button onClick> UPLOAD A NEW CAR </button>
 	<?php	
 		}
 		else
