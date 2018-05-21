@@ -465,7 +465,7 @@
 			if($carIndex > 0)
 			{
 			?>
-				<div id="left"><a href="myAccount.php?state=6&action=prev" class="previous round leftRight">&#8249;</a></div>			
+				<div id="left"><a href="myAccount.php?state=6&action=prev" class="previous round leftRight">&#8249; 71286871638612873</a> HELLO</div>			
 		<?php
 			}
 	

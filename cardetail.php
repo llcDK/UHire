@@ -216,7 +216,11 @@
 				}
 			?>
 			<div class="profile_container" >
-				<a href="1.html" data-toggle="tooltip" title="press me!"><image id="profile" src="images/detailImage/pro1.png"/></a>
+				<?php 
+					$carOwner = Account::queryAccount($dbconnect, $ownerAcc);
+				?>
+				<a href="1.html" data-toggle="tooltip" title="press me!"><image id="profile" src="<?php echo $carOwner->getProfile()->getPictureURL(); ?>"/></a>
+				<!-- <a href="1.html" data-toggle="tooltip" title="press me!"><image id="profile" src="images/detailImage/pro1.png"/></a> -->
 			</div>	
 			</div>
 			<div class="padding-100"></div>
