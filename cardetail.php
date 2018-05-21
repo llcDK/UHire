@@ -194,8 +194,15 @@
 					$ownerAcc = $car->getOwnerAcc();
 					$messageChannel = "MBox.php?otherAcc=$ownerAcc";
 				?>
-				<button class="bu1" onClick="window.location = '<?php echo $messageChannel; ?>'" title="Read More">Message</button>
-				<a class="bu2" onClick = "bookCar()" title="Read More">Book</a>
+			<?php
+				if($myAccount->getAccNo() != $ownerAcc)
+				{
+					?>
+					<button class="bu1" onClick="window.location = '<?php echo $messageChannel; ?>'" title="Read More">Message</button>
+					<a class="bu2" onClick = "bookCar()" title="Read More">Book</a>
+				<?php
+				}
+			?>
 			<div class="profile_container" >
 				<a href="1.html" data-toggle="tooltip" title="press me!"><image id="profile" src="images/detailImage/pro1.png"/></a>
 			</div>	

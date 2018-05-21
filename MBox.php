@@ -54,7 +54,9 @@
 				$time = date('Y-m-d h:i:s', time());
 				$content = $_POST['nMessage'];
 				Message::createMessage($dbconnect, $sender, $reciever, $time, $content);
-								
+				
+				echo "<script>alert('Send a message!');</script>";
+				
 				echo "<script>window.location = 'MBox.php?otherAcc=$reciever';</script>";
 			}
 			
@@ -62,7 +64,7 @@
 			
 		 ?>
 		<div class="titM"><h1>Message Box</h1></div>
-		<button onClick = "window.location = 'messages.php';">RETURN</button>	
+		<button onClick = "window.location = 'messages.php';">RETURN</button>	
 		<div class="container1">
 			<div class="upchat">
 				<?php

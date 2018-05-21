@@ -42,6 +42,11 @@
 		if(!empty($_GET['action']) && $_GET['action'] == "search")
 		{
 			$carsToDisplay = Car::searchCars($dbconnect, $_GET['loc'], $_GET['price'], $_GET['ava'], $_GET['brd']);
+			
+			//echo $_GET['loc'] . "<br/>";
+			//echo $_GET['price'] . "<br/>";
+			//echo $_GET['ava'] . "<br/>";
+			//echo $_GET['brd'] . "<br/>";
 		}
 		else
 		{

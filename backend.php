@@ -465,6 +465,7 @@
 			// Update the database
 			$verifyQuery = "update Profile set verified = '$newState' where accNo = '$accNo';";
 			$dbconnect->executeCommand($verifyQuery);
+			$this->verified = $newState;
 		}
 		
 		function setDetail($dbconnect, $updatingObj, $accNo)
@@ -684,7 +685,7 @@
 			
 			$price = (empty($price) || !isset($price))? PHP_INT_MAX : $price;
 			$ava = empty($ava) || !isset($ava)? '0000-00-00' : $ava;
-			
+						
 			$query = "select * from Car where price <= $price and avaiableTo > '$ava' and brand like '%$brand%';";
 			
 			// Call getCars function to return a list of cars that match the cirteria
@@ -1318,12 +1319,15 @@
 			// sender: from acc1 to acc2
 			$messageQuery = "select * from Message where (senderAcc = '$acc1' and receiverAcc = '$acc2') or (senderAcc = '$acc2' and receiverAcc = '$acc1') order by time;";
 			$result = $dbconnect->executeCommand($messageQuery);
-			if(mysqli_num_rows($result) > 0)
+			if($result)
 			{
-				while($row = mysqli_fetch_row($result))
+				if(mysqli_num_rows($result) > 0)
 				{
-					$messageObj = new Message($row[0], $row[1], $row[2], $row[3]);
-					$messages[] = $messageObj;
+					while($row = mysqli_fetch_row($result))
+					{
+						$messageObj = new Message($row[0], $row[1], $row[2], $row[3]);
+						$messages[] = $messageObj;
+					}
 				}
 			}
 			
