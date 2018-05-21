@@ -403,28 +403,29 @@
 							}
 						?>
 					</div>
+							<div class="midInputsBot">
+						<?php
+							if($state == 0)
+							{
+							?>
+								<!-- This will change the page to edit mode -->
+								<button style="font-size:15px" onClick = "window.location = 'myAccount.php?state=1'">Edit<i class="fa fa-pencil"></i></button>
+						<?php
+							}
+							else if($state == 1)
+							{
+							?>
+								<!-- This will change the page to finish mode -->
+								<button style="font-size:15px" onClick = "updateInfo()">Done<i class="fa fa-heart"></i></button>
+								<!--<button class="tickButton" onClick = "window.location = 'myAccount.php?state=0'"></button>-->
+						<?php
+							}
+						?>
+						<!-- <button class="tickButton"></button> -->
+					</div>
 				</div>
 			</div>
-			<div id="midInputsBot">
-				<?php
-					if($state == 0)
-					{
-					?>
-						<!-- This will change the page to edit mode -->
-						<button style="font-size:20px" onClick = "window.location = 'myAccount.php?state=1'">Edit   <i class="fa fa-pencil"></i></button>
-				<?php
-					}
-					else if($state == 1)
-					{
-					?>
-						<!-- This will change the page to finish mode -->
-						<button style="font-size:20px" class="tickButton" onClick = "updateInfo()">Done   <i class="fa fa-heart"></button>
-						<!--<button class="tickButton" onClick = "window.location = 'myAccount.php?state=0'"></button>-->
-				<?php
-					}
-				?>
-				<!-- <button class="tickButton"></button> -->
-			</div>
+			
 		</div>
 	</div>
 </div>
@@ -435,13 +436,13 @@
 		if($myAccount->type() == "Car owner")
 		{
 			?>
-			<div id="botBanner"> UPLOAD CARS </div>
+			<div id="botBanner"><h2> UPLOAD CARS</h2> </div>
 	<?php	
 		}
 		else
 		{
 			?>
-			<div id="botBanner"> BECOME A CAR OWNER </div>
+			<div id="botBanner"><h2> BECOME A CAR OWNER </div>
 	<?php
 		}
 	?>
