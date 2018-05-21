@@ -39,20 +39,28 @@
 		$state = 0;
 	}
 	
-	// Get all variables from $_POST
-	$plateNum = $_POST['pn'];
-	$price = $_POST['pd'];
-	$location = $_POST['loc'];
-	$avaiableTo = $_POST['at'];
-	$year = $_POST['yb'];
-	$model = $_POST['m'];
-	$description = $_POST['desc'];
-	$brand = $_POST['b'];
-	$transmission = $_POST['t'];
-	$numberOfSeats = $_POST['ns'];
-	$odometer = $_POST['odo'];
-	$fuelType = $_POST['ft'];
-	$bodyType = $_POST['bt'];
+	if(isset($_POST['pn']) && !empty($_POST['pn']))
+	{
+		// Get all variables from $_POST
+		$plateNum = $_POST['pn'];
+		$price = $_POST['pd'];
+		$location = $_POST['loc'];
+		$avaiableTo = $_POST['at'];
+		$year = $_POST['yb'];
+		$model = $_POST['m'];
+		$description = $_POST['desc'];
+		$brand = $_POST['b'];
+		$transmission = $_POST['t'];
+		$numberOfSeats = $_POST['ns'];
+		$odometer = $_POST['odo'];
+		$fuelType = $_POST['ft'];
+		$bodyType = $_POST['bt'];
+		
+		// get the avaiablility of the current car
+		$carQuery = "select * from Car where plateNum = '$plateNum';";
+		$uploadingCars = Car::getCars($dbconnect, $carQuery);
+		$uploadingCar = $uploadingCars[0];
+	}
 	
 	if($state == 1)
 	{
@@ -94,12 +102,7 @@
 		}
 		
 	}
-	
-	
-	// get the avaiablility of the current car
-	$carQuery = "select * from Car where plateNum = '$plateNum';";
-	$uploadingCars = Car::getCars($dbconnect, $carQuery);
-	$uploadingCar = $uploadingCars[0];
+
 	
 ?>
 
