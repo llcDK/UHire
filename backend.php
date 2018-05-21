@@ -811,6 +811,11 @@
 			return $this->brand;
 		}
 		
+		public function getAvaiable()
+		{
+			return $this->avaiable;
+		}
+		
 		public function getLocation()
 		{
 			return $this->location;
