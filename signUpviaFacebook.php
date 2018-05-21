@@ -11,8 +11,9 @@
 <?php
 	include '/vendor/autoload.php';
 	require __DIR__ . '/vendor/autoload.php';
-
-    echo "import";
+	
+	session_start();
+	
 	//Import Hybridauth's namespace
 	use Hybridauth\Hybridauth; 
 
@@ -30,7 +31,7 @@
     echo "test";
  
     $adapter = $hybridauth->authenticate("Google");
-    echo "fb fired";
+    //echo "fb fired";
  
     $user_profile = $adapter->getUserProfile();
     echo "ID: " . $user_profile->identifier . "<br>";
@@ -45,16 +46,35 @@
 	
 	$accNo = "";	// Same as Facebook account
 	
-	$checkExist = "select * from Account where accNo = $user_profile->identifier";
-
-	$insertQueryToAccount = "insert into Account values('$user_profile->identifier', 'SocialLogin', 'Car renter', '$user_profile->firstName',  '$user_profile->lastName', NULL, NULL);";
-	$insertQueryTosocialMedia = "insert into SocialMedia values('$user_profile->identifier', 'Google', '$user_profile->identifier');";
+	$checkExist = "select * from Account where fname = '$user_profile->firstName' and lname = '$user_profile->lastName' and password = 'SocialLogin';";
+	$existsResult = $dbconnect->executeCommand($checkExist);
 	
-	$dbconnect->executeCommand($insertQueryToAccount);
-	$dbconnect->executeCommand($insertQueryTosocialMedia);
+	echo $checkExist;
 	
-	// After inserting, serialise and store account variable
-	$accObj = new Account($user_profile->identifier, 'SocialLogin', 'Car renter', $user_profile->firstName,  $user_profile->lastName);
+	if(mysqli_num_rows($existsResult) > 0)
+	{
+		// The account is already exists
+		$accObj = Account::getAccount($dbconnect, $checkExist);
+		echo "OLD THINGS";
+	}
+	else
+	{
+		$insertQueryToAccount = "insert into Account values('$user_profile->identifier', 'SocialLogin', 'Car renter', '$user_profile->firstName',  '$user_profile->lastName', NULL, NULL);";
+		$insertQueryTosocialMedia = "insert into SocialMedia values('$user_profile->identifier', 'Google', '$user_profile->identifier');";
+		$insertQueryToProfile = "insert into Profile values('$user_profile->identifier', NULL, NULL, NULL, NULL, NULL);";
+		
+		
+		$dbconnect->executeCommand($insertQueryToAccount);
+		$dbconnect->executeCommand($insertQueryTosocialMedia);
+		$dbconnect->executeCommand($insertQueryToProfile);
+		
+		// After inserting, serialise and store account variable
+		$accObj = new Account($user_profile->identifier, 'SocialLogin', 'Car renter', $user_profile->firstName,  $user_profile->lastName);
+		
+		echo "NEW THINGS";
+	}
+	
+	print_r($accObj);
 	
 	$_SESSION['account'] = serialize($accObj);
 	echo "<script>loadMainPage()</script>";

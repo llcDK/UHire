@@ -112,8 +112,14 @@
 		public static function getAccount($dbconnect, $query)
 		{
 			// Return a list of accounts according to the query
+			$resultTable = $dbconnect->executeCommand($query);
+			$accRow = mysqli_fetch_row($resultTable);
+			$accObj = new Account($accRow[0], $accRow[1], $accRow[2], $accRow[3], $accRow[4], $accRow[5], $accRow[6]);
+			$accObj->initProfile($dbconnect);
+			$accObj->initBankInfo($dbconnect);
+			$accObj->initReview($dbconnect);
 			
-			
+			return $accObj;
 		}
 		
 		public static function queryAccount($dbconnect, $accNo)

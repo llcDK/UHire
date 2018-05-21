@@ -28,7 +28,7 @@
 		
 		// Creat a DBConnection object
 		
-		//echo "<script>alert('Log in processing ... ');</script>" ;
+		// echo "<script>alert('Log in processing ... ');</script>" ;
 		
 		// Request User information
 		$dbqueryFindAccount = "select * from Account where accNo = '$inputName' and password = '$inputPassword';";
