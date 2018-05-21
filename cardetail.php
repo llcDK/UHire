@@ -43,10 +43,27 @@
 			// Check if the user inputs are in correct format
 			if(reviewContent.trim() != "")
 			{
-				alert('OK');
+				// Test if the input is a number 
+				if(/^-?[\d.]+(?:e-?\d+)?$/.test(stars) && Number(stars) >= 0 && Number(stars) <= 5)
+				{
+					// Send the content and rating to the cardetail.php file and insert a comment
+					//alert('Good');
+					var location = 'cardetail.php?rc=' + reviewContent + '&star=' + stars + '&carPlateNum=' + "<?php echo $_GET['carPlateNum'];?>" + '&action=review';
+					//alert(location);
+					window.location = location;
+				}
+				else
+				{
+					alert('Please provide a rating between 0 - 5.');
+				}
+			}
+			else
+			{
+				alert('Please provide something useful!');
 			}
 		}
 	</script>
+
 	<?php
 		// Helper function to display the content of a car
 		function display($content)
@@ -126,6 +143,23 @@
 				
 			}
 			
+		}
+		
+		// Check if there are any reviews 
+		if(!empty($_GET['action']) && isset($_GET['action']) && $_GET['action'] == 'review')
+		{
+			$from = $myAccount->getAccNo();
+			$to = $car->getOwnerAcc();
+			$timeGive = date("Y-m-d");
+			$plateNum = $car->getPlateNum();
+			$content = $_GET['rc'];
+			$rating = $_GET['star'];
+			
+			Review::createReview($dbconnect, $from, $to, $timeGive, $plateNum, $content, $rating);
+			
+			// The re-direct to normal
+			
+			echo "<script>window.location = 'cardetail.php?carPlateNum=$plateNum';</script>";
 		}
 		
 

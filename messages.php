@@ -53,20 +53,29 @@
 			// Get all current Chat
 			$allChats = Chat::getRelatedChats($dbconnect, $myAccount->getAccNo());
 			// Loop for all chat bot
-			foreach($allChats as $chatObj)
+			if(!empty($allChats) && isset($allChats) && count($allChats))
 			{
-				// Get another accounts detail
-				$otherAccount = Account::queryAccount($dbconnect, $chatObj->getLastMessage()->getOppsoiteAcc($myAccount->getAccNo()));
-				$otherAcc = $otherAccount->getAccNo();
-				$chatBotLocation = "window.location = 'MBox.php?otherAcc=$otherAcc';" ;
+				foreach($allChats as $chatObj)
+				{
+					// Get another accounts detail
+					$otherAccount = Account::queryAccount($dbconnect, $chatObj->getLastMessage()->getOppsoiteAcc($myAccount->getAccNo()));
+					$otherAcc = $otherAccount->getAccNo();
+					$chatBotLocation = "window.location = 'MBox.php?otherAcc=$otherAcc';" ;
+					?>
+					<div class="container" onclick="<?php echo $chatBotLocation; ?>">
+					  <img src="images/messages/person2.jpg" alt="Avatar" style="width:90px">
+					  <p class="text-left"><span><?php echo $otherAccount->getFirstName() . " " . $otherAccount->getLastName(); ?></span></p>
+					  <p><?php echo $chatObj->getLastMessage()->getContent(); ?></p>
+					  
+					  <a><i class="material-icons">chat</i></a><p class="text-right"><?php echo $chatObj->getLastMessage()->getTime(); ?></p>
+					</div>
+				<?php
+				}
+			}
+			else
+			{
 				?>
-				<div class="container" onclick="<?php echo $chatBotLocation; ?>">
-				  <img src="images/messages/person2.jpg" alt="Avatar" style="width:90px">
-				  <p class="text-left"><span><?php echo $otherAccount->getFirstName() . " " . $otherAccount->getLastName(); ?></span></p>
-				  <p><?php echo $chatObj->getLastMessage()->getContent(); ?></p>
-				  
-				  <a><i class="material-icons">chat</i></a><p class="text-right"><?php echo $chatObj->getLastMessage()->getTime(); ?></p>
-				</div>
+				<h2>Currently No Chats</h2>
 			<?php
 			}
 		?>

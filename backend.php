@@ -1022,6 +1022,15 @@
 			$this->anon = $anon;
 		}
 		
+		static function createReview($dbconnect, $from, $to, $time, $plateNum, $content, $rating, $annon = 0)
+		{
+			$reviewObj = new Review($from, $to, $time, $plateNum, $content, $rating, $annon);
+			$insertReviewQuery = "insert into Review values('$from', '$to', '$time', '$plateNum', '$content', $rating, $annon);";
+			$dbconnect->executeCommand($insertReviewQuery);
+			
+			return $reviewObj;
+		}
+		
 		function getRenter()
 		{
 			return $this->renter;
