@@ -183,12 +183,12 @@
 				<div class="infoHeading">
 					<p>
 						<?php
-							if(isset($_POST['pn']) && !empty($_POST['pn']))
+							if(isset($_POST['pn']) && !empty($_POST['pn']) && isset($uploadingCar->getAvaiable()) && !empty($uploadingCar->getAvaiable()))
 							{
 								?>
 								Status :
 						<?php 
-								if(isset($_POST['pn']) && !empty($_POST['pn']) && $uploadingCar->getAvaiable() == 1)
+								if($uploadingCar->getAvaiable() == 1)
 								{
 									echo "AVAILABLE";
 								}

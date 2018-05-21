@@ -34,6 +34,18 @@
 				alert('Booking process canceled');
 			}
 		}
+		
+		function addReview()
+		{
+			var reviewContent = prompt('Please enter a short review for the car owner');
+			var stars = prompt('Please give rating: (0-5)');
+			
+			// Check if the user inputs are in correct format
+			if(reviewContent.trim() != "")
+			{
+				alert('OK');
+			}
+		}
 	</script>
 	<?php
 		// Helper function to display the content of a car
@@ -314,6 +326,7 @@
 	<div class="beijing">
 			<div class="container" >
 			  <h3>REVIEW</h3>
+			  <button onClick = "addReview()">ADD A REVIEW TO THE CAR OWNER</button>
 			  <!-- Left-aligned -->
 				<!--<div class="media"> -->
 				<?php
@@ -334,7 +347,7 @@
 							$profileImageURL = $accObj->getProfile()->getPictureURL();
 							?>
 							<div class="media-left">
-								<img src="<?php echo $profileImageURL ?>" class="media-object" style="width:60px">
+								<img src="<?php echo $profileImageURL; ?>" class="media-object" style="width:60px">
 							</div>
 							<div class="media-body">
 								<h4 class="media-heading"><?php echo $accObj->getFirstName() . " " . $accObj->getLastName(); ?></h4>
