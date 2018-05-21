@@ -114,7 +114,7 @@
                </div>
 
                <div id="mainSubmit">
-                  <input type="submit" id="SearchNow" >Search</input>
+                  <input type="submit" id="SearchNow" />
                </div>
             </form>
          </div>

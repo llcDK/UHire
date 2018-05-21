@@ -62,6 +62,7 @@
 			
 		 ?>
 		<div class="titM"><h1>Message Box</h1></div>
+		<button onClick = "window.location = 'messages.php';">RETURN</button>	
 		<div class="container1">
 			<div class="upchat">
 				<?php

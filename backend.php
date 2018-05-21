@@ -680,25 +680,55 @@
 		{
 			// First perpare the SQL statement
 			// First consider the price and avaiable and brand
+			// Recommender system only recommeds 6 best mathed car
 			
-			$price = empty($price) || !isset($price)? PHP_INT_MAX : $price;
+			$price = (empty($price) || !isset($price))? PHP_INT_MAX : $price;
 			$ava = empty($ava) || !isset($ava)? '0000-00-00' : $ava;
 			
-			$query = "select * from Car where price <= $price and avaiableTo > '$ava' and brand like '%$brand%' limit 6;";
+			$query = "select * from Car where price <= $price and avaiableTo > '$ava' and brand like '%$brand%';";
 			
 			// Call getCars function to return a list of cars that match the cirteria
 			$partialResult = Car::getCars($dbconnect, $query);
 			
-			// Filter the returned data by location 
 			$result = array();
+			// Filter the returned data by location 
+			if(empty($loc) || !isset($loc))
+			{
+				// Location is not entered
+				for($i = 0; $i < 6; $i++)
+				{
+					$result[] = $partialResult[$i];
+				}
+				return $result;
+			}
+			
+			$resultWithLocation = array();
+			foreach($partialResult as $carObj)
+			{
+				similar_text($carObj->getLocation(), $loc, $sim_percent);
+				$resultWithLocation[serialize($carObj)] = $sim_percent;
+			}
+			
+			// Sort based on the location similarity
+			usort($partialResult, function($car1, $car2) use ($resultWithLocation){
+				return $resultWithLocation[serialize($car2)] - $resultWithLocation[serialize($car1)];
+			});
+			
+			// Only preserve the first 6
 			if(trim($loc) != "")
 			{
+				$limit = 0;
 				foreach($partialResult as $car)
 				{
 					similar_text($car->getLocation(), $loc, $sim_percent);
 					if($sim_percent > 35)
 					{
 						$result[] = $car;
+					}
+					$limit++;
+					if($limit == 6)
+					{
+						break;
 					}
 				}
 			}
@@ -767,7 +797,7 @@
 		
 		public function getOwnerAcc()
 		{
-			return $this->$carOwnerAcc;
+			return $this->carOwnerAcc;
 		}
 		
 		public function getPlateNum()
