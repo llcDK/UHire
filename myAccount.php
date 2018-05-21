@@ -468,6 +468,7 @@
 			{
 			?>
 				<div id="left"><a href="myAccount.php?state=6&action=prev" class="previous round leftRight"><i class="fa fa-angle-double-left" style="font-size:36px"></i></a></div>			
+
 		<?php
 			}
 	
