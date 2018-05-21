@@ -2,6 +2,7 @@
 <head>
 	<title>My Account</title>
    <link href="css/MyAccount.css" rel="stylesheet" type="text/css">
+   
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -411,14 +412,14 @@
 					{
 					?>
 						<!-- This will change the page to edit mode -->
-						<button style="font-size:20px" onClick = "window.location = 'myAccount.php?state=1'">Edit   <i class="fa fa-pencil"></i></button>
+						<button style="font-size:20px" onClick = "window.location = 'myAccount.php?state=1'">Edit<i class="fa fa-pencil"></i></button>
 				<?php
 					}
 					else if($state == 1)
 					{
 					?>
 						<!-- This will change the page to finish mode -->
-						<button style="font-size:20px" class="tickButton" onClick = "updateInfo()">Done   <i class="fa fa-heart"></button>
+						<button style="font-size:20px" class="tickButton" onClick = "updateInfo()">Done<i class="fa fa-heart"></button>
 						<!--<button class="tickButton" onClick = "window.location = 'myAccount.php?state=0'"></button>-->
 				<?php
 					}
