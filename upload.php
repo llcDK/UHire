@@ -61,6 +61,22 @@
 		$uploadingCars = Car::getCars($dbconnect, $carQuery);
 		$uploadingCar = $uploadingCars[0];
 	}
+	else
+	{
+		$_POST['pn'] = "";
+		$_POST['pd'] = "";
+		$_POST['loc'] = "";
+		$_POST['at'] = "";
+		$_POST['yb'] = "";
+		$_POST['m'] = "";
+		$_POST['desc'] = "";
+		$_POST['b'] = "";
+		$_POST['t'] = "";
+		$_POST['ns'] = "";
+		$_POST['odo'] = "";
+		$_POST['ft'] = "";
+		$_POST['bt'] = "";
+	}
 	
 	if($state == 1)
 	{
@@ -165,15 +181,23 @@
 			<!-- Below is a read-only filed -->
 			<div>
 				<div class="infoHeading">
-					<p> Status : 
+					<p>
+						<?php
+							if(isset($_POST['pn']) && !empty($_POST['pn']))
+							{
+								?>
+								Status :
 						<?php 
-							if($uploadingCar->getAvaiable() == 1)
-							{
-								echo "AVAILABLE";
-							}
-							else
-							{
-								echo "BOOKED";
+								if(isset($_POST['pn']) && !empty($_POST['pn']) && $uploadingCar->getAvaiable() == 1)
+								{
+									echo "AVAILABLE";
+								}
+								else
+								{
+									echo "BOOKED";
+								}
+						?>
+						<?php
 							}
 						?>
 					</p>
