@@ -123,6 +123,11 @@
 }  
 
 /* middle */
+
+.container-fluid
+{
+	background-color:red;
+}
 .container h3
 {
 	color:#239e55;
