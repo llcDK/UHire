@@ -283,35 +283,183 @@
   width: 100%;
 }
 
-.bocar
-{
-	display: block;
-	width: 100%;
-	background-image: url(../images/myAccount/b1.jpg);
-    top:0;
-	background-repeat:no repeat
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-    background-size: cover;
-    min-height: 230px;
-	
-	align:center;
-	background-attachment: fixed;
-	
-	overflow:hidden;
-	
-	
-}
 
 
 .bocar h1
 {
-	color:white;
+	color:green;
+}
+
+/*fdf*/
+
+#bot
+{
+   height:600px;
+   
+   
+   /*border-style:solid;*/
+   /*border-color:blue;*/
 }
 
 
+#botBanner
+{
+   text-align: center;
+   width:100%;
+   
+   /*border-style:solid;*/
+}
+#carScroll
+{
+   display:inline-block;
+   margin-left:60px;
+   height:100%
+   width:100%;
+}
+
+#carScroll *
+{
+   position:relative;
+   float:left;
+}
+
+.carTile
+{
+   width:100%;
+   /*border-style:solid;*/
+   /*border-color:pink;*/
+}
+
+.tileContainer
+{
+   width:400px;
+   /*border-style:solid;*/
+   /*border-color:red;*/
+}
 
 
+#footer
+{
+   height:30%;
+   width:100%;
+   background-color: rgb(124, 171, 127);
+}
+
+#footerData
+{
+   text-align:center;
+   height:50%;
+}
+
+#footerText
+{
+   color:white;
+   font-size:10;
+   position:relative;
+   top:85%;
+
+}
+
+#footerImage
+{
+   height:50%;
+}
+
+#socialMedia
+{
+   position: relative;
+   left: 46%;
+   width:7%;
+}
+
+.editCar
+{
+   background-image:url("../../images/myAccount/edit.png");
+   width:80px;
+   height:40px;
+
+   
+   background-position:center;
+   background-size:80px auto;
+   background-repeat:no-repeat;
+
+
+}
+
+.deleteCar
+{
+   background-image:url("../../images/myAccount/x.png");
+   width:80px;
+   height:40px;
+   border-style:solid;
+
+   background-position:center;
+   background-size:80px auto;
+   background-repeat:no-repeat;
+
+
+   
+}
+
+
+.leftRight {
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+
+    position:relative;
+    top:50%;
+    /*left:50%;*/
+}
+
+#right
+{
+   height:100%;
+   margin-top: 40;
+}
+
+#left
+{
+   height:100%;
+    margin-top: 40;
+	left: -80;
+}
+
+.leftRight:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.previous {
+    background-color: #f1f1f1;
+    color: black;
+}
+
+.next {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.round {
+    border-radius: 50%;
+}
+
+.buttonGroup
+{
+   position:relative;
+   left:30%;
+   /*border-style:solid;*/
+}
+
+#reviewBox
+{
+	
+	height:500px;
+	background-color:red;
+	margin-top:220px;
+}
+
+/*fdf*/
 
 
 

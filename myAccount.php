@@ -432,18 +432,20 @@
 </div>
 
 <div class="padding-100"></div>
-<div class=".container-fluid">
-<div class="bocar">
+
+<div class="bot">
 	<?php
 		if($myAccount->type() == "Car owner")
 		{
 			?>
 
-			<div id="botBanner"> UPLOADED CARS </div>
+			<div id="botBanner"><h1> UPLOADED CARS</h1> </div>
+			<div class="padding-100"></div>
 			<form method = "POST" action = "upload.php?">
 				<input type = "hidden" name = "action" value = "insert" />
-				<button onClick = "window.location = 'upload.php?state=0&action=insert';"> UPLOAD A NEW CAR </button>
+				<button class="btn btn-success" onClick = "window.location = 'upload.php?state=0&action=insert';"> UPLOAD A NEW CAR </button>
 			</form>
+			<div class="padding-100"></div>
 
 	<?php	
 		}
@@ -465,7 +467,7 @@
 			if($carIndex > 0)
 			{
 			?>
-				<div id="left"><a href="myAccount.php?state=6&action=prev" class="previous round leftRight">&#8249;</a></div>			
+				<div id="left"><a href="myAccount.php?state=6&action=prev" class="previous round leftRight"><i class="fa fa-angle-double-left" style="font-size:36px"></i></a></div>			
 		<?php
 			}
 	
@@ -494,9 +496,9 @@
 						<input type = "hidden" name = "odo" value = "<?php echo empty($cars[$i]->getOdometer())? "" : $cars[$i]->getOdometer() ; ?>" />
 						<input type = "hidden" name = "ft" value = "<?php echo empty($cars[$i]->getFuelType())? "" : $cars[$i]->getFuelType(); ?>" />
 						<input type = "hidden" name = "bt" value = "<?php echo empty($cars[$i]->getBobyType())? "" : $cars[$i]->getBobyType(); ?>" />
-						<button type = "submit" class="editCar"></button>
+						<button type = "submit" class="editCar"><i class="fa fa-pencil" style='font-size:24px'></i></button>
 					</form>
-						<button class="deleteCar"></button>
+						<button class="deleteCar"><i class="fa fa-pencil" style='font-size:24px'></i></button>
 					</div>
 				</div>
 	
@@ -507,7 +509,7 @@
 			{
 			?>
 			
-				<div id="right"><a href="myAccount.php?state=6&action=next" class="next round leftRight">&#8250;</a></div>
+				<div id="right"><a href="myAccount.php?state=6&action=next" class="next round leftRight"><i class="fa fa-angle-double-right" style="font-size:36px"></i></a></div>
 		<?php
 			}
 			?>
@@ -524,11 +526,12 @@
 		}
 		
 	?>
-	
-	
-	
-   </div>
-   </div>
+</div>
+</div>
+   
+   
+   
+   
    <div id = "reviewBox">
 	<?php
 		$reviews = $myAccount->getReviews();
@@ -598,7 +601,7 @@
 	?>
    </div>
 
-</div>
+
 
 <!--
 <div id="footer">
