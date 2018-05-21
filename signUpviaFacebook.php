@@ -57,5 +57,5 @@
 	$accObj = new Account($user_profile->identifier, 'SocialLogin', 'Car renter', $user_profile->firstName,  $user_profile->lastName);
 	
 	$_SESSION['account'] = serialize($accObj);
-	# echo "<script>loadMainPage()</script>";
+	echo "<script>loadMainPage()</script>";
 ?>

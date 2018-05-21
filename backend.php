@@ -465,6 +465,7 @@
 			// Update the database
 			$verifyQuery = "update Profile set verified = '$newState' where accNo = '$accNo';";
 			$dbconnect->executeCommand($verifyQuery);
+			$this->verified = $newState;
 		}
 		
 		function setDetail($dbconnect, $updatingObj, $accNo)
@@ -524,8 +525,6 @@
 			}
 		}
 		
-		
-
 	}
 	
 	
@@ -682,25 +681,55 @@
 		{
 			// First perpare the SQL statement
 			// First consider the price and avaiable and brand
+			// Recommender system only recommeds 6 best mathed car
 			
-			$price = empty($price) || !isset($price)? PHP_INT_MAX : $price;
+			$price = (empty($price) || !isset($price))? PHP_INT_MAX : $price;
 			$ava = empty($ava) || !isset($ava)? '0000-00-00' : $ava;
-			
+						
 			$query = "select * from Car where price <= $price and avaiableTo > '$ava' and brand like '%$brand%';";
 			
 			// Call getCars function to return a list of cars that match the cirteria
 			$partialResult = Car::getCars($dbconnect, $query);
 			
-			// Filter the returned data by location 
 			$result = array();
+			// Filter the returned data by location 
+			if(empty($loc) || !isset($loc))
+			{
+				// Location is not entered
+				for($i = 0; $i < 6; $i++)
+				{
+					$result[] = $partialResult[$i];
+				}
+				return $result;
+			}
+			
+			$resultWithLocation = array();
+			foreach($partialResult as $carObj)
+			{
+				similar_text($carObj->getLocation(), $loc, $sim_percent);
+				$resultWithLocation[serialize($carObj)] = $sim_percent;
+			}
+			
+			// Sort based on the location similarity
+			usort($partialResult, function($car1, $car2) use ($resultWithLocation){
+				return $resultWithLocation[serialize($car2)] - $resultWithLocation[serialize($car1)];
+			});
+			
+			// Only preserve the first 6
 			if(trim($loc) != "")
 			{
+				$limit = 0;
 				foreach($partialResult as $car)
 				{
 					similar_text($car->getLocation(), $loc, $sim_percent);
 					if($sim_percent > 35)
 					{
 						$result[] = $car;
+					}
+					$limit++;
+					if($limit == 6)
+					{
+						break;
 					}
 				}
 			}
@@ -765,6 +794,11 @@
 		public function getReview($dbconnect)
 		{
 			
+		}
+		
+		public function getOwnerAcc()
+		{
+			return $this->carOwnerAcc;
 		}
 		
 		public function getPlateNum()
@@ -1240,12 +1274,95 @@
 		static function createMessage($dbconnect, $sender, $reciever, $time, $content)
 		{
 			$MessageObj = new Message($sender, $reciever, $time, $content);
-			$insertMessageQuery = "insert into Message values($sender, $reciever, $time, $content); ";
+			$insertMessageQuery = "insert into Message values('$sender', '$reciever', '$time', '$content'); ";
+			$dbconnect->executeCommand($insertMessageQuery);
+			
+			return $MessageObj;
+		}
+		
+		function getSender()
+		{
+			return $this->sender;
+		}
+		
+		function getReciever()
+		{
+			return $this->reciever;
+		}
+		
+		function getTime()
+		{
+			return $this->time;
+		}
+		
+		function getContent()
+		{
+			return $this->content;
+		}
+		
+		function getOppsoiteAcc($acc)
+		{
+			if($this->sender == $acc)
+				return $this->reciever;
+			else
+				return $this->sender;
 		}
 	}
 	
 	class Chat
 	{
+		private $messages;
+		
+		function __construct($dbconnect, $acc1, $acc2)
+		{
+			$messages = array();
+			// sender: from acc1 to acc2
+			$messageQuery = "select * from Message where (senderAcc = '$acc1' and receiverAcc = '$acc2') or (senderAcc = '$acc2' and receiverAcc = '$acc1') order by time;";
+			$result = $dbconnect->executeCommand($messageQuery);
+			if($result)
+			{
+				if(mysqli_num_rows($result) > 0)
+				{
+					while($row = mysqli_fetch_row($result))
+					{
+						$messageObj = new Message($row[0], $row[1], $row[2], $row[3]);
+						$messages[] = $messageObj;
+					}
+				}
+			}
+			
+			$this->messages = $messages;
+		}
+		
+		static function getRelatedChats($dbconnect, $acc)
+		{
+			$findRalatedAccQuery = "select receiverAcc from Message where senderAcc = '$acc' union select senderAcc from Message where receiverAcc = '$acc';";
+			$AllAccount = $dbconnect->executeCommand($findRalatedAccQuery);
+			$relatedChat = array();
+			if(mysqli_num_rows($AllAccount) > 0)
+			{
+				while($row = mysqli_fetch_row($AllAccount))
+				{
+					$relatedAcc = $row[0];
+					$chatObj = new Chat($dbconnect, $acc, $relatedAcc);
+					$relatedChat[] = $chatObj;
+				}
+				
+				return $relatedChat;
+			}
+			
+			return false;
+		}
+		
+		function getMessages()
+		{
+			return $this->messages;
+		}
+		
+		function getLastMessage()
+		{
+			return $this->messages[count($this->messages) - 1];
+		}
 		
 	}
 	
@@ -1259,15 +1376,7 @@
 	</head>
 	<body>
 		<?php
-		/*
-			//echo DBConnection::getServerName();
-			$dbconnect = new DBConnection();
-			//$connection = mysqli_connect("localhost:808", "root", "") or die (mysqli_error());;
-			
-			$acc = new Account("John");
-			$objString = serialize($acc);
-			echo unserialize($objString)->getAccNo();
-		*/
+
 			$dbconnect = new DBConnection();
 			
 		?>

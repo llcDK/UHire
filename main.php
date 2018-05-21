@@ -27,8 +27,9 @@
 			window.location = "myAccount.php";
 		}
 
-      function goMessage() {
-         window.location = "messages.html"
+      function goMessage() 
+	  {
+         window.location = "messages.php";
       }
 	</script>
 	
@@ -41,6 +42,11 @@
 		if(!empty($_GET['action']) && $_GET['action'] == "search")
 		{
 			$carsToDisplay = Car::searchCars($dbconnect, $_GET['loc'], $_GET['price'], $_GET['ava'], $_GET['brd']);
+			
+			//echo $_GET['loc'] . "<br/>";
+			//echo $_GET['price'] . "<br/>";
+			//echo $_GET['ava'] . "<br/>";
+			//echo $_GET['brd'] . "<br/>";
 		}
 		else
 		{
@@ -113,7 +119,7 @@
                </div>
 
                <div id="mainSubmit">
-                  <input type="submit" id="SearchNow" >Search</input>
+                  <input type="submit" id="SearchNow" />
                </div>
             </form>
          </div>
