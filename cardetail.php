@@ -364,7 +364,8 @@
 	<div class="beijing">
 			<div class="container" >
 			  <h3>REVIEW</h3>
-			  <button onClick = "addReview()">ADD A REVIEW TO THE CAR OWNER</button>
+			  <button onClick = "addReview()" class="btn success">ADD A REVIEW </button>
+			  <div class="padding-50"></div>
 			  <!-- Left-aligned -->
 				<!--<div class="media"> -->
 				<?php

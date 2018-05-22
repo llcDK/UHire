@@ -3,6 +3,12 @@
    <link href="css/main/topStyle.css" rel="stylesheet" type="text/css"/ >
    <link href="css/main/midStyle.css" rel="stylesheet" type="text/css"/ >
    <link href="css/main/botStyle.css" rel="stylesheet" type="text/css"/ >
+   <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Sunflower:300" rel="stylesheet">
    <!-- <link href="css/global.css" rel="stylesheet" type="text/css"/ > -->
    <script type="text/javascript" src="css/main/products.js"></script>
    <title>Main</title>
@@ -115,7 +121,7 @@
                </div>
 
                <div id="mainSubmit">
-                  <input type="submit" id="SearchNow" />
+                 <button id="SearchNow">Submit</button>
                </div>
             </form>
          </div>

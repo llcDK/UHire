@@ -325,6 +325,7 @@ img
 }
 /*-- /fourth section --*/
 
+
 .beijing
 {
 	
@@ -339,14 +340,37 @@ img
     padding: 100px 0;
 	 
 }
+.btn {
+  border: 2px solid black;
+  background-color: white;
+  color: black;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+      margin-left: 500
+  
+}
+/* Green */
+.success {
+  border-color: #4CAF50;
+  color: #e67474;
+}
 
+.success:hover {
+  background-color: #4CAF50;
+  color: #green;
+}
 
-
+.padding-50
+{
+	 padding-top: 30px;
+	 padding-bottom: 30px;
+}
 .beijing h3
 {
 	color:#0eb956;
 	font-family: 'Kaushan Script', cursive;
-	margin-bottom: 50px;
+	margin-bottom: 20px;
     text-align: center;
 }
 

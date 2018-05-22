@@ -16,6 +16,12 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		
 		<!-- //font -->
+		<script>
+			function goBack() 
+			{
+				window.history.back()
+			}
+		</script>	
 	 </head>
 	 <body class="bg">
 		 <?php
@@ -64,7 +70,7 @@
 			
 		 ?>
 		<div class="titM"><h1>Message Box</h1></div>
-		<button onClick = "window.location = 'messages.php';">RETURN</button>	
+		<button onclick="goBack()">Go Back</button>
 		<div class="container1">
 			<div class="upchat">
 				<?php
