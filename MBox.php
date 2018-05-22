@@ -19,7 +19,7 @@
 		<script>
 			function goBack() 
 			{
-				window.history.back()
+				window.location = 'messages.php';
 			}
 		</script>	
 	 </head>

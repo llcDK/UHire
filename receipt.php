@@ -22,12 +22,17 @@
 	<?php
 			include 'backend.php';
 			session_start();
+			$myAccount = unserialize($_SESSION['account']);
+			$accNo = $myAccount->getAccNo();
 			
-			$accNo = $_GET['accNo'];
-			$plateNum = $_GET['plateNum'];
-			$requestingTime = $_GET['time'];
+			//$accNo = $_GET['accNo'];
+			//$plateNum = $_GET['plateNum'];
+			//$requestingTime = $_GET['time'];
 			
-			$receiptObj = Receipt::queryReceipt($dbconnect, "select * from Receipt where accNo = '$accNo' and plateNum = '$plateNum' and requestingTime = '$requestingTime' ;");
+			//$receiptObj = Receipt::queryReceipt($dbconnect, "select * from Receipt where accNo = '$accNo' and plateNum = '$plateNum' and requestingTime = '$requestingTime' ;");
+			
+			$allReceipt = Receipt::queryReceipts($dbconnect, "select * from Receipt where accNo = '$accNo' order by requestingTime desc;");
+			
 			
 	?>
 	<div class="bigtop">
@@ -53,133 +58,53 @@
 		
 	<div class="container1"><div>
 	<h1>This Is Your Receipt </h1>
-	<div class="container">
-		  <div class="table-responsive">
-				<table class="table">
-				  <thead>
-					<tr>
-					  <th>#</th>
-					  <th>Account Number</th>
-					  <th>Plate Number</th>
-					  <th>Booking Time</th>
-					  <th>Total amount</th>
-					  <th>Commision</th>
-					  <th>Bond</th>
-					 
-					</tr>
-				  </thead>
-				  <tbody>
-					<tr>
-					  <td>1</td>
-					  <td><?php echo $receiptObj->getAccNo(); ?></td>
-					  <td><?php echo $receiptObj->getPlateNum(); ?></td>
-					  <td><?php echo $receiptObj->getTime(); ?></td>
-					  <td>$<?php echo $receiptObj->getAmount(); ?></td>
-					  <td>$<?php echo $receiptObj->getAmount(); ?></td>
-					  <td>$<?php echo Car::$bond; ?></td>
-					  
-					</tr>
-				  </tbody>
-				</table>
-			  </div>
-			</div>
 	
-	<div class="container">
-		  <div class="table-responsive">
-				<table class="table">
-				  <thead>
-					<tr>
-					  <th>#</th>
-					  <th>Account Number</th>
-					  <th>Plate Number</th>
-					  <th>Booking Time</th>
-					  <th>Total amount</th>
-					  <th>Commision</th>
-					  <th>Bond</th>
-					 
-					</tr>
-				  </thead>
-				  <tbody>
-					<tr>
-					  <td>2</td>
-					  <td><?php echo $receiptObj->getAccNo(); ?></td>
-					  <td><?php echo $receiptObj->getPlateNum(); ?></td>
-					  <td><?php echo $receiptObj->getTime(); ?></td>
-					  <td>$<?php echo $receiptObj->getAmount(); ?></td>
-					  <td>$<?php echo $receiptObj->getAmount(); ?></td>
-					  <td>$<?php echo Car::$bond; ?></td>
-					  
-					</tr>
-				  </tbody>
-				</table>
-			  </div>
-			</div>
+	<?php
 	
-	<div class="container">
-		  <div class="table-responsive">
-				<table class="table">
-				  <thead>
-					<tr>
-					  <th>#</th>
-					  <th>Account Number</th>
-					  <th>Plate Number</th>
-					  <th>Booking Time</th>
-					  <th>Total amount</th>
-					  <th>Commision</th>
-					  <th>Bond</th>
-					 
-					</tr>
-				  </thead>
-				  <tbody>
-					<tr>
-					  <td>3</td>
-					  <td><?php echo $receiptObj->getAccNo(); ?></td>
-					  <td><?php echo $receiptObj->getPlateNum(); ?></td>
-					  <td><?php echo $receiptObj->getTime(); ?></td>
-					  <td>$<?php echo $receiptObj->getAmount(); ?></td>
-					  <td>$<?php echo $receiptObj->getAmount(); ?></td>
-					  <td>$<?php echo Car::$bond; ?></td>
-					  
-					</tr>
-				  </tbody>
-				</table>
-			  </div>
-			</div>
-	
-	<div class="container">
-		  <div class="table-responsive">
-				<table class="table">
-				  <thead>
-					<tr>
-					  <th>#</th>
-					  <th>Account Number</th>
-					  <th>Plate Number</th>
-					  <th>Booking Time</th>
-					  <th>Total amount</th>
-					  <th>Commision</th>
-					  <th>Bond</th>
-					 
-					</tr>
-				  </thead>
-				  <tbody>
-					<tr>
-					  <td>4</td>
-					  <td><?php echo $receiptObj->getAccNo(); ?></td>
-					  <td><?php echo $receiptObj->getPlateNum(); ?></td>
-					  <td><?php echo $receiptObj->getTime(); ?></td>
-					  <td>$<?php echo $receiptObj->getAmount(); ?></td>
-					  <td>$<?php echo $receiptObj->getAmount(); ?></td>
-					  <td>$<?php echo Car::$bond; ?></td>
-					  
-					</tr>
-				  </tbody>
-				</table>
-			  </div>
-			</div>
+		if(count($allReceipt) > 0)
+		{
+			$i = 1;
+			foreach($allReceipt as $receiptObj)
+			{
+				?>
+				<div class="container">
+					  <div class="table-responsive">
+							<table class="table">
+							  <thead>
+								<tr>
+								  <th>#</th>
+								  <th>Account Number</th>
+								  <th>Plate Number</th>
+								  <th>Booking Time</th>
+								  <th>Total amount</th>
+								  <th>Commision</th>
+								  <th>Bond</th>
+								 
+								</tr>
+							  </thead>
+							  <tbody>
+								<tr>
+								  <td><?php echo $i; ?></td>
+								  <td><?php echo $receiptObj->getAccNo(); ?></td>
+								  <td><?php echo $receiptObj->getPlateNum(); ?></td>
+								  <td><?php echo $receiptObj->getTime(); ?></td>
+								  <td>$<?php echo $receiptObj->getAmount(); ?></td>
+								  <td>$<?php echo $receiptObj->getCommission(); ?></td>
+								  <td>$<?php echo Car::$bond; ?></td>
+								  
+								</tr>
+							  </tbody>
+							</table>
+						  </div>
+				</div>
+			<?php
+			$i++;
+			}
+		}
+	?>
 	
 	</div>
-	</div>
-	<div class="padding-100"><button onClick = "window.location = 'main.php';">CONTINUE</button></div>
+	<div class="padding-100"><!-- <button onClick = "window.location = 'main.php';">CONTINUE</button></div> -->
 	<footer>
 		<div class="copyright">
 	    <div class="line">

@@ -1250,6 +1250,20 @@
 			return $receiptObj;
 		}
 		
+		static function queryReceipts($dbconnect, $query)
+		{
+			$result = array();
+			$receiptTable = $dbconnect->executeCommand($query);
+			while($receiptRow = mysqli_fetch_row($receiptTable))
+			{
+				$receiptRow = mysqli_fetch_row($receiptTable);
+				$receiptObj = new Receipt($receiptRow[0], $receiptRow[1], $receiptRow[2], $receiptRow[3], $receiptRow[4]);
+				$result[] = $receiptObj;
+			}
+			
+			return $result;
+		}
+		
 		function getAccNo()
 		{
 			return $this->accNo;

@@ -482,7 +482,7 @@
 				?>
 				
 				<div class="tileContainer">
-					<div> <img class="carTile" src="<?php echo $cars[$i]->getImageURL(); ?>" /> </div>
+					<div> <img class="carTile" src="<?php echo $cars[$i]->getImageURL(); ?>" onClick = "window.location='cardetail.php?carPlateNum=<?php echo $cars[$i]->getPlateNum(); ?>';" /> </div>
 					<div class="buttonGroup">
 					<form action = "upload.php?state=0" method = "POST">
 						<input type = "hidden" name = "action" value = "update" />

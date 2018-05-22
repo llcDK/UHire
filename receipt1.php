@@ -24,7 +24,7 @@
 		<br/>
 		<p>Total amount: $<?php echo $receiptObj->getAmount(); ?></p>
 		<br/>
-		<p>Commision: $<?php echo $receiptObj->getAmount(); ?></p>
+		<p>Commision: $<?php echo $receiptObj->getCommission(); ?></p>
 		<br/>
 		<p>Bond: $<?php echo Car::$bond; ?></p>
 		<br/>
