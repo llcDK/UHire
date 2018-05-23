@@ -437,7 +437,14 @@
 	<div class="beijing">
 			<div class="container" >
 			  <h3>REVIEW</h3>
-			  <button onClick = "addReview()" class="btn success">ADD A REVIEW </button>
+			  <?php
+				if($myAccount->getAccNo() != $ownerAcc)
+				{
+					?>
+					<button onClick = "addReview()" class="btn success">ADD A REVIEW </button>
+				<?php
+				}
+			  ?>
 			  <div class="padding-50"></div>
 			  <!-- Left-aligned -->
 				<!--<div class="media"> -->
