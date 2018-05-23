@@ -1,4 +1,4 @@
-*{
+`*{
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -469,10 +469,8 @@
 #reviewBox
 {
 	
-	height:auto;
-	
+	height:600px;
 	margin-top:100px;
-	
 	display: block;
 	width: 100%;
 	background-image: url(../images/myAccount/bg1.jpg);
@@ -482,13 +480,47 @@
 	-moz-background-size: cover;
     background-size: cover;
     min-height: 230px;
-	
 	align:center;
 	background-attachment: fixed;
-	
-	overflow:hidden;
+	overflow-x:hidden;
+	overflow-y:scroll;
+}
+.to
+{
+	font-size:3em;
 }
 
+.media-left
+{
+	width:60px;
+	height:60px;
+	
+	
+}
+#reviewBox::-webkit-scrollbar 
+{
+    display: none;
+}
+
+.media-heading
+{
+	display:inline-block;
+}
+
+.media-body
+{
+	text-align:left;
+}
+.text-right
+{
+	
+	text-align:right;
+}
+
+#rt
+{
+	font-size:2em;
+}
 /*fdf*/
 
 

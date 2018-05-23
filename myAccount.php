@@ -1,7 +1,7 @@
 <html>
 <head>
 	<title>My Account</title>
-   <link href="css/MyAccount.css" rel="stylesheet" type="text/css">
+  
    
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,7 +9,8 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<!-- font -->
+		<link href="css/MyAccount.css" rel="stylesheet" type="text/css">
+		 <!-- font -->
 		<link href="http://fonts.googleapis.com/css?family=Kaushan+Script&amp;subset=latin-ext" rel="stylesheet">
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
 		<link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700italic,700,400italic,300italic,300" rel="stylesheet" type="text/css">
@@ -163,7 +164,7 @@
 	</div>
 		
 		<div class="padding-100"></div>
-		<div class="tittle"> <h2>.My Account.</h2><div>
+		<div class="tittle"> <h2>.MY ACCOUNT.</h2><div>
 		<div class="padding-100"></div>
 
 <div id="container-fluid">
@@ -539,7 +540,9 @@
    
    
    <div id = "reviewBox">
-   <div class=".cantainer-fluid">
+   <div class="cantainer-fluid">
+   <h3 class="to">REVIEW</h3>
+   </div>	
 	<?php
 		$reviews = $myAccount->getReviews();
 		if(sizeof($reviews) > 0)
@@ -547,18 +550,49 @@
 			if($myAccount->getRating() == 0)
 			{
 			?>
-				<div>Total Ratings: Not enough ratings</div>
+				<div><h2 class="to">Total Ratings: Not enough ratings</h2></div>
 		<?php
 				
 			}
 			else
 			{
 		?>	
-				<div><h3>Total Rating: <?php echo $myAccount->getRating(); ?></h3></div>
+				<div><h3 class="to">Total Rating: <?php echo $myAccount->getRating(); ?></h3></div>
 		<?php
 			}
 		?>
-			
+		
+		<div class="container">
+		<div class="media-left">
+			<img src="images/detailImage/person3.png" class="media-object" style="width:60px">
+		</div>
+					
+		<div class="media-body">
+						<div>
+						<h4 class="media-heading"><span>ID.User:</h4>
+						<h4 class="media-heading">Plate No. 43543</h4>
+						</div>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star nochecked"></span>
+						<span class="fa fa-star nochecked"></span>
+						<p>The car is really nice,Thanks Crusie!!!
+						The car is really nice,Thanks Crusie!!!
+						The car is really nice,Thanks Crusie!!!
+						The car is really nice,Thanks Crusie!!!
+						The car is really nice,Thanks Crusie!!!
+						The car is really nice,Thanks Crusie!!!
+						The car is really nice,Thanks Crusie!!!
+						The car is really nice,Thanks Crusie!!!
+						The car is really nice,Thanks Crusie!!!
+						The car is really nice,Thanks Crusie!!!
+						</p>
+						<p class="text-right">2018-05-22 08:54:48</p>
+					</div>
+				 <hr>
+	  	 </div>
+			<!--	 
 			<table style = "border: 3px solid red" >
 				<tr>
 					<th>renterID</th>
@@ -566,31 +600,47 @@
 					<th>Plate Number</th>
 					<th>Review</th>
 					<th>Rating</th>
-				</tr>
+				</tr>-->
 		<?php	
 			foreach($reviews as $rev)
 			{
+				$plateNum = $rev->getPlateNum();
 			?>
-				<tr>
-				<?php
-				if($rev->anon())
-				{
+				
+				<div class="container">
+				<div class="media-left">
+					<img src="images/detailImage/person3.png" class="media-object" style="width:60px">
+				</div>
+							
+				<div class="media-body">
+					<div>
+					<h4 class="media-heading">ID: <?php echo $rev->getRenter(); ?> User:</h4>
+					<h4 class="media-heading">Plate No. <?php echo (empty($plateNum) && !isset($plateNum)) ? "":$plateNum ; ?></h4>
+					</div>
+					
+					<?php
+						$rt = (int) $rev->getRating(); 
+						for($i = 0; $i < $rt; $i++)
+						{
+							?>
+							<span class="fa fa-star checked"></span>
+					<?php
+						}
+						
+						for($i = 0; $i < 5 - $rt; $i++)
+						{
+							?>
+							<span class="fa fa-star nochecked"></span>
+					<?php
+						}
 					?>
-					<td>Anonymous</td>
-				<?php	
-				}
-				else
-				{
-					?>
-					<td><?php echo $rev->getRenter(); ?></td>
-				<?php
-				}
-				?>
-					<td><?php echo $rev->getTime(); ?></td>
-					<td><?php echo $rev->getPlateNum(); ?></td>
-					<td><?php echo $rev->getContent(); ?></td>
-					<td><?php echo $rev->getRating(); ?></td>
-				</tr>
+					
+					<p><?php echo $rev->getContent(); ?></p>
+					<p class="text-right"><?php echo $rev->getTime(); ?></p>
+				</div>
+				<hr>
+				</div>
+				
 			<?php
 			}
 			
@@ -607,6 +657,11 @@
 		<?php
 		}
 	?>
+	
+	
+	
+	
+	
 	</div>
    </div>
 
@@ -618,7 +673,7 @@
 			<div class="margin">
 				<!-- left -->
 				<div class="s-12 m-12 l-8 footer-links">
-					<p>Copyright &copy; 2017.Company name All rights reserved.</p>
+					<p>Copyright &copy; 2018.Designed By WENJUANSUN .</p>
 				</div>
 				<!-- right -->
 				<div class="s-12 m-12 l-4 payment-methods">
