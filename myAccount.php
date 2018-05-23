@@ -39,7 +39,9 @@
 	
 	function deleteCar(plateNum)
 	{
+		var deleteMode = 'myAccount.php?state=7&plateNum=' + plateNum;
 		
+		window.location = deleteMode;
 	}
 	
 </script>
@@ -78,6 +80,7 @@
 		4: Intermediate mode, for storing profile picture and updating database for profile picture
 		5: Verify account mode
 		6: Intermediate mode, Previous/next page for car listing
+		7: Intermediate mode, for deleting a car
 		default: 0
 	*/
 	if(isset($_GET['state']) && !empty($_GET['state']))
@@ -140,7 +143,14 @@
 		}
 		echo "<script>window.location = 'myAccount.php?state=0'; </script>";
 	}
-
+	else if($state == 7)
+	{
+		Car::deleteCar($dbconnect, $_GET['plateNum']);
+		
+		
+		// Go back the normal 
+		echo "<script>window.location = 'myAccount.php?state=0'; </script>";
+	}
 	
 ?>
 
