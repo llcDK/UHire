@@ -116,7 +116,7 @@
 .tittle h2
 
 {
-	font-size: 30px;
+	
     font-weight: 300;
     text-align: center;
 	font-family:'Montserrat', sans-serif;
@@ -239,7 +239,11 @@
 
 #midInputsLeft *
 {
-   padding: 10;
+   padding:8;
+}
+#genderInput
+{
+	width:100px;
 }
 
 #midInputsRight
@@ -265,9 +269,12 @@
 
 #midInputsRight *
 {
-   padding: 10;
+   padding: 8;
 }
-
+#expireInput
+{
+	width:100px;
+}
 #bankAccInput
 {
 	
@@ -434,7 +441,7 @@
 	display:inline-block; 
 	position: relative;
     left: 15;
-    top: 50px;
+   
 }
 
 .leftRight:hover {
@@ -458,8 +465,8 @@
 
 .buttonGroup
 {
-	width: 20%;
-    margin-left:40%;
+	width: 30%;
+    margin-left:35%;
    
 	margin-top:5;
    
@@ -470,7 +477,7 @@
 {
 	
 	height:600px;
-	margin-top:100px;
+	
 	display: block;
 	width: 100%;
 	background-image: url(../images/myAccount/bg1.jpg);
@@ -487,7 +494,9 @@
 }
 .to
 {
-	font-size:3em;
+	font-size:1.3em;
+	color:rgb(218, 77, 131);
+}
 }
 
 .media-left

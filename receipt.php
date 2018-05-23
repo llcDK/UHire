@@ -2,13 +2,14 @@
 
 	<head>
 		<title> Messages </title>
-		<link href="css/receipt.css" rel="stylesheet" type="text/css">
+		
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href="css/receipt.css" rel="stylesheet" type="text/css">
 		<!-- font -->
 		<link href="http://fonts.googleapis.com/css?family=Kaushan+Script&amp;subset=latin-ext" rel="stylesheet">
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
@@ -47,7 +48,7 @@
 					<a href="myAccount.php"> My Account</a>
 					<a href="messages.php" >Messages</a>
 					<a href="receipt.php"class="active">  My Receipt </a>
-					<a href="#contact">Contact</a>
+					
 				</div>
 			</div>
 		</div>
@@ -100,13 +101,13 @@
 				$i++;
 			}	
 		}
-		
+		//dark color
 		if(count($allMoneyIn) > 0)
 		{
 			foreach($allMoneyIn as $receiptObj)
 			{
 				?>
-				<div class="container">
+				<div class="container" style="background-color:rgba(158, 158, 158, 0.33);">
 					  <div class="table-responsive">
 							<table class="table">
 							  <thead>

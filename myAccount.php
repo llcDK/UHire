@@ -173,7 +173,7 @@
 					<a href="myAccount.php" class="active"> My Account</a>
 					<a href="messages.php" >Messages</a>
 					<a href="receipt.php"> My Receipt </a>
-					<a href="#contact">Contact</a>
+					
 				</div>
 			</div>
 	</div>
@@ -253,7 +253,7 @@
 							if($state == 1)
 							{
 							?>
-								<input id = "dobInput" type="text" value = "<?php echo $myAccount->getProfile()->getDOB(); ?>" /><br/>
+								<input id = "dobInput" type="text" value = "<?php echo $myAccount->getProfile()->getDOB(); ?>" /><br/><br/>
 								(HAS TO BE IN FORM YYYY-MM-DD) <br/>
 						
 						<?php
@@ -551,7 +551,7 @@
    
    <div id = "reviewBox">
    <div class="cantainer-fluid">
-   <h3 class="to">REVIEW</h3>
+   <h2>REVIEW</h2>
    </div>	
 	<?php
 		$reviews = $myAccount->getReviews();
@@ -571,12 +571,12 @@
 		<?php
 			}
 		?>
-		
+		<!--
 		<div class="container">
 		<div class="media-left">
 			<img src="images/detailImage/person3.png" class="media-object" style="width:60px">
 		</div>
-		<!--
+		
 		<div class="media-body">
 						<div>
 						<h4 class="media-heading"><span>ID.User:</h4>
@@ -669,12 +669,8 @@
 		}
 	?>
 	
-	
-	
-	
-	
-	</div>
-   </div>
+</div>
+</div>
 
 
 

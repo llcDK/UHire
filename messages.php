@@ -39,7 +39,7 @@
 					<a href="myAccount.php"> My Account</a>
 					<a href="messages.php" class="active">Messages</a>
 					<a href="receipt.php">  My Receipt </a>
-					<a href="#contact">Contact</a>
+					
 				</div>
 			</div>
 		</div>

@@ -78,7 +78,7 @@
             <button class="topButton" onclick = "goAccount()" >MY ACCOUNT</button>
             <button class="topButton" onclick = "goMessage()" >MESSAGE</button>
             <button class="topButton" onclick = "goReceipt()" > MY RECEIPT</button>
-            <button class="topButton" onclick = "goContact()" >CONTACT</button>
+            
             <button class="topButton" id="topSearch"></button>
          </div>
       </div>

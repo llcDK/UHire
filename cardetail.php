@@ -194,7 +194,7 @@
 					<a href="myAccount.php"> My Account</a>
 					<a href="messages.php" >Messages</a>
 					<a href="receipt.php"> My Receipt </a>
-					<a href="main.php">Contact</a>
+					
 				</div>
 			</div>
 		</div>
@@ -351,7 +351,7 @@
 						<img src="images/detailImage/icon1.jpg" alt="W3layouts Agileits">
 					</div>
 					<div class="about-info w3layouts agileits">
-						<h4>Number Of Seats</h4>
+						<h4 class="chancolor">Number Of Seats</h4>
 						<p><?php echo display($car->getNumberSeats()); ?></p>
 					</div>
 				</div>
