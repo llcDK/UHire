@@ -104,14 +104,15 @@
 	?>
 	
 	</div>
-	<div class="padding-100"><!-- <button onClick = "window.location = 'main.php';">CONTINUE</button></div> -->
+	</div>
+	<div class="padding-100"></div><!-- <button onClick = "window.location = 'main.php';">CONTINUE</button></div> -->
 	<footer>
 		<div class="copyright">
 	    <div class="line">
 			<div class="margin">
 				<!-- left -->
 				<div class="s-12 m-12 l-8 footer-links">
-					<p>Copyright &copy; 2017.Company name All rights reserved.</p>
+					<p>Copyright &copy; 2018.Designed by WENJUANSUN.</p>
 				</div>
 				<!-- right -->
 				<div class="s-12 m-12 l-4 payment-methods">

@@ -1,12 +1,14 @@
 <html>
 	<head>
 		<title>Cartdetailed</title>
-		<link href="css/carde.css" rel="stylesheet" type="text/css"/>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link href="css/carde.css" rel="stylesheet" type="text/css"/>
+		<link href="css/carde-mod.css" rel="stylesheet" type="text/css"/>
+		
 		<!-- font -->
 		<link href="http://fonts.googleapis.com/css?family=Kaushan+Script&amp;subset=latin-ext" rel="stylesheet">
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
@@ -16,6 +18,7 @@
 	</head>
 	<body>
 	<script>
+	
 		function bookCar()
 		{
 			// Use javaScript to capture the booking date
@@ -62,8 +65,17 @@
 				alert('Please provide something useful!');
 			}
 		}
-	</script>
 
+
+		/*
+		(document).ready(function(){
+			$('[data-toggle="tooltip"]').tooltip(); 
+		
+			
+		});
+		*/
+	</script>
+	
 	<?php
 		// Helper function to display the content of a car
 		function display($content)
@@ -204,10 +216,10 @@
 			</div>
 		</div>
 	<!-- Second section -->
-	
+	     	<div class="padding-100"></div>
 		<div class="picture-section container-fluid no-padding">
 		<div class="container">
-			<div class="padding-100"></div>
+			
 		</div>
 		<div class="col-md-6 img-block">
 			<img src=<?php echo $car->getImageURL(); ?> class="img-thumbnail" alt="car_pi">
@@ -249,22 +261,83 @@
 				<?php
 				}
 			?>
+			
+			<!--picture open the Modal-->
+			
 			<div class="profile_container" >
 				<?php 
 					$carOwner = Account::queryAccount($dbconnect, $ownerAcc);
 				?>
-				<a href="1.html" data-toggle="tooltip" title="press me!"><image id="profile" src="<?php echo $carOwner->getProfile()->getPictureURL(); ?>"/></a>
-				<!-- <a href="1.html" data-toggle="tooltip" title="press me!"><image id="profile" src="images/detailImage/pro1.png"/></a> -->
-			</div>	
+				<a href="#">
+				<image class="profile"  data-toggle="modal" data-placement="left" title="Press me please!"data-target="#myModal" src="<?php echo $carOwner->getProfile()->getPictureURL(); ?>"/>
+				</a>
 			</div>
+
+			<!--The Modal -->
+			<div class="modal fade" id="myModal">
+				<div class="modal-dialog modal-lg ">
+					<div class="modal-content">
+			  
+			<!-- Modal Header -->
+					<div class="modal-header">
+						<h4 class="modal-title">Modal Heading</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						 <!-- Modal body -->
+						<div class="modal-body">
+						  Modal body..
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						</div>
+						
+						<!-- Modal footer -->
+						<div class="modal-footer">
+						  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+						
+					  </div>
+					</div>
+				  </div>
+        
+
+			<!-- End of Modal -->
+			
+		</div><!--section 2 right side-->
 			<div class="padding-100"></div>
 		
-		</div>
+		</div><!--section 2 all container-->
 		
 		
 	<!-- //second section-->
 	
 	<!-- //third section-->
+		<div class="padding-100"></div>
 		<div class="about w3layouts agileits" id="about">
 		<div class="container">
 
@@ -413,6 +486,7 @@
 								?>
 								<p><?php echo $rev->getContent(); ?></p>
 							</div>
+							 <hr>
 				<?php			
 						}
 					}
@@ -422,7 +496,7 @@
 					}
 				?>
 				
-				<!--
+				  <!--
 					<div class="media-left">
 					  <img src="images/detailImage/person3.png" class="media-object" style="width:60px">
 					</div>
@@ -436,8 +510,7 @@
 					  <p>The car is really nice,Thanks Crusie!!!</p>
 					</div>
 				 <hr>
-				 
-				 
+				
 				  <div class="media-left">
 					 <img src="images/detailImage/person2.jpg" class="media-object" style="width:60px">
 					</div>
@@ -451,7 +524,8 @@
 					  <p>Crusie is really nice man.Tell us a lot of travelling information and shared a useful experience.The car is also very nice.Overally,Thanks!!</p>
 					</div>
 					<hr>
-				  
+				 
+				 
 				  <div class="media-left">
 					  <img src="images/detailImage/person1.jpg" class="media-object" style="width:60px">
 					</div>

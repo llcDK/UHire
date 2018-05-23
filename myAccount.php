@@ -211,7 +211,7 @@
 		<div id="userInfo">
 			<div id="midInputsTop">
 				<div id="midInputsLeft">
-					<h4>PERSONAL INFORMATION<h4>
+					<p>PERSONAL INFORMATION</p>
 					<div>
 						<?php 
 						
@@ -219,6 +219,7 @@
 							{
 							?>
 								<b>First Name:</b> <input id = "fnameInput" type="text" value = "<?php echo $myAccount->getFirstName(); ?>" /><br/>
+								<br/>
 								<b>Last  Name:</b> <input id = "lnameInput" type="text" value = "<?php echo $myAccount->getLastName(); ?>" /><br/>
 						<?php
 							}
@@ -318,7 +319,7 @@
 					
 				</div>
 				<div id="midInputsRight">
-					<h4>CREDIT CARD INFORMATION<h4>
+					<p>CREDIT CARD INFORMATION<p>
 					<div>
 						<?php
 							if(!empty($myAccount->getBankAccount()))
@@ -436,8 +437,7 @@
 
 <div class="carBox">
 
-<div class="bot">
-	<?php
+<?php
 		if($myAccount->type() == "Car owner")
 		{
 			?>
@@ -483,7 +483,8 @@
 				
 				<div class="tileContainer">
 					<div> <img class="carTile" src="<?php echo $cars[$i]->getImageURL(); ?>" onClick = "window.location='cardetail.php?carPlateNum=<?php echo $cars[$i]->getPlateNum(); ?>';" /> </div>
-					<div class="buttonGroup">
+				
+				<div class="buttonGroup">
 					<form action = "upload.php?state=0" method = "POST">
 						<input type = "hidden" name = "action" value = "update" />
 						
@@ -500,9 +501,9 @@
 						<input type = "hidden" name = "odo" value = "<?php echo empty($cars[$i]->getOdometer())? "" : $cars[$i]->getOdometer() ; ?>" />
 						<input type = "hidden" name = "ft" value = "<?php echo empty($cars[$i]->getFuelType())? "" : $cars[$i]->getFuelType(); ?>" />
 						<input type = "hidden" name = "bt" value = "<?php echo empty($cars[$i]->getBobyType())? "" : $cars[$i]->getBobyType(); ?>" />
-						<button type = "submit" class="editCar"><i class="fa fa-pencil" style='font-size:24px'></i></button>
+						<div id="lb"><button type = "submit" class="editCar"><i class="fa fa-pencil" style='font-size:24px'></i></button></div>
 					</form>
-						<button class="deleteCar"><i class="fa fa-times" style='font-size:24px'></i></button>
+						<div id="rb"><button class="deleteCar"><i class="fa fa-times" style='font-size:24px'></i></button></div>
 					</div>
 				</div>
 	
@@ -531,7 +532,7 @@
 		
 	?>
 </div>
-</div>
+
 </div>
    
    
@@ -553,7 +554,7 @@
 			else
 			{
 		?>	
-				<div>Total Rating: <?php echo $myAccount->getRating(); ?></div>
+				<div><h3>Total Rating: <?php echo $myAccount->getRating(); ?></h3></div>
 		<?php
 			}
 		?>

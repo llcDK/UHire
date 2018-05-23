@@ -144,8 +144,9 @@
 {
 	
 	
-	/*background-color:orange;*/
-	height:600px;
+	/*:orange;*/
+	height:650px;
+	background-color:rgba(136, 136, 136, 0.13);
 	
 	
 }
@@ -222,6 +223,11 @@
 
 }
 
+#midInputsLeft  p
+{
+	font-size: 1.5em;
+    color: #da4d83;
+	}
 #midInputsLeft  h4
 {
 	color:black;
@@ -246,7 +252,11 @@
   text-align:left;
    display:inline-block;
 }
-
+#midInputsRight p
+{
+	font-size: 1.5em;
+    color: #da4d83;
+}
 #midInputsRight h4
 {
 	color:black;
@@ -258,7 +268,11 @@
    padding: 10;
 }
 
-
+#bankAccInput
+{
+	
+	 width:150px;
+}
 #midInputsBot
 {
   width:100%;
@@ -270,7 +284,7 @@
 #midInputsBot button
 
 {
-	background-color:#239e55;
+	background-color:#5cb85c;
 	border-radius:30px;
 	width:100px;
 	border-style:none;
@@ -296,14 +310,6 @@
 {
 	height:600px;
 }
-#bot
-{
-   height:600px;
-   
-   
-   /*border-style:solid;*/
-   /*border-color:blue;*/
-}
 
 
 #botBanner
@@ -316,27 +322,29 @@
 #carScroll
 {
    display:inline-block;
-   margin-left:60px;
-   height:100%
+   
+   height:300px;
    width:100%;
-}
-
-#carScroll *
-{
    position:relative;
    float:left;
+   
+   
 }
 
 .carTile
 {
-   width:100%;
+   width:95%;
    /*border-style:solid;*/
    /*border-color:pink;*/
 }
-
+ /*car div position*/
 .tileContainer
 {
+	display:inline-block;
    width:400px;
+   height: 100%;
+  
+   margin-left:50px;
    /*border-style:solid;*/
    /*border-color:red;*/
 }
@@ -379,8 +387,10 @@
 .editCar
 {
    
-  background-color:yellow;
+  background-color:#fb78a5;
   border-radius:30px;
+  display:inline-block;
+  float:left;
   
 
 }
@@ -390,6 +400,8 @@
   
  background-color:#5cb85c;
  border-radius:30px;
+ display:inline-block;
+ float:right;
 
    
 }
@@ -408,14 +420,21 @@
 #right
 {
   
-   margin-top: 70;
+	display: inline-block;
+    position: relative;
+    left: 15;
+    top: 50px;
 }
 
 #left
 {
   
     margin-top: 70;
-	left: -80;
+	
+	display:inline-block; 
+	position: relative;
+    left: 15;
+    top: 50px;
 }
 
 .leftRight:hover {
@@ -439,10 +458,10 @@
 
 .buttonGroup
 {
-   position:relative;
-   left:-200;
-   top:180;
+	width: 20%;
+    margin-left:40%;
    
+	margin-top:5;
    
    /*border-style:solid;*/
 }

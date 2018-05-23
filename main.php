@@ -84,9 +84,9 @@
 
          <div id="title">
             <h1> <span id="txtUDRIVE"> UDRIVE </span> </h1>
-            <h1> <span style="color:green;">ONLINE</span>
+            <h1> <span style="color:#6ec34a;">ONLINE</span>
                  <span style="color:white;"> RENT </span>
-                 <span style="color:green;"> YOUR </span>
+                 <span style="color:#6ec34a;"> YOUR </span>
                  <span style="color:white;"> CAR </span>
             </h1>
             <h5 style="color:white;"> IN YOUR OWN WAY </h4>
