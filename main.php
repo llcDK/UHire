@@ -33,10 +33,15 @@
 			window.location = "myAccount.php";
 		}
 
-      function goMessage() 
-	  {
-         window.location = "messages.php";
-      }
+		function goMessage() 
+		{
+			window.location = "messages.php";
+		}
+		
+		function goReceipt()
+		{
+			window.location = "receipt.php";
+		}
 	</script>
 	
 	
@@ -72,7 +77,7 @@
             <button class="topButton" onclick = "goHome()" >HOME</button>
             <button class="topButton" onclick = "goAccount()" >MY ACCOUNT</button>
             <button class="topButton" onclick = "goMessage()" >MESSAGE</button>
-            <button class="topButton" onclick = "goHelp()" > MY RECEIPT</button>
+            <button class="topButton" onclick = "goReceipt()" > MY RECEIPT</button>
             <button class="topButton" onclick = "goContact()" >CONTACT</button>
             <button class="topButton" id="topSearch"></button>
          </div>
