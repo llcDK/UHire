@@ -32,7 +32,7 @@
 			//$receiptObj = Receipt::queryReceipt($dbconnect, "select * from Receipt where accNo = '$accNo' and plateNum = '$plateNum' and requestingTime = '$requestingTime' ;");
 			
 			$allReceipt = Receipt::queryReceipts($dbconnect, "select * from Receipt where accNo = '$accNo' order by requestingTime desc;");
-			
+			$allMoneyIn = Receipt::queryReceipts($dbconnect, "select R.accNo, R.plateNum, R.requestingTime, R.moneyPaid, R.commision from Receipt R join Car C on R.plateNum = C.plateNum where C.carOwnerAcc = '$accNo';");
 			
 	?>
 	<div class="bigtop">
@@ -60,10 +60,9 @@
 	<h1>This Is Your Receipt </h1>
 	
 	<?php
-	
+		$i = 1;
 		if(count($allReceipt) > 0)
 		{
-			$i = 1;
 			foreach($allReceipt as $receiptObj)
 			{
 				?>
@@ -98,9 +97,51 @@
 						  </div>
 				</div>
 			<?php
-			$i++;
-			}
+				$i++;
+			}	
 		}
+		
+		if(count($allMoneyIn) > 0)
+		{
+			foreach($allMoneyIn as $receiptObj)
+			{
+				?>
+				<div class="container">
+					  <div class="table-responsive">
+							<table class="table">
+							  <thead>
+								<tr>
+								  <th>#</th>
+								  <th>Account Number</th>
+								  <th>Plate Number</th>
+								  <th>Booking Time</th>
+								  <th>Total amount</th>
+								  <th>Commision</th>
+								  <th>Bond</th>
+								 
+								</tr>
+							  </thead>
+							  <tbody>
+								<tr>
+								  <td><?php echo $i; ?></td>
+								  <td><?php echo $receiptObj->getAccNo(); ?></td>
+								  <td><?php echo $receiptObj->getPlateNum(); ?></td>
+								  <td><?php echo $receiptObj->getTime(); ?></td>
+								  <td>$<?php echo $receiptObj->getAmount(); ?></td>
+								  <td>$<?php echo $receiptObj->getCommission(); ?></td>
+								  <td>$<?php echo Car::$bond; ?></td>
+								  
+								</tr>
+							  </tbody>
+							</table>
+						  </div>
+				</div>
+			<?php
+				$i++;
+			}	
+			
+		}
+		
 	?>
 	
 	</div>
@@ -123,7 +164,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+		</div>
 </footer>
 </body>
 

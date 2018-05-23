@@ -147,7 +147,6 @@
 	{
 		Car::deleteCar($dbconnect, $_GET['plateNum']);
 		
-		
 		// Go back the normal 
 		echo "<script>window.location = 'myAccount.php?state=0'; </script>";
 	}
@@ -577,7 +576,7 @@
 		<div class="media-left">
 			<img src="images/detailImage/person3.png" class="media-object" style="width:60px">
 		</div>
-					
+		<!--
 		<div class="media-body">
 						<div>
 						<h4 class="media-heading"><span>ID.User:</h4>
@@ -603,6 +602,7 @@
 					</div>
 				 <hr>
 	  	 </div>
+		 -->
 			<!--	 
 			<table style = "border: 3px solid red" >
 				<tr>
