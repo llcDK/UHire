@@ -6,6 +6,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
 		<link href="css/carde.css" rel="stylesheet" type="text/css"/>
 		<link href="css/carde-mod.css" rel="stylesheet" type="text/css"/>
 		
@@ -257,14 +258,14 @@
 				{
 					?>
 					<button class="bu1" onClick="window.location = '<?php echo $messageChannel; ?>'" title="Read More">Message</button>
-					<a class="bu2" onClick = "bookCar()" title="Read More">Book</a>
+					<button class="bu2" onClick = "bookCar()" title="Read More">Book</button>
 				<?php
 				}
 			?>
 			
 			<!--picture open the Modal-->
 			
-			<div class="profile_container" >
+			<div class="profile_container">
 				<?php 
 					$carOwner = Account::queryAccount($dbconnect, $ownerAcc);
 				?>

@@ -274,10 +274,12 @@
    </div>
 
 	<div class="padding-100"></div>
+	<div class="padding-100"></div>
    <div id="bot" >
       <div id="botBanner">
 
-
+		
+		<div class="padding-100"></div>
          <div id="botBannerHeader">
             <h3 class="headerPipe">|</h3>
             <h4 id="botBannerText">CONTACT US</h4>
