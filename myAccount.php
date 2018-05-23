@@ -451,12 +451,7 @@
 			<div class="padding-100"></div>
 
 	<?php	
-		}
-		else
-		{
-			?>
-			<div id="botBanner"><button> BECOME  CAR OWNER</button>  </div>
-	<?php
+		
 		}
 	?>
 
