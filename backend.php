@@ -743,6 +743,13 @@
 			return $result;
 		}
 		
+		public static function deleteCar($dbconnect, $plateNum)
+		{
+			$deleteCarQuery = "delete from Car where plateNum = '$plateNum';";
+			$dbconnect->executeCommand($deleteCarQuery);
+		}
+		
+		
 		public function setDetail($dbconnect, $plateNum, $price, $avaiable, $location, $avaiableTo, $year, $model, $description, $brand, $transmission, $seatNumber, $odometer, $fuelType, $bodyType)
 		{
 			// Change the information of this object 

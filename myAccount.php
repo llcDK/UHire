@@ -36,6 +36,12 @@
 		window.location = "myAccount.php?state=2&fn=" + fname + "&ln=" + lname + "&d=" + dob + "&e=" + email + "&g=" + gender + "&ad=" + address + "&b=" + bankAcc + "&c=" + cardNo + "&t=" + type + "&ex=" + expire;
 		
 	}
+	
+	function deleteCar(plateNum)
+	{
+		
+	}
+	
 </script>
 <?php
 	include 'backend.php';
@@ -499,7 +505,7 @@
 						<input type = "hidden" name = "bt" value = "<?php echo empty($cars[$i]->getBobyType())? "" : $cars[$i]->getBobyType(); ?>" />
 						<div id="lb"><button type = "submit" class="editCar"><i class="fa fa-pencil" style='font-size:24px'></i></button></div>
 					</form>
-						<div id="rb"><button class="deleteCar"><i class="fa fa-times" style='font-size:24px'></i></button></div>
+						<div id="rb"><button class="deleteCar" onClick = "deleteCar('<?php echo $cars[$i]->getPlateNum(); ?>')" ><i class="fa fa-times" style='font-size:24px'></i></button></div>
 					</div>
 				</div>
 	
