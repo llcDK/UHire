@@ -35,6 +35,7 @@
 			$allReceipt = Receipt::queryReceipts($dbconnect, "select * from Receipt where accNo = '$accNo' order by requestingTime desc;");
 			$allMoneyIn = Receipt::queryReceipts($dbconnect, "select R.accNo, R.plateNum, R.requestingTime, R.moneyPaid, R.commision from Receipt R join Car C on R.plateNum = C.plateNum where C.carOwnerAcc = '$accNo';");
 			
+			
 	?>
 	<div class="bigtop">
 			<!--class="darken"-->

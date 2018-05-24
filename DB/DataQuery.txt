@@ -1,0 +1,1 @@
+select B.plateNum as pnum, max(bookuntil) as last from Car C join Booking B on C.plateNum = B.plateNum group by B.plateNum having last > '2018-05-24';

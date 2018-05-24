@@ -692,7 +692,7 @@
 			$price = (empty($price) || !isset($price))? PHP_INT_MAX : $price;
 			$ava = empty($ava) || !isset($ava)? '0000-00-00' : $ava;
 						
-			$query = "select * from Car where price <= $price and avaiableTo > '$ava' and brand like '%$brand%';";
+			$query = "select * from Car where price <= $price and avaiableTo > '$ava' and brand like '%$brand%' and available = 1;";
 			
 			// Call getCars function to return a list of cars that match the cirteria
 			$partialResult = Car::getCars($dbconnect, $query);
@@ -1259,12 +1259,10 @@
 		
 		static function queryReceipts($dbconnect, $query)
 		{
-			$result = array();
 			$receiptTable = $dbconnect->executeCommand($query);
-			while($receiptRow = mysqli_fetch_row($receiptTable))
-			{
-				$receiptRow = mysqli_fetch_row($receiptTable);
-				$receiptObj = new Receipt($receiptRow[0], $receiptRow[1], $receiptRow[2], $receiptRow[3], $receiptRow[4]);
+			while(($receiptRow = mysqli_fetch_row($receiptTable)) != false)
+			{	
+				$receiptObj = new Receipt($receiptRow[0], $receiptRow[1], $receiptRow[2], $receiptRow[3], $receiptRow[4]);				
 				$result[] = $receiptObj;
 			}
 			
