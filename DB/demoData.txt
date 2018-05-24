@@ -1,0 +1,5 @@
+INSERT INTO Message
+VALUES
+('100101','100100', '2018-05-15 09:32:15', 'Hey Aaren hows it going, looking to borow a car to go down the coast for the weekend would that be alright?'),
+('100100','100101', '2018-05-15 11:50:23', 'Hi Aarika, yes that will be fine just please make sure you fill the tank up before returning the vehicle. The middle backseat safety belts currently needs repair, is this okay?');
+
