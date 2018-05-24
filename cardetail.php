@@ -8,7 +8,7 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		
 		<link href="css/carde.css" rel="stylesheet" type="text/css"/>
-		<link href="css/carde-mod.css" rel="stylesheet" type="text/css"/>
+		<link href="css/carde-modal.css" rel="stylesheet" type="text/css"/>
 		
 		<!-- font -->
 		<link href="http://fonts.googleapis.com/css?family=Kaushan+Script&amp;subset=latin-ext" rel="stylesheet">
@@ -281,12 +281,27 @@
 			  
 			<!-- Modal Header -->
 					<div class="modal-header">
-						<h4 class="modal-title">Modal Heading</h4>
+						<h2 class="modal-title">Pesonal Information</h2>
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 						</div>
 						 <!-- Modal body -->
 						<div class="modal-body">
-						  Modal body..
+							<div id ="content" class="row" style="top:-139px;">
+							<div class ="col-lg-4"></div>
+							<!--namecard-->
+							<div id="namecard" class="namecard">
+							<div class="shadow-img"></div>
+							<h1 class="maintitle">Chloe<span class="invert">Sun</span></h1><!--PROFILE NAME-->
+							
+							</h3>
+							<img id="profile-img" class="profile-img transparent" src="images/messages/person4.jpg" alt="profile-image"><!--PROFILE IMAGE-->
+						</div><!--namecard-->
+					
+							
+							
+							</div>
+							<div class ="col-lg-8 page-segment"</div>
+							</div>
 						
 						
 						

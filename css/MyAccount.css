@@ -203,7 +203,54 @@
    background-repeat:no-repeat;
 }
 
+.socialicon
+{
+	float:left;
+   height:38px;
+   width:38PX;
+   margin-top: -90;
+    margin-left: 65;
+   border-style:none;
+   border-radius:100%;
+   background-image:url("../images/fbicon.png");
+   background-position:center;
+   background-size: cover;
+	background-attachment: fixed
+   background-repeat:no-repeat;
+}
 
+
+.socialicon2
+{
+	float:left;
+   height:38px;
+   width:38PX;
+   margin-top: -28;
+    margin-left: 90;
+   border-style:none;
+   border-radius:100%;
+   background-image:url("../images/goicon.png");
+   background-position:center;
+   background-size: cover;
+	background-attachment: fixed
+   background-repeat:no-repeat;
+}
+
+.socialicon3
+{
+	float:left;
+   height:38px;
+   width:38PX;
+   margin-top: 20;
+    margin-left: 10;
+   border-style:none;
+   border-radius:100%;
+   background-image:url("../images/inicon.png");
+   background-position:center;
+   background-size: cover;
+	background-attachment: fixed
+   background-repeat:no-repeat;
+}
 #midInputsTop
 {
   height:600px;

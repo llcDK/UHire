@@ -215,12 +215,15 @@
 					else
 					{
 						?>
-						<div id="ownerImg" style = "background-image: url(<?php echo $myAccount->getProfile()->getPictureURL(); ?>)"></div>
+						
 				<?php
 					}
 				?>
 			</div>
 			<div class="weirdCircle"></div>
+			<div ><a href="http://wwww.facebook.com"><image class="socialicon"></image></a></div>
+			<div ><a href="http://www.google.com/"><image class="socialicon2"></image></a></div>
+			<div ><a href="https://www.instagram.com/"><image class="socialicon3"></image></a></div>
 		</div>
 
 		
