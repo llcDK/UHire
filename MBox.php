@@ -2,13 +2,13 @@
 
 	<head>
 		<title> MBox </title>
-		<link href="css/MBox.css" rel="stylesheet" type="text/css">
+		
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+		<link href="css/MBox.css" rel="stylesheet" type="text/css">
 		<!-- font -->
 		<link href="http://fonts.googleapis.com/css?family=Kaushan+Script&amp;subset=latin-ext" rel="stylesheet">
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
@@ -70,8 +70,9 @@
 			
 		 ?>
 		<div class="titM"><h1>Message Box</h1></div>
-		<button onclick="goBack()">Go Back</button>
+		<a href="messages.php"><img id="back" src="images/back.png" style="width:50px"/></a>
 		<div class="container1">
+		
 			<div class="upchat">
 				<?php
 					// Loop the chat to display messages one by one
